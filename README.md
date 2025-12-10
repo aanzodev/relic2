@@ -7,8 +7,9 @@
 - <a href="https://dsc.gg/galaxyproxi">GalaxyVerse</a> (Archived)
 - Anzo (Developer)
 - <a href="https://github.com/JustJxrdanWasDefinetlyTaken">Jordan</a> (Developer)
+- ayden (Developer)
 - <a href="https://github.com/Coding4Hours">Coding4Hours</a> (Developer)
-- Sai (Developer)
+- Sai (Contributor)
 - David (Some image assets)
 
 ### Features
