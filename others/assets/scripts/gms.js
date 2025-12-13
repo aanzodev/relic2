@@ -13,10 +13,12 @@ const games = [
   { name: "8 Ball Pool", image: "others/assets/games/images/8-ball-pool-2021-08-05.webp", url: "others/assets/games/8 Ball Pool.html" },
   { name: "99 Nights In The Forest", image: "others/assets/games/images/99nights.webp", url: "others/assets/games/99nightsitf.html" },
   // A
-  { name: "A Small World Cup", image: "others/assets/games/images/asmallworldcup.png", url: "others/assets/games/A Small World Cup.html" },
+  { name: "Adventure Capatalist", image: "others/assets/games/images/7866638-adventure-capitalist-android-front-cover.jpg", url: "others/assets/games/Adventure Capatalist.html" },
+  { name: "Agar.io Lite", image: "others/assets/games/images/agario-lite.jpg", url: "others/assets/games/agar.io lite.html" },
   { name: "Amazing Strange Police", image: "others/assets/games/images/amazing strange police.jpg", url: "others/assets/games/amazing strange police.html" },
   { name: "Among Us", image: "others/assets/games/images/amongus.jpg", url: "others/assets/games/Among Us.html" },
   { name: "Angry Birds", image: "others/assets/games/images/angrybirds.jpeg", url: "others/assets/games/Angry Birds.html" },
+  { name: "A Small World Cup", image: "others/assets/games/images/asmallworldcup.png", url: "others/assets/games/A Small World Cup.html" },
   // B
   { name: "Backrooms", image: "others/assets/games/images/backrooms.png", url: "others/assets/games/backrooms.html" },
   { name: "Bacon May Die", image: "others/assets/games/images/bacon-may-die.png", url: "others/assets/games/Bacon May Die.html" },
@@ -58,10 +60,18 @@ const games = [
   { name: "Escape Road 2", image: "others/assets/games/images/escaperoad2.jpeg", url: "others/assets/games/clescaperoad-2.html" },
   // F
   { name: "FNAF", image: "others/assets/games/images/fnaf.webp", url: "others/assets/games/FNAF.html" },
+  { name: "FNAF pizzeria simulator", image: "others/assets/games/images/fnaf pizza sim.png", url: "others/assets/games/fnaf pizza sim.html" },
+  { name: "FNAF 2", image: "others/assets/games/images/fnaf2.png", url: "others/assets/games/FNAF 2.html" },
+  { name: "FNAF 3", image: "others/assets/games/images/fnaf3.webp", url: "others/assets/games/FNAF 3.html" },
+  { name: "FNAF 4", image: "others/assets/games/images/fnaf4.webp", url: "others/assets/games/FNAF 4.html" },
+  { name: "FNAF 4 Halloween", image: "others/assets/games/images/fnaf4 halloween.jpg", url: "others/assets/games/FNAF 4.html" },
   { name: "Flappy Bird", image: "others/assets/games/images/flappybird.png", url: "others/assets/games/Flappy Bird.html" },
   { name: "Football Bros", image: "others/assets/games/images/football-bros.webp", url: "others/assets/games/Football Bros.html" },
+  { name: "Football Legends", image: "others/assets/games/images/football legends.jpg", url: "others/assets/games/football legends.html" },
+  { name: "Fortzone", image: "others/assets/games/images/fortzone.webp", url: "others/assets/games/fortzone.html" },
   { name: "Friday Night Funkin': Darkness Takeover", image: "others/assets/games/images/takeover.jpg", url: "others/assets/games/Friday Night Funkin'_ Darkness Takeover.html" },
   { name: "Fruit Ninja", image: "others/assets/games/images/fruitninja.jpeg", url: "others/assets/games/Fruit Ninja.html" },
+  { name: "Funny Shooter 2", image: "others/assets/games/images/funnyshooter2.jpg", url: "others/assets/games/funnyshooter2.html" },
   // G
   { name: "Geometry Dash Lite", image: "others/assets/games/images/dashlite.png", url: "others/assets/games/geometrydash.html" },
   { name: "Geometry Dash Subzero", image: "others/assets/games/images/gdashsubzero.png", url: "others/assets/games/gd subzero.html" },
@@ -78,7 +88,8 @@ const games = [
   { name: "Hole.io", image: "others/assets/games/images/hole-io.png", url: "others/assets/games/hole.io.html" },
   { name: "Hotline Miami", image: "others/assets/games/images/hotline Miami.png", url: "others/assets/games/Hotline Miami.html" },
   // I
-  { name: "Icy Purple Head", image: "others/assets/games/images/infcraft.jpg", url: "others/assets/games/Infinite Craft" },
+  { name: "Icy Purple Head", image: "others/assets/games/images/icy purple head.webp", url: "others/assets/games/icy purple head.html" },
+  { name: "Idle Game Developer", image: "others/assets/games/images/idle game developer.jpg", url: "others/assets/games/idle game developer.html" },
   { name: "Ink Game", image: "others/assets/games/images/inkgame.png", url: "others/assets/games/inkgame.html" },
   { name: "Infinite Craft", image: "others/assets/games/images/infcraft.jpg", url: "others/assets/games/Infinite Craft" },
   // J
@@ -97,10 +108,12 @@ const games = [
   // N
   { name: "n-gon", image: "others/assets/games/images/ngone.png", url: "others/assets/games/n-gon.html" },
   // P
-  { name: "Paper.io", image: "others/assets/games/images/paperio2.png", url: "others/assets/games/Paper.io 2.html" },
   { name: "Paper.io 3D", image: "others/assets/games/images/paper.io3d.png", url: "others/assets/games/paperio 3d.html" },
+  { name: "Paper.io", image: "others/assets/games/images/paperio2.png", url: "others/assets/games/Paper.io 2.html" },
+  { name: "Paper.io Mania", image: "others/assets/games/images/paper.io mania.png", url: "others/assets/games/paper.io mania.html" },
   { name: "Pixel Gun Survival", image: "others/assets/games/images/pixelgunshoot.jpg", url: "others/assets/games/Pixel Gun Survival.html" },
   { name: "Polytrack", image: "others/assets/games/images/polytrack.jpg", url: "others/assets/games/polytrack.html" },
+  { name: "Polytrack Old", image: "others/assets/games/images/polytrack old.jpg", url: "others/assets/games/polytrack.html" },
   { name: "Pokemon Emerald", image: "others/assets/games/images/pokemon emerald.jpg", url: "others/assets/games/Pokemon Emerald.html" },
   { name: "Pokemon Red", image: "others/assets/games/images/pokemonred.jpeg", url: "others/assets/games/Pokemon Red.html" },
   { name: "Pou", image: "others/assets/games/images/pou.png", url: "others/assets/games/pou.html" },
@@ -108,6 +121,8 @@ const games = [
   { name: "Quake III", image: "others/assets/games/images/quake III arena.png", url: "others/assets/games/quake 3.html" },
   // R
   { name: "Ragdoll Archers", image: "others/assets/games/images/RagdollArchers.jpg", url: "others/assets/games/ragdollarchers.html" },
+  { name: "Ragdoll Hit", image: "others/assets/games/images/ragdollhit.webp", url: "others/assets/games/ragollhit.html" },
+  { name: "Ragdoll Runners", image: "others/assets/games/images/ragdoll runners.jpg", url: "others/assets/games/ragdoll runners.html" },
   { name: "Rainbow Obby", image: "others/assets/games/images/rainbowobby.png", url: "others/assets/games/Rainbow Obby.html" },
   { name: "Red Vs Blue", image: "others/assets/games/images/red vs blue.jpg", url: "others/assets/games/red vs blue.html" },
   { name: "Retro Highway", image: "others/assets/games/images/retrohighway.jpg", url: "others/assets/games/retrohighway.html" },
@@ -145,6 +160,7 @@ const games = [
   { name: "Tomb Of The Mask", image: "others/assets/games/images/tomb of the mask.png", url: "others/assets/games/Tomb Of The Mask.html" },
   { name: "Traffic Jam 3d", image: "others/assets/games/images/traffic-jam-3d.jpeg", url: "others/assets/games/trafficjam3d.html" },
   { name: "Tube Jumpers", image: "others/assets/games/images/tubejumpers.jpg", url: "others/assets/games/Tube Jumpers.html" },
+  { name: "Tung Tung Tung Saul Obby", image: "others/assets/games/images/tung-tung-sahur-obby.png", url: "others/assets/games/tung tung tung saul obby.html" },
   // U
   { name: "Ultimate car driving simulator", image: "others/assets/games/images/Ultimate car driving simulator.png", url: "others/assets/games/Ultimate car driving simulator.html" },
   { name: "Uno", image: "others/assets/games/images/uno.png", url: "others/assets/games/uno.html" },
