@@ -375,39 +375,28 @@
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
 
-  <!-- CRITICAL: Load scripts in EXACT ORDER -->
-  <!-- 1. Console system -->
   <script src="others/assets/scripts/console.js"></script>
 
-  <!-- 3. Games data -->
   <script src="others/assets/scripts/gms.js"></script>
 
-  <!-- 4. Stats tracking -->
   <script src="others/assets/scripts/stats.js"></script>
 
-  <!-- NEW: User Counter -->
+  <script src="others/assets/scripts/firebase-config.js"></script>
+
   <script src="others/assets/scripts/counter.js"></script>
 
-  <!-- 5. Sidebar navigation -->
   <script src="others/assets/js/sidebar.js"></script>
 
-  <!-- Loader for the theme-switcher.js -->
   <script src="others/assets/js/theme-switcher.js"></script>
 
-  <!-- DYNAMIC SIDEBAR THEME - MUST BE AFTER theme-switcher.js -->
   <script src="others/assets/js/dyncsidebar.js"></script>
 
-  <!-- 6. Main scripts (with Fingerprint ID protection integrated) -->
   <script src="scripts.js"></script>
 
-  <!-- Homepage scroll functionality -->
   <script src="others/assets/scripts/homepage/homescroll.js"></script>
 
-  <!-- AUTO-SHOW UPDATE LOG ON PAGE LOAD -->
   <script>
-    // Wait for DOM to be fully loaded
     window.addEventListener('DOMContentLoaded', function() {
-      // Small delay to ensure all scripts are loaded
       setTimeout(function() {
         const updateLogModal = document.getElementById('updateLogModal');
         if (updateLogModal) {
