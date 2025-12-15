@@ -68,6 +68,86 @@ body::before {
   text-shadow: 0 4px 20px rgba(91, 158, 255, 0.3);
 }
 
+/* User Counter Styles */
+.user-counter-container {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-counter-content {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  background: rgba(91, 158, 255, 0.1);
+  border: 1px solid rgba(91, 158, 255, 0.3);
+  border-radius: 50px;
+  backdrop-filter: blur(10px);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-color);
+  transition: all 0.3s ease;
+}
+
+.user-counter-content:hover {
+  background: rgba(91, 158, 255, 0.15);
+  border-color: rgba(91, 158, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+.user-counter-icon {
+  font-size: 20px;
+  animation: userIconBounce 2s ease-in-out infinite;
+}
+
+@keyframes userIconBounce {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.user-counter-text {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+#activeUsers {
+  font-size: 18px;
+  font-weight: 700;
+  color: #5b9eff;
+  min-width: 30px;
+  text-align: center;
+}
+
+.user-counter-pulse {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 8px;
+  height: 8px;
+  background: #4ade80;
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.2);
+  }
+}
+
 #snow-container {
   pointer-events: none;
   position: fixed;
@@ -706,6 +786,19 @@ body::before {
 
   .relic-title {
     font-size: 32px;
+  }
+
+  .user-counter-content {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+  
+  .user-counter-icon {
+    font-size: 18px;
+  }
+  
+  #activeUsers {
+    font-size: 16px;
   }
 
   .homepage-info-buttons {
