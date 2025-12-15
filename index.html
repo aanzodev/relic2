@@ -11,7 +11,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Relic</title>
+  
+  <!-- Load proxy dependencies BEFORE pre.js -->
+  <script src="https://cdn.jsdelivr.net/npm/@mercuryworkshop/bare-mux@2/dist/index.js"></script>
+  <script src="/marcs/scramjet.codecs.js"></script>
+  <script src="/marcs/scramjet.config.js"></script>
+  
+  <!-- NOW load pre.js -->
   <script src="others/assets/js/pre.js" defer></script>
+  
   <link rel="icon" href="others/assets/relic.webp" />
 
   <!-- external ceeeses -->
@@ -371,15 +379,15 @@
   <!-- Snow container -->
   <div id="snow-container"></div>
 
- <!-- Firebase SDK - MUST BE IN THIS ORDER -->
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+  <!-- Firebase SDK - MUST BE IN THIS ORDER -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
 
-<script src="others/assets/scripts/console.js"></script>
-<script src="others/assets/scripts/gms.js"></script>
-<script src="others/assets/scripts/stats.js"></script>
-<script src="assets/scripts/firebase-config.js"></script>
-<script src="assets/scripts/counter.js"></script>
+  <script src="others/assets/scripts/console.js"></script>
+  <script src="others/assets/scripts/gms.js"></script>
+  <script src="others/assets/scripts/stats.js"></script>
+  <script src="assets/scripts/firebase-config.js"></script>
+  <script src="assets/scripts/counter.js"></script>
   
   <script>
     window.addEventListener('DOMContentLoaded', function() {
