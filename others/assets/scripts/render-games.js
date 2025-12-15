@@ -1,11 +1,6 @@
-// ===== RENDER GAMES SCRIPT =====
-// This script populates game cards on the page
-
-// Wait for DOM and games data to load
 document.addEventListener('DOMContentLoaded', function() {
   console.log('Render script loaded');
   
-  // Check if games array exists
   if (typeof games === 'undefined') {
     console.error('Games array not found! Make sure gms.js is loaded first.');
     return;
@@ -13,7 +8,6 @@ document.addEventListener('DOMContentLoaded', function() {
   
   console.log(`Found ${games.length} games to render`);
   
-  // ===== HOMEPAGE CAROUSEL =====
   function renderCarousel() {
     const carouselTrack = document.getElementById('carousel-track-top');
     if (!carouselTrack) {
