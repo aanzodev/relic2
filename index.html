@@ -184,9 +184,16 @@
             <h2 class="relic-title">Relic Ultimate</h2>
           </div>
           
-          <p style="font-size: 14px; opacity: 0.8; margin-top: 10px;">
-            <b>Daily Names: Michael, Jacob, Dante, Enrique, Joseluis</b>
-          </p>
+          <!-- NEW: Live User Counter (removed Daily Names) -->
+          <div class="user-counter-container">
+            <div class="user-counter-content">
+              <span class="user-counter-icon">👥</span>
+              <span class="user-counter-text">
+                <span id="activeUsers">...</span> users online
+              </span>
+              <span class="user-counter-pulse"></span>
+            </div>
+          </div>
         </div>
 
         <!-- Single Scrolling Game Carousel -->
@@ -377,6 +384,9 @@
 
   <!-- 4. Stats tracking -->
   <script src="others/assets/scripts/stats.js"></script>
+
+  <!-- NEW: User Counter -->
+  <script src="others/assets/scripts/counter.js"></script>
 
   <!-- 5. Sidebar navigation -->
   <script src="others/assets/js/sidebar.js"></script>
