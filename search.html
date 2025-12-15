@@ -1,179 +1,620 @@
-<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Relic Search</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  
+  <!-- Load proxy dependencies -->
+  <script src="https://cdn.jsdelivr.net/npm/@mercuryworkshop/bare-mux@2/dist/index.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/soap-phia/tinyjet@latest/tinyjet/scramjet.codecs.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/soap-phia/tinyjet@latest/tinyjet/scramjet.config.js"></script>
+  
   <style>
-    :root {
-      /* your colors */
-      --bg-color: #0a0e1a;
-      --bg-secondary: #12171f;
-      --nav-color: #1a1f2e;
-      --accent-color: #6366f1;
-      --accent-secondary: #8b5cf6;
-      --text-color: #e2e8f0;
-      --text-muted: #94a3b8;
-      --border-color: #2d3548;
-      --hover-bg: #252b3b;
-      --btn-bg: #2d3548;
-      --btn-hover-bg: #6366f1;
-
-      --glass-bg: rgba(26, 31, 46, 0.7);
-      --glass-border: rgba(99, 102, 241, 0.2);
-
-      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
-      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
-      --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
-      --shadow-glow: 0 0 20px rgba(99, 102, 241, 0.3);
-
-      --sidebar-top: #0d1018;
-      --sidebar-mid: #0f1420;
-      --sidebar-bottom: #091229;
-      --sidebar-text: rgba(226, 232, 240, 0.8);
-      --sidebar-text-hover: #ffffff;
-      --sidebar-hover: rgba(99, 102, 241, 0.15);
-      --sidebar-active-bg: linear-gradient(135deg, rgba(99, 102, 241, 0.3) 0%, rgba(139, 92, 246, 0.25) 100%);
-      --sidebar-accent-border: linear-gradient(180deg, #6366f1 0%, #8b5cf6 100%);
-    }
-
-    /* Page layout */
-    body {
-      background: var(--bg-color);
+    * {
       margin: 0;
       padding: 0;
-      overflow: hidden;
-      font-family: 'Inter', sans-serif;
-      color: var(--text-color);
+      box-sizing: border-box;
     }
 
-    /* Search bar container */
-    #search {
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 100%);
+      color: white;
+      overflow-x: hidden;
+    }
+
+    .search-frame-container {
       width: 100%;
-      box-sizing: border-box;
-      padding: 14px;
-      background: var(--nav-color);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: rgba(15, 20, 25, 0.95);
+    }
+
+    .search-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .time-display {
+      font-size: 48px;
+      font-weight: 300;
+      margin-bottom: 30px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .search-box-container {
+      width: 100%;
+      max-width: 700px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    .search-form {
+      margin-bottom: 30px;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 16px 20px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      color: white;
+      font-size: 16px;
+      outline: none;
+      transition: all 0.3s;
+      text-align: center;
+    }
+
+    .search-input::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .search-input:focus {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.3);
+      box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+    }
+
+    .shortcuts-container {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .shortcut-item {
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      padding: 15px;
+      width: 90px;
+      height: 110px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      position: relative;
+    }
+
+    .shortcut-item:hover {
+      transform: translateY(-5px);
+      background: rgba(255, 255, 255, 0.12);
+      box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+    }
+
+    .shortcut-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      margin-bottom: 8px;
+      object-fit: cover;
+    }
+
+    .shortcut-name {
+      font-size: 12px;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.9);
+      word-wrap: break-word;
+      max-width: 100%;
+    }
+
+    .add-shortcut {
+      background: rgba(102, 126, 234, 0.1);
+      border: 2px dashed rgba(102, 126, 234, 0.3);
+    }
+
+    .add-shortcut:hover {
+      background: rgba(102, 126, 234, 0.2);
+      border-color: rgba(102, 126, 234, 0.5);
+    }
+
+    .shortcut-menu {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+    }
+
+    .menu-btn {
+      background: rgba(0, 0, 0, 0.5);
+      border: none;
+      color: white;
+      border-radius: 4px;
+      padding: 2px 6px;
+      cursor: pointer;
+      font-size: 14px;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .shortcut-item:hover .menu-btn {
+      opacity: 1;
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 25px;
+      right: 0;
+      background: rgba(0, 0, 0, 0.9);
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      min-width: 100px;
+      z-index: 1000;
+      overflow: hidden;
+    }
+
+    .dropdown.active {
+      display: block;
+    }
+
+    .dropdown button {
+      display: block;
+      width: 100%;
+      padding: 8px 12px;
+      background: none;
+      border: none;
+      color: white;
+      text-align: left;
+      cursor: pointer;
+      font-size: 13px;
+      transition: background 0.2s;
+    }
+
+    .dropdown button:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .modal-overlay {
+      display: none;
       position: fixed;
       top: 0;
       left: 0;
-      z-index: 1000;
-      border-bottom: 1px solid var(--border-color);
-      box-shadow: var(--shadow-md);
-      display: flex;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(4px);
+      z-index: 10000;
+      align-items: center;
       justify-content: center;
-      /* center input */
     }
 
-    /* Search input */
-    #search input {
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 16px;
+      padding: 30px;
+      min-width: 400px;
+      max-width: 500px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-content h3 {
+      margin: 0 0 20px 0;
+      font-size: 24px;
+      font-weight: 600;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+
+    .form-group input {
       width: 100%;
-      max-width: 99vw;
-      /* prevents infinite stretching */
-      height: 44px;
-      padding: 0 16px;
-      font-size: 15px;
-      color: var(--text-color);
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      color: white;
+      font-size: 14px;
+    }
 
-      background: var(--glass-bg);
-      border: 1px solid var(--glass-border);
-      border-radius: 12px;
+    .form-group input:focus {
       outline: none;
-      box-sizing: border-box;
-      backdrop-filter: blur(14px);
-
-      transition: border 0.2s ease, box-shadow 0.2s ease;
+      border-color: rgba(102, 126, 234, 0.5);
+      background: rgba(255, 255, 255, 0.08);
     }
 
-    #search input::placeholder {
-      color: var(--text-muted);
+    .modal-buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: flex-end;
+      margin-top: 24px;
     }
 
-    #search input:focus {
-      border-color: var(--accent-color);
-      box-shadow: var(--shadow-glow);
+    .modal-buttons button {
+      padding: 10px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-weight: 500;
     }
 
-    /* Hidden wisp input */
-    #wisp {
+    .btn-cancel {
+      background: rgba(255, 255, 255, 0.05);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-cancel:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .btn-submit {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+
+    .btn-submit:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    }
+
+    .proxy-container {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      z-index: 9999;
+    }
+
+    .proxy-container.active {
+      display: block;
+    }
+
+    #proxyFrame {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .proxy-controls {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      z-index: 10000;
+      display: flex;
+      gap: 10px;
+    }
+
+    .proxy-controls button {
+      padding: 8px 16px;
+      background: rgba(0, 0, 0, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .proxy-controls button:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .error-message {
+      background: rgba(255, 0, 0, 0.1);
+      border: 1px solid rgba(255, 0, 0, 0.3);
+      color: #ff6b6b;
+      padding: 12px;
+      border-radius: 8px;
+      margin-top: 20px;
+      font-size: 14px;
       display: none;
     }
 
-    /* Iframe full screen */
-    #iframe {
-      position: absolute;
-      top: 60px;
-      /* height of search bar */
-      left: 0;
-      width: 100%;
-      height: calc(100% - 60px);
-      border: none;
-      background: var(--bg-secondary);
+    .error-message.show {
+      display: block;
     }
   </style>
-  <form id="search"><input id="url" type="text" class="search-input search" placeholder="Search the web or enter URL">
-  </form>
-  <div style="display:none;">
-    <form id="wisp"><input id="websocket" type="text" class="search-input search" value="wss://gointospace.app/wisp/">
-    </form>
+</head>
+<body>
+  <div class="search-frame-container">
+    <div class="search-content">
+      <div class="time-display" id="timeDisplay">00:00:00</div>
+      
+      <div class="search-box-container">
+        <form class="search-form" id="searchForm">
+          <input 
+            type="text" 
+            class="search-input" 
+            id="searchInput" 
+            placeholder="Search with confidence..."
+            autocomplete="off"
+            spellcheck="false"
+          />
+        </form>
+
+        <div class="error-message" id="errorMessage"></div>
+
+        <div class="shortcuts-container" id="shortcutsContainer">
+          <div class="shortcut-item" data-url="https://xbox.com/en-us/play">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Ccircle cx='24' cy='24' r='22' fill='%23107c10'/%3E%3Cpath fill='white' d='M24 14c-1.5 0-3 .5-4 1.5-1 1-1.5 2.5-1.5 4v13c0 1.5.5 3 1.5 4s2.5 1.5 4 1.5 3-.5 4-1.5 1.5-2.5 1.5-4v-13c0-1.5-.5-3-1.5-4s-2.5-1.5-4-1.5z'/%3E%3C/svg%3E" class="shortcut-icon" alt="Cloud Gaming" />
+            <div class="shortcut-name">Cloud Gaming</div>
+          </div>
+
+          <div class="shortcut-item" data-url="https://play.geforcenow.com">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='8' fill='%2376b900'/%3E%3Cpath fill='white' d='M12 20h10v8H12zm14 0h10v8H26z'/%3E%3C/svg%3E" class="shortcut-icon" alt="GeForce Now" />
+            <div class="shortcut-name">GeForce Now</div>
+          </div>
+
+          <div class="shortcut-item" data-url="https://twitch.tv">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='8' fill='%239146ff'/%3E%3Cpath fill='white' d='M20 16h3v8h-3zm8 0h3v8h-3z'/%3E%3C/svg%3E" class="shortcut-icon" alt="Twitch" />
+            <div class="shortcut-name">Twitch</div>
+          </div>
+
+          <div class="shortcut-item" data-url="https://discord.com/login">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='12' fill='%235865f2'/%3E%3Cpath fill='white' d='M18 22c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z'/%3E%3C/svg%3E" class="shortcut-icon" alt="Discord" />
+            <div class="shortcut-name">Discord</div>
+          </div>
+
+          <div class="shortcut-item add-shortcut" id="addShortcutBtn">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+              <circle cx="24" cy="24" r="20" stroke="rgba(255,255,255,0.3)" stroke-width="2" stroke-dasharray="4 4"/>
+              <path d="M24 16v16M16 24h16" stroke="rgba(255,255,255,0.5)" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <div class="shortcut-name">Add</div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <iframe id="iframe" width="100%" height="100%"></iframe>
-  <script src="https://cdn.jsdelivr.net/gh/soap-phia/tinyjet@latest/tinyjet/scramjet.all.js" defer></script>
-  <script type="module" defer>
-    import * as BareMux from "https://cdn.jsdelivr.net/npm/@mercuryworkshop/bare-mux/dist/index.mjs";
-    const { ScramjetController } = $scramjetLoadController();
-    const scramjet = new ScramjetController({
-      files: {
-        wasm: "https://cdn.jsdelivr.net/gh/soap-phia/tinyjet@latest/tinyjet/wasm.wasm",
-        all: "https://cdn.jsdelivr.net/gh/soap-phia/tinyjet@latest/tinyjet/scramjet.all.js",
-        sync: "https://cdn.jsdelivr.net/gh/soap-phia/tinyjet@latest/tinyjet/scramjet.sync.js"
+
+  <div class="proxy-container" id="proxyContainer">
+    <div class="proxy-controls">
+      <button id="closeProxyBtn">✕ Close</button>
+    </div>
+    <iframe id="proxyFrame" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals allow-popups-to-escape-sandbox allow-top-navigation"></iframe>
+  </div>
+
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-content">
+      <h3 id="modalTitle">Add Shortcut</h3>
+      <form id="modalForm">
+        <div class="form-group">
+          <label for="shortcutName">Shortcut Name</label>
+          <input type="text" id="shortcutName" placeholder="e.g., YouTube" required />
+        </div>
+        <div class="form-group">
+          <label for="shortcutUrl">Site URL</label>
+          <input type="url" id="shortcutUrl" placeholder="https://example.com" required />
+        </div>
+        <div class="modal-buttons">
+          <button type="button" class="btn-cancel" id="modalCancel">Cancel</button>
+          <button type="submit" class="btn-submit">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    let connection = null;
+    let scramjet = null;
+    let proxyReady = false;
+
+    // Get the correct base path for GitHub Pages
+    function getBasePath() {
+      const path = window.location.pathname;
+      const parts = path.split('/').filter(p => p);
+      // If hosted on GitHub Pages (e.g., /relic2/), return that path
+      if (parts.length > 0 && parts[0] !== 'search.html') {
+        return '/' + parts[0] + '/';
       }
-    });
-    try {
-      scramjet.init();
-      navigator.serviceWorker.register("/sw.js");
-    } catch (e) { console.error("scramjet failed to initialize;", e); }
-    const connection = new BareMux.BareMuxConnection("/bareworker.js");
-    document.getElementById("websocket").placeholder = "wss://wispy.thewellnessconference.org/wisp/";
-    function getWispUrl() {
-      const wisp = document.getElementById("websocket").value.trim();
-      const defaultWisp = "wss://wispy.thewellnessconference.org/wisp/";
-      return wisp || defaultWisp;
+      return '/';
     }
-    async function setTransport(transportsel) {
-      const wispUrl = getWispUrl();
-      switch (transportsel) {
-        case "epoxy":
-          await connection.setTransport("https://cdn.jsdelivr.net/npm/@mercuryworkshop/epoxy-transport/dist/index.mjs", [{ wisp: wispUrl }]);
-          break;
-        case "libcurl":
-          await connection.setTransport("https://cdn.jsdelivr.net/npm/@mercuryworkshop/libcurl-transport/dist/index.mjs", [{ websocket: wispUrl }]);
-          break;
-        default:
-          await connection.setTransport("https://cdn.jsdelivr.net/npm/@mercuryworkshop/epoxy-transport/dist/index.mjs", [{ wisp: wispUrl }]);
-          break;
+
+    const basePath = getBasePath();
+    const swPath = basePath + 'sw.js';
+
+    function showError(message) {
+      const errorEl = document.getElementById('errorMessage');
+      errorEl.textContent = message;
+      errorEl.classList.add('show');
+      setTimeout(() => errorEl.classList.remove('show'), 5000);
+    }
+
+    async function initProxy() {
+      try {
+        console.log('Initializing proxy with base path:', basePath);
+        
+        if (typeof BareMux === 'undefined') {
+          throw new Error('BareMux not loaded');
+        }
+        
+        connection = new BareMux.BareMuxConnection(basePath + "mux/worker.js");
+        console.log('BareMux initialized');
+
+        if (typeof $scramjetLoadController === 'undefined') {
+          throw new Error('Scramjet not loaded');
+        }
+
+        const { ScramjetController } = $scramjetLoadController();
+        scramjet = new ScramjetController({
+          files: {
+            wasm: "https://cdn.jsdelivr.net/gh/soap-phia/tinyjet@latest/tinyjet/scramjet.wasm.js",
+            all: "https://cdn.jsdelivr.net/gh/soap-phia/tinyjet@latest/tinyjet/scramjet.all.js",
+            sync: "https://cdn.jsdelivr.net/gh/soap-phia/tinyjet@latest/tinyjet/scramjet.sync.js",
+          },
+        });
+        await scramjet.init();
+        console.log('Scramjet initialized');
+
+        if ('serviceWorker' in navigator) {
+          console.log('Registering SW at:', swPath);
+          const registration = await navigator.serviceWorker.register(swPath, {
+            scope: basePath
+          });
+          console.log('Service Worker registered:', registration.scope);
+          
+          await navigator.serviceWorker.ready;
+          console.log('Service Worker ready');
+          proxyReady = true;
+        }
+      } catch (err) {
+        console.error('Proxy initialization error:', err);
+        showError('Proxy initialization failed. Links will open in new tabs.');
       }
     }
-    document.getElementById("wisp").addEventListener("submit", async (event) => {
-      event.preventDefault();
-      await setTransport("epoxy");
-    });
-    function search(input) {
-      let template = "https://duckduckgo.com/?q=%s";
+
+    initProxy();
+
+    function updateTime() {
+      const now = new Date();
+      const timeStr = now.toLocaleTimeString('en-US', {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      });
+      document.getElementById('timeDisplay').textContent = timeStr;
+    }
+    setInterval(updateTime, 1000);
+    updateTime();
+
+    let customShortcuts = JSON.parse(localStorage.getItem('customShortcuts') || '[]');
+    let editingIndex = -1;
+
+    function getFavicon(url) {
+      try {
+        const urlObj = new URL(url);
+        return `https://www.google.com/s2/favicons?domain=${urlObj.hostname}&sz=128`;
+      } catch {
+        return 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"%3E%3Ccircle cx="24" cy="24" r="22" fill="%23667eea"/%3E%3C/svg%3E';
+      }
+    }
+
+    function renderCustomShortcuts() {
+      const container = document.getElementById('shortcutsContainer');
+      const addBtn = document.getElementById('addShortcutBtn');
+      
+      const existing = container.querySelectorAll('.custom-shortcut');
+      existing.forEach(el => el.remove());
+
+      customShortcuts.forEach((shortcut, index) => {
+        const el = document.createElement('div');
+        el.className = 'shortcut-item custom-shortcut';
+        el.innerHTML = `
+          <div class="shortcut-menu">
+            <button class="menu-btn" onclick="toggleMenu(event, ${index})">⋮</button>
+            <div class="dropdown" id="menu-${index}">
+              <button onclick="editShortcut(${index})">Edit</button>
+              <button onclick="deleteShortcut(${index})">Delete</button>
+            </div>
+          </div>
+          <img src="${getFavicon(shortcut.url)}" class="shortcut-icon" alt="${shortcut.name}" />
+          <div class="shortcut-name">${shortcut.name}</div>
+        `;
+        el.onclick = (e) => {
+          if (!e.target.closest('.shortcut-menu')) {
+            navigateToUrl(shortcut.url);
+          }
+        };
+        container.insertBefore(el, addBtn);
+      });
+    }
+
+    function toggleMenu(e, index) {
+      e.stopPropagation();
+      const menu = document.getElementById(`menu-${index}`);
+      const allMenus = document.querySelectorAll('.dropdown');
+      allMenus.forEach(m => {
+        if (m !== menu) m.classList.remove('active');
+      });
+      menu.classList.toggle('active');
+    }
+
+    async function navigateToUrl(input) {
+      if (!proxyReady || !connection || !scramjet) {
+        console.log('Proxy not ready, opening in new tab');
+        window.open(input, '_blank');
+        return;
+      }
+
+      let url;
+      try {
+        url = new URL(input).toString();
+      } catch {
+        try {
+          const testUrl = new URL(`http://${input}`);
+          if (testUrl.hostname.includes('.')) {
+            url = testUrl.toString();
+          } else {
+            url = `https://duckduckgo.com/?q=${encodeURIComponent(input)}`;
+          }
+        } catch {
+          url = `https://duckduckgo.com/?q=${encodeURIComponent(input)}`;
+        }
+      }
 
       try {
-        return new URL(input).toString();
-      } catch (err) { }
+        const protocol = location.protocol === 'https:' ? 'wss' : 'ws';
+        const wispUrl = `${protocol}://${location.host}${basePath}wisp/`;
+        
+        const currentTransport = await connection.getTransport();
+        if (currentTransport !== basePath + 'ep/index.mjs') {
+          await connection.setTransport(basePath + 'ep/index.mjs', [{ wisp: wispUrl }]);
+          console.log('Transport set to:', wispUrl);
+        }
 
-      try {
-        let url = new URL(`http://${input}`);
-        if (url.hostname.includes(".")) return url.toString();
-      } catch (err) { }
-
-      return template.replace("%s", input);
-    }
-
-    setTransport("epoxy");
-    document.getElementById("search").addEventListener("submit", async (event) => {
-      event.preventDefault();
-      let fixedurl = search(document.getElementById("url").value);
-      let src;
-      src = scramjet.encodeUrl(fixedurl);
-      document.getElementById("iframe").src = src;
-    });
-  </script>
-</body>
+        const encodedUrl = scramjet.encodeUrl(url);
+        const proxyFrame = document.getElementById('proxyFrame');
+        const proxyContainer = document.getElementById('proxyContainer');
+        
+        proxyFrame.src = encodedUrl;
+        proxyContainer.classList.add('active');
+      } catch (err) {
+        console.error('Navigation error:', err);
+        showError('Failed to load page. Opening in new tab...');
+        setTimeout(() => window.open(url
