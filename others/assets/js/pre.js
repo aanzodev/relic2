@@ -54,9 +54,9 @@ try {
     const { ScramjetController } = $scramjetLoadController();
     scramjet = new ScramjetController({
       files: {
-        wasm: "/marcs/scramjet.wasm.wasm",
-        all: "/marcs/scramjet.all.js",
-        sync: "/marcs/scramjet.sync.js",
+        wasm: "https://cdn.jsdelivr.net/gh/soap-phia/tinyjet@latest/tinyjet/scramjet.wasm.js",
+        all: "https://cdn.jsdelivr.net/gh/soap-phia/tinyjet@latest/tinyjet/scramjet.all.js",
+        sync: "https://cdn.jsdelivr.net/gh/soap-phia/tinyjet@latest/tinyjet/scramjet.sync.js",
       },
     });
     scramjet.init();
@@ -79,7 +79,19 @@ async function registerSW() {
     throw new Error("Your browser doesn't support service workers.");
   }
 
-  await navigator.serviceWorker.register(stockSW);
+  try {
+    const registration = await navigator.serviceWorker.register(stockSW);
+    console.log('Service Worker registered successfully:', registration);
+    
+    // Wait for service worker to be ready
+    await navigator.serviceWorker.ready;
+    console.log('Service Worker is ready');
+    
+    return registration;
+  } catch (err) {
+    console.error('Service Worker registration failed:', err);
+    throw err;
+  }
 }
 
 function search(input, template) {
@@ -110,6 +122,7 @@ if (form && address && frame) {
       await registerSW();
     } catch (err) {
       console.error('Service Worker registration failed:', err);
+      alert('Could not initialize proxy. Please check console for details.');
       return;
     }
 
@@ -126,6 +139,7 @@ if (form && address && frame) {
       if ((await connection.getTransport()) !== "/ep/index.mjs") {
         await connection.setTransport("/ep/index.mjs", [{ wisp: wispUrl }]);
       }
+      console.log('Transport set:', wispUrl);
     } catch (err) {
       console.error('Error setting transport:', err);
     }
@@ -155,7 +169,7 @@ if (frame && scramjet) {
   frame.addEventListener("load", () => {
     try {
       const url = scramjet.decodeUrl(frame.src);
-      console.log(url);
+      console.log('Frame loaded:', url);
       const urlInput = getElement("urlInput");
       if (urlInput) {
         urlInput.value = url;
@@ -180,7 +194,6 @@ if (address && autoc) {
             return;
           }
           const suggestions = await response.json();
-          console.log(suggestions);
           autoc.innerHTML = "";
           if (suggestions.length > 0) {
             for (const suggestion of suggestions) {
@@ -282,6 +295,7 @@ if (urlForm && frame) {
       await registerSW();
     } catch (err) {
       console.error('Service Worker registration failed:', err);
+      alert('Could not initialize proxy. Please check console for details.');
       return;
     }
 
@@ -304,6 +318,7 @@ if (urlForm && frame) {
       if ((await connection.getTransport()) !== "/ep/index.mjs") {
         await connection.setTransport("/ep/index.mjs", [{ wisp: wispUrl }]);
       }
+      console.log('Transport set:', wispUrl);
     } catch (err) {
       console.error('Error setting transport:', err);
     }
