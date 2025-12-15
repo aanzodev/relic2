@@ -1,6 +1,5 @@
-// Live User Counter Implementation
 (function() {
-  console.log('User counter workionh ok');
+  console.log('User counter this wworking on okay okat');
 
   // Generate a unique session ID for this user
   function generateSessionId() {
@@ -13,6 +12,8 @@
     sessionId = generateSessionId();
     sessionStorage.setItem('relicSessionId', sessionId);
     console.log('New session created:', sessionId);
+  } else {
+    console.log('Existing session:', sessionId);
   }
 
   let activeUserCount = 0;
@@ -29,6 +30,7 @@
       // Animate the number change
       const currentCount = parseInt(userCountElement.textContent) || 0;
       animateCount(userCountElement, currentCount, activeUserCount);
+      console.log('User count updated:', activeUserCount);
     }
   }
 
@@ -54,9 +56,11 @@
   // Wait for DOM to be ready
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function() {
+      console.log('DOM ready, initializing counter');
       updateUserCount();
     });
   } else {
+    console.log('DOM already ready, initializing counter');
     updateUserCount();
   }
 
@@ -66,13 +70,14 @@
   // Update when page becomes visible
   document.addEventListener('visibilitychange', function() {
     if (!document.hidden) {
+      console.log('Page became visible, updating count');
       updateUserCount();
     }
   });
 
   // Optional: Heartbeat to maintain session
   setInterval(function() {
-    console.log('Session active:', sessionId);
+    console.log('Session heartbeat - Active:', sessionId, '| Count:', activeUserCount);
   }, 30000); // Every 30 seconds
 
 })();
