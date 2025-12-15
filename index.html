@@ -12,13 +12,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Relic</title>
   
-  <!-- Load proxy dependencies BEFORE pre.js -->
+  <!-- Load proxy dependencies BEFORE everything else -->
   <script src="https://cdn.jsdelivr.net/npm/@mercuryworkshop/bare-mux@2/dist/index.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/soap-phia/tinyjet@latest/tinyjet/scramjet.codecs.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/soap-phia/tinyjet@latest/tinyjet/scramjet.config.js"></script>
   
-  <!-- NOW load pre.js -->
-  <script src="others/assets/js/pre.js" defer></script>
+  <!-- REMOVED pre.js - not needed for iframe-based proxy -->
   
   <link rel="icon" href="others/assets/relic.webp" />
 
@@ -383,11 +382,13 @@
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
 
+  <!-- Load scripts in correct order -->
   <script src="others/assets/scripts/console.js"></script>
   <script src="others/assets/scripts/gms.js"></script>
   <script src="others/assets/scripts/stats.js"></script>
   <script src="assets/scripts/firebase-config.js"></script>
   <script src="assets/scripts/counter.js"></script>
+  <script src="scripts.js"></script>
   
   <script>
     window.addEventListener('DOMContentLoaded', function() {
@@ -397,10 +398,9 @@
           updateLogModal.style.display = 'flex';
           console.log('Update log modal displayed automatically');
         }
-      }, 500); // 500ms delay
+      }, 500);
     });
 
-    // Keep existing modal close functionality
     document.addEventListener('click', function(e) {
       if (e.target.classList.contains('info-close')) {
         const modalId = e.target.getAttribute('data-modal');
@@ -410,13 +410,11 @@
         }
       }
       
-      // Also close if clicking outside the modal content
       if (e.target.classList.contains('info-modal')) {
         e.target.style.display = 'none';
       }
     });
 
-    // Button to manually open update log
     const updateLogBtn = document.getElementById('updateLogBtn');
     if (updateLogBtn) {
       updateLogBtn.addEventListener('click', function() {
@@ -427,7 +425,6 @@
       });
     }
 
-    // Button to manually open credits
     const creditsBtn = document.getElementById('creditsBtn');
     if (creditsBtn) {
       creditsBtn.addEventListener('click', function() {
@@ -439,7 +436,6 @@
     }
   </script>
 
-  <!-- Debug helper -->
   <script>
     console.log('Page loaded, checking for games data...');
     setTimeout(() => {
