@@ -1,6 +1,6 @@
 const database = firebase.database();
 
-console.log('Hopefully this fixses it');
+console.log('Hopefully this fixses it again');
 
 (function() {
   console.log('Firebase is loaded');
