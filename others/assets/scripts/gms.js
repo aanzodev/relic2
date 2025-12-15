@@ -18,7 +18,9 @@ const games = [
   { name: "Amazing Strange Police", image: "others/assets/games/images/amazing strange police.jpg", url: "others/assets/games/amazing strange police.html" },
   { name: "Among Us", image: "others/assets/games/images/amongus.jpg", url: "others/assets/games/Among Us.html" },
   { name: "Angry Birds", image: "others/assets/games/images/angrybirds.jpeg", url: "others/assets/games/Angry Birds.html" },
+  { name: "Aquapark.io", image: "others/assets/games/images/aquapark.io.png", url: "others/assets/games/aquapark.io.html" },
   { name: "A Small World Cup", image: "others/assets/games/images/asmallworldcup.png", url: "others/assets/games/A Small World Cup.html" },
+  { name: "Awesome Tanks", image: "others/assets/games/images/awesome tanks.jpg", url: "others/assets/games/awesome tanks.html" },
   // B
   { name: "Backrooms", image: "others/assets/games/images/backrooms.png", url: "others/assets/games/backrooms.html" },
   { name: "Bacon May Die", image: "others/assets/games/images/bacon-may-die.png", url: "others/assets/games/Bacon May Die.html" },
@@ -46,18 +48,21 @@ const games = [
   { name: "Car Crash 3", image: "others/assets/games/images/car crash 3.png", url: "others/assets/games/car crash 3.html" },
   { name: "Cat Mario", image: "others/assets/games/images/cat mario.jpeg", url: "others/assets/games/cat mario.html" },
   { name: "Cluster Rush", image: "others/assets/games/images/clusterrush.jpeg", url: "others/assets/games/Cluster Rush.html" },
+  { name: "Chess", image: "others/assets/games/images/chess.png", url: "others/assets/games/chess.html" },
   { name: "Cookie Clicker", image: "others/assets/games/images/cookie-clicker.png", url: "others/assets/games/Cookie Clicker.html" },
   { name: "Crazy Cars", image: "others/assets/games/images/crazycars.jpg", url: "others/assets/games/Crazy Cars.html" },
   { name: "Crazy Cattle 3D", image: "others/assets/games/images/crazy-cattle-3d-icon.jpg", url: "others/assets/games/Crazy Cattle 3D.html" },
   { name: "Crossy Road", image: "others/assets/games/images/crossyroad.png", url: "others/assets/games/Crossy Road.html" },
   { name: "Cuphead", image: "others/assets/games/images/cuphead.webp", url: "others/assets/games/Cuphead.html" },
   // D
+  { name: "Dad n Me", image: "others/assets/games/images/dad n me.jpg", url: "others/assets/games/dad n me.html" },
   { name: "Drift Boss", image: "others/assets/games/images/driftboss.png", url: "others/assets/games/Drift Boss.html" },
   { name: "Drift Hunters ", image: "others/assets/games/images/drift-hunters.png", url: "others/assets/games/Drift Huntersfix.html" },
   // E
   { name: "Eggy Car", image: "others/assets/games/images/eggy-car-game.jpg", url: "others/assets/games/eggy car.html" },
   { name: "Escape Road", image: "others/assets/games/images/escaperoad.png", url: "others/assets/games/Escape Road.html" },
   { name: "Escape Road 2", image: "others/assets/games/images/escaperoad2.jpeg", url: "others/assets/games/clescaperoad-2.html" },
+  { name: "Extreme Run 3D", image: "others/assets/games/images/extremerun3d.jpg", url: "others/assets/games/extremerun3d.html" },
   // F
   { name: "FNAF", image: "others/assets/games/images/fnaf.webp", url: "others/assets/games/FNAF.html" },
   { name: "FNAF pizzeria simulator", image: "others/assets/games/images/fnaf pizza sim.png", url: "others/assets/games/fnaf pizza sim.html" },
@@ -75,6 +80,7 @@ const games = [
   // G
   { name: "Geometry Dash Lite", image: "others/assets/games/images/dashlite.png", url: "others/assets/games/geometrydash.html" },
   { name: "Geometry Dash Subzero", image: "others/assets/games/images/gdashsubzero.png", url: "others/assets/games/gd subzero.html" },
+  { name: "Geometry Vibes", image: "others/assets/games/images/geometryvibes.png", url: "others/assets/games/geometryvibes.html" },
   { name: "Gold Miner", image: "others/assets/games/images/Gold Miner.png", url: "others/assets/games/gold miner.html" },
   { name: "Google Baseball", image: "others/assets/games/images/baseball.png", url: "others/assets/games/Google Baseball.html" },
   { name: "Google Dino", image: "others/assets/games/images/Google dino.jpeg", url: "others/assets/games/googledino.html" },
@@ -94,6 +100,8 @@ const games = [
   { name: "Infinite Craft", image: "others/assets/games/images/infcraft.jpg", url: "others/assets/games/Infinite Craft" },
   // J
   { name: "Jetpack Joyride", image: "others/assets/games/images/jetpack.png", url: "others/assets/games/Jetpack Joyride.html" },
+  // L
+  { name: "Koopas Revenge", image: "others/assets/games/images/Koopasrevenge.webp", url: "others/assets/games/koopasrevenge.html" },
   // L
   { name: "Levil Devil", image: "others/assets/games/images/levildevil.png", url: "others/assets/games/leveldevil.html" },
   // M
@@ -151,6 +159,7 @@ const games = [
   { name: "Stickman Fighter", image: "others/assets/games/images/stickfighter.png", url: "others/assets/games/stick fighter.html" },
   { name: "Stickman Hook", image: "others/assets/games/images/stickman Hook.jpg", url: "others/assets/games/Stickman Hook.html" },
   { name: "Subway Surfers", image: "others/assets/games/images/subwaysurfers.png", url: "others/assets/games/Subway Surfers.html" },
+  { name: "Subway Surfers Beijing", image: "others/assets/games/images/subwaysurfersbeijing.png", url: "others/assets/games/subwaysurfersbeijing.html" },
   { name: "Subway Surfers San Francisco", image: "others/assets/games/images/subwaysanfran.jpeg", url: "others/assets/games/Subway Surfers_ San Francisco.html" },
   { name: "Subway Surfers Winter Holiday", image: "others/assets/games/images/subway-surfers.jpg", url: "others/assets/games/Subway Surfers_ Winter Holiday.html" },
   // T
