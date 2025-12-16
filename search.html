@@ -1,179 +1,767 @@
-<body>
-  <style>
-    :root {
-      /* your colors */
-      --bg-color: #0a0e1a;
-      --bg-secondary: #12171f;
-      --nav-color: #1a1f2e;
-      --accent-color: #6366f1;
-      --accent-secondary: #8b5cf6;
-      --text-color: #e2e8f0;
-      --text-muted: #94a3b8;
-      --border-color: #2d3548;
-      --hover-bg: #252b3b;
-      --btn-bg: #2d3548;
-      --btn-hover-bg: #6366f1;
+<!DOCTYPE html>
+<html lang="en">
 
-      --glass-bg: rgba(26, 31, 46, 0.7);
-      --glass-border: rgba(99, 102, 241, 0.2);
+<head>
+    <meta charset="UTF-8" />
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+    <script async defer href="https://cdn.tailwindcss.com/"></script>
+    <style>
+        @import url('/assets/css/themes.css');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap');
 
-      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
-      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
-      --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
-      --shadow-glow: 0 0 20px rgba(99, 102, 241, 0.3);
+        body {
+            background-color: var(--bgcolor);
+            background: var(--bgcolor);
+            color: var(--txtcolor);
+            font-family: 'Inter', sans-serif;
+        }
 
-      --sidebar-top: #0d1018;
-      --sidebar-mid: #0f1420;
-      --sidebar-bottom: #091229;
-      --sidebar-text: rgba(226, 232, 240, 0.8);
-      --sidebar-text-hover: #ffffff;
-      --sidebar-hover: rgba(99, 102, 241, 0.15);
-      --sidebar-active-bg: linear-gradient(135deg, rgba(99, 102, 241, 0.3) 0%, rgba(139, 92, 246, 0.25) 100%);
-      --sidebar-accent-border: linear-gradient(180deg, #6366f1 0%, #8b5cf6 100%);
-    }
+        #main {
+            justify-content: center;
+            align-items: center;
+        }
 
-    /* Page layout */
-    body {
-      background: var(--bg-color);
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      font-family: 'Inter', sans-serif;
-      color: var(--text-color);
-    }
+        #form input {
+            padding: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            font-size: 16px;
+            width: 100%;
+            max-width: 600px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            text-align: center;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+            margin: 0 auto 20px;
+            display: block;
+            outline:none;
+        }
 
-    /* Search bar container */
-    #search {
-      width: 100%;
-      box-sizing: border-box;
-      padding: 14px;
-      background: var(--nav-color);
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 1000;
-      border-bottom: 1px solid var(--border-color);
-      box-shadow: var(--shadow-md);
-      display: flex;
-      justify-content: center;
-      /* center input */
-    }
+        .row {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
 
-    /* Search input */
-    #search input {
-      width: 100%;
-      max-width: 99vw;
-      /* prevents infinite stretching */
-      height: 44px;
-      padding: 0 16px;
-      font-size: 15px;
-      color: var(--text-color);
+        .shortcut,
+        .add-btn {
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 7px;
+            backdrop-filter: blur(8px);
+            padding: 12px;
+            width: 80px;
+            height: 100px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
 
-      background: var(--glass-bg);
-      border: 1px solid var(--glass-border);
-      border-radius: 12px;
-      outline: none;
-      box-sizing: border-box;
-      backdrop-filter: blur(14px);
+        .add-btn div {
+            background: none;
+        }
 
-      transition: border 0.2s ease, box-shadow 0.2s ease;
-    }
+        .shortcut:hover,
+        .add-btn:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.15);
+        }
 
-    #search input::placeholder {
-      color: var(--text-muted);
-    }
+        .shortcut img {
+            width: 45px;
+            height: 45px;
+            margin-bottom: 5px;
+            border-radius: 50%;
+            position: relative;
+            margin-top: 5px;
+            background: transparent
+        }
 
-    #search input:focus {
-      border-color: var(--accent-color);
-      box-shadow: var(--shadow-glow);
-    }
+        .shortcut-name {
+            background: transparent;
+        }
 
-    /* Hidden wisp input */
-    #wisp {
-      display: none;
-    }
+        .shortcut .add-btn div {
+            background: none;
+        }
 
-    /* Iframe full screen */
-    #iframe {
-      position: absolute;
-      top: 60px;
-      /* height of search bar */
-      left: 0;
-      width: 100%;
-      height: calc(100% - 60px);
-      border: none;
-      background: var(--bg-secondary);
-    }
-  </style>
-  <form id="search"><input id="url" type="text" class="search-input search" placeholder="Search the web or enter URL">
-  </form>
-  <div style="display:none;">
-    <form id="wisp"><input id="websocket" type="text" class="search-input search" value="wss://gointospace.app/wisp/">
-    </form>
-  </div>
-  <iframe id="iframe" width="100%" height="100%"></iframe>
-  <script src="https://cdn.jsdelivr.net/gh/soap-phia/tinyjet@latest/tinyjet/scramjet.all.js" defer></script>
-  <script type="module" defer>
-    import * as BareMux from "https://cdn.jsdelivr.net/npm/@mercuryworkshop/bare-mux/dist/index.mjs";
-    const { ScramjetController } = $scramjetLoadController();
-    const scramjet = new ScramjetController({
-      files: {
-        wasm: "https://cdn.jsdelivr.net/gh/soap-phia/tinyjet@latest/tinyjet/wasm.wasm",
-        all: "https://cdn.jsdelivr.net/gh/soap-phia/tinyjet@latest/tinyjet/scramjet.all.js",
-        sync: "https://cdn.jsdelivr.net/gh/soap-phia/tinyjet@latest/tinyjet/scramjet.sync.js"
-      }
-    });
-    try {
-      scramjet.init();
-      navigator.serviceWorker.register("/sw.js");
-    } catch (e) { console.error("scramjet failed to initialize;", e); }
-    const connection = new BareMux.BareMuxConnection("/bareworker.js");
-    document.getElementById("websocket").placeholder = "wss://wispy.thewellnessconference.org/wisp/";
-    function getWispUrl() {
-      const wisp = document.getElementById("websocket").value.trim();
-      const defaultWisp = "wss://wispy.thewellnessconference.org/wisp/";
-      return wisp || defaultWisp;
-    }
-    async function setTransport(transportsel) {
-      const wispUrl = getWispUrl();
-      switch (transportsel) {
-        case "epoxy":
-          await connection.setTransport("https://cdn.jsdelivr.net/npm/@mercuryworkshop/epoxy-transport/dist/index.mjs", [{ wisp: wispUrl }]);
-          break;
-        case "libcurl":
-          await connection.setTransport("https://cdn.jsdelivr.net/npm/@mercuryworkshop/libcurl-transport/dist/index.mjs", [{ websocket: wispUrl }]);
-          break;
-        default:
-          await connection.setTransport("https://cdn.jsdelivr.net/npm/@mercuryworkshop/epoxy-transport/dist/index.mjs", [{ wisp: wispUrl }]);
-          break;
-      }
-    }
-    document.getElementById("wisp").addEventListener("submit", async (event) => {
-      event.preventDefault();
-      await setTransport("epoxy");
-    });
-    function search(input) {
-      let template = "https://duckduckgo.com/?q=%s";
+        .menu-container {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+        }
 
-      try {
-        return new URL(input).toString();
-      } catch (err) { }
+        .menu-btn {
+            background: transparent;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            position: relative;
+            z-index: 2;
+        }
 
-      try {
-        let url = new URL(`http://${input}`);
-        if (url.hostname.includes(".")) return url.toString();
-      } catch (err) { }
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 20px;
+            right: 0;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            z-index: 5;
+        }
 
-      return template.replace("%s", input);
-    }
+        .dropdown button {
+            display: block;
+            width: 100%;
+            padding: 5px 10px;
+            background: none;
+            border: none;
+            color: white;
+            text-align: left;
+            cursor: pointer;
+        }
 
-    setTransport("epoxy");
-    document.getElementById("search").addEventListener("submit", async (event) => {
-      event.preventDefault();
-      let fixedurl = search(document.getElementById("url").value);
-      let src;
-      src = scramjet.encodeUrl(fixedurl);
-      document.getElementById("iframe").src = src;
-    });
-  </script>
+        #canvas {
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        #footer {
+            margin-top: 40px;
+            width: 100%;
+            background-color: #000;
+            color: white;
+            font-size: 14px;
+            text-align: center;
+            padding-top: 7.5px;
+            padding-bottom: 10px;
+            border-top: 1px solid #99ccff;
+        }
+
+        .circlechain {
+            background-color: black;
+            border-radius: 50%;
+            height: 50px;
+            width: 50px;
+            justify-self: center;
+            align-self: center;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        #autofill-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+            color: white;
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        #history-container {
+            position: absolute;
+            top: 1px;
+            left: 1px;
+            width: 240px;
+            background-color: var(--surface);
+            border: 1px solid var(--surface);
+            padding: 10px;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            z-index: 1000;
+        }
+
+        #history-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+            gap: 6px;
+        }
+
+        #history-header h4 {
+            margin: 0;
+            font-size: 16px;
+            flex-grow: 1;
+        }
+
+        #history-header div {
+            display: flex;
+            gap: 4px;
+        }
+
+        #history-header button {
+            background-color: transparent;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 0 4px;
+            line-height: 1;
+            color: white;
+        }
+
+        #history-search {
+            width: 225px;
+            padding: 6px;
+            margin-bottom: 8px;
+            border: 1px solid whitesmoke;
+            border-radius: 4px;
+            transition: max-height 0.3s ease, opacity 0.3s ease;
+        }
+
+        #history-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            max-height: 300px;
+            overflow-y: auto;
+            transition: max-height 0.3s ease;
+        }
+
+        #history-list li {
+            padding: 6px 10px;
+            margin: 2px 0;
+            background-color: #222;
+            border: 1px solid white;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        #history-list li:hover {
+            background-color: #333;
+        }
+
+        .collapsed {
+            max-height: 0 !important;
+            opacity: 0;
+            overflow: hidden;
+            padding: 0;
+            margin: 0;
+        }
+
+        #takeadih,
+        #chickendih {
+            background: none;
+            border-radius: 20px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 20px;
+            width: 90%;
+            max-width: 900px;
+            box-sizing: border-box;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #customAlert[style*="display: block"]~.mainContainer {
+            display: none;
+        }
+
+        #customAlert {
+            background: black;
+        }
+
+        #shortcut-name,
+        #shortcut-url {
+            background: transparent;
+        }
+    </style>
+</head>
+
+<body theme="classic">
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: "en",
+                layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL
+            }, "google_translate_element");
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TQ8CVXYBF9"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag("js", new Date());
+  gtag("config", "G-TQ8CVXYBF9");
+</script>
+    <br>
+    <div align="center">
+        <main id="main">
+            <div id="chickendih">
+                <h1 class="text-slate-150" style="background:none;"><span style="background:none;"
+                        id="local-time"></span></h1>
+                <form id="form" style="background:none;">
+                    <input autofocus spellcheck="false" autocomplete="off" id="address" type="text" id="input" required
+                        placeholder="Search with confidence..">
+
+                    <div id="suggestions-container" class="absolute w-full bg-gray-800 rounded-md shadow-lg z-30 hidden"
+                        style="top: 100%; left: 0;">
+                        <ul id="suggestions-list" class="divide-y divide-gray-700"></ul>
+                    </div>
+                </form>
+                <div class="row" id="presets" style="background:none;"></div>
+                <div class="row" id="custom" style="background:transparent;">
+                    <div style="background:none;" class="shortcut add-btn" onclick="addShortcut()">+ Add</div>
+                </div>
+            </div>
+    </div>
+    <script defer type="module">
+        import {
+            setWisp,
+            makeURL,
+            currentFrame,
+            setProxy,
+            getProxied,
+        } from "/cat.mjs"
+
+
+        /*      let wisp = (location.protocol === "https:" ? "wss://" : "ws://") + location.host + "/wisp/";
+       
+               setWisp(wisp)*/
+
+        setWisp((location.protocol === "https:" ? "wss://" : "ws://") + location.host + "/wisp/");
+
+        setProxy(localStorage.getItem("pr0xy") || "scram")
+        let search =
+            localStorage.getItem("search-engine") ||
+            "https://duckduckgo.com/?q=%s"
+
+        const form = document.getElementById("form")
+        const input = document.getElementById("address")
+
+        form?.addEventListener("submit", async (e) => {
+            e.preventDefault()
+
+            const proxiedUrl = await getProxied(makeURL(input?.value, search))
+
+            location.href = proxiedUrl
+
+        })
+
+
+    </script>
+    </main>
+
 </body>
+<script>
+    function updateLocalTime() {
+        const now = new Date();
+        const formatted = now.toLocaleTimeString(undefined, {
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+        });
+        document.getElementById('local-time').textContent = formatted;
+    }
+
+    setInterval(updateLocalTime, 1000);
+    updateLocalTime();
+</script>
+<script src="/assets/scripts/index.js"></script>
+<script>
+    const style = document.createElement('style');
+    style.textContent = `
+        .popup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10000;
+        backdrop-filter: blur(4px);
+    }
+    .popup-modal {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        padding: 24px;
+        min-width: 400px;
+        max-width: 500px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    }
+    .popup-modal h3 {
+        margin: 0 0 20px 0;
+        color: white;
+        font-size: 20px;
+        font-weight: 600;
+    }
+    .form-group {
+        margin-bottom: 16px;
+    }
+    .form-group label {
+        display: block;
+        color: #ccc;
+        margin-bottom: 8px;
+        font-size: 14px;
+    }
+    .form-group input {
+        width: 100%;
+        padding: 10px 12px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 6px;
+        color: white;
+        font-size: 14px;
+        box-sizing: border-box;
+    }
+    .form-group input:focus {
+        outline: none;
+        border-color: rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.05);
+    }
+    .popup-buttons {
+        display: flex;
+        gap: 12px;
+        justify-content: flex-end;
+        margin-top: 24px;
+    }
+    .popup-buttons button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 6px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    .popup-cancel {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: white;
+    }
+    .popup-cancel:hover {
+        background: rgba(255, 255, 255, 0.1);
+    }
+    .popup-submit {
+        background: var(--surface);
+        color: white;
+    }
+    .popup-submit:hover {
+        background: var(--surface-hover);
+    }
+
+`;
+    document.head.appendChild(style);
+
+    const defaultPresets = [{
+            name: "Cloud Gaming",
+            url: "https://xbox.com/en-us/play",
+            icon: "/assets/images/preset/xbox.png"
+        },
+        {
+            name: "Geforce Now",
+            url: "https://play.geforcenow.com",
+            icon: "/assets/images/preset/geforcenow.jpeg"
+        },
+        {
+            name: "Twitch",
+            url: "https://twitch.tv",
+            icon: "/assets/images/app/twitch.png"
+        },
+        {
+            name: "Discord",
+            url: "https://discord.com/login",
+            icon: "/assets/images/preset/discord.png"
+        },
+        {
+            name: "+ Add",
+            isAdd: true,
+            icon: "plus.png"
+        }
+    ];
+
+    function saveShortcuts() {
+        localStorage.setItem("presets", JSON.stringify(presets));
+        localStorage.setItem("customShortcuts", JSON.stringify(customShortcuts));
+    }
+
+    function loadShortcuts() {
+        const storedPresets = JSON.parse(localStorage.getItem("presets"));
+        const defaultPresetsStr = JSON.stringify(defaultPresets);
+        const storedPresetsStr = JSON.stringify(storedPresets);
+        if (!storedPresets || storedPresetsStr !== defaultPresetsStr) {
+            presets = defaultPresets;
+            localStorage.setItem("presets", defaultPresetsStr);
+        } else {
+            presets = storedPresets;
+        }
+        customShortcuts = JSON.parse(localStorage.getItem("customShortcuts")) || [];
+    }
+
+    function createShortcutEl({
+        name,
+        url,
+        icon,
+        isAdd
+    }, isCustom = false) {
+        const el = document.createElement("div");
+        el.className = "shortcut" + (isAdd ? " add-btn" : "");
+        const iconUrl = icon || getFavicon(url);
+        if (isAdd) {
+            el.innerHTML = `<img src="${iconUrl}" alt="Add" /><div>+ Add</div>`;
+            el.onclick = addShortcut;
+            return el;
+        }
+        el.innerHTML = `
+${isCustom ? `
+  <div class="menu-container">
+    <button class="menu-btn" style="color:white;background:none;" onclick="toggleDropdown(event)">⋮</button>
+    <div class="dropdown">
+      <button onclick="editShortcut(this)">Edit</button>
+      <button onclick="removeShortcut(this)">Remove</button>
+    </div>
+  </div>` : ''}
+<img src="${iconUrl}" alt="${name}" />
+<div class="shortcut-name">${name}</div>
+`;
+        el.onclick = (e) => {
+            if (!e.target.closest(".menu-btn") && !e.target.closest(".dropdown")) {
+                autofill(url);
+            }
+        };
+        el.dataset.name = name;
+        el.dataset.url = url;
+        return el;
+    }
+
+    function toggleDropdown(event) {
+        event.stopPropagation();
+        const dropdown = event.currentTarget.nextElementSibling;
+        dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+        closeOtherDropdowns(dropdown);
+    }
+
+    function closeOtherDropdowns(current) {
+        document.querySelectorAll(".dropdown").forEach(d => {
+            if (d !== current) d.style.display = "none";
+        });
+    }
+
+    document.addEventListener("click", () => {
+        closeOtherDropdowns(null);
+    });
+
+    function getFavicon(siteUrl) {
+        try {
+            const urlObj = new URL(siteUrl);
+            return `https://www.google.com/s2/favicons?domain=${encodeURIComponent(urlObj.origin)}`;
+        } catch {
+            return "/assets/images/jmw.png";
+        }
+    }
+
+    function render() {
+        document.getElementById("presets").innerHTML = "";
+        document.getElementById("custom").innerHTML = "";
+        presets.forEach(p => document.getElementById("presets").appendChild(createShortcutEl(p)));
+        customShortcuts.forEach(c => document.getElementById("custom").appendChild(createShortcutEl(c, true)));
+    }
+
+    function showPopup(title, fields, onSubmit) {
+        const overlay = document.createElement("div");
+        overlay.className = "popup-overlay";
+        overlay.innerHTML = `
+        <div class="popup-modal">
+            <h3>${title}</h3>
+            <form class="popup-form">
+                ${fields.map(f => `
+                    <div class="form-group">
+                        <label>${f.label}</label>
+                        <input type="text" id="${f.id}" value="${f.value || ''}" 
+                               placeholder="${f.placeholder || ''}" ${f.required ? 'required' : ''} />
+                    </div>
+                `).join('')}
+                <div class="popup-buttons">
+                    <button type="button" class="popup-cancel">Cancel</button>
+                    <button type="submit" class="popup-submit">OK</button>
+                </div>
+            </form>
+        </div>
+    `;
+        document.body.appendChild(overlay);
+
+        const form = overlay.querySelector(".popup-form");
+        const cancelBtn = overlay.querySelector(".popup-cancel");
+
+        overlay.onclick = (e) => {
+            if (e.target === overlay) {
+                document.body.removeChild(overlay);
+            }
+        };
+
+        cancelBtn.onclick = () => document.body.removeChild(overlay);
+
+        form.onsubmit = (e) => {
+            e.preventDefault();
+            const values = {};
+            fields.forEach(f => {
+                values[f.id] = document.getElementById(f.id).value.trim();
+            });
+            if (fields.some(f => f.required && !values[f.id])) return;
+            document.body.removeChild(overlay);
+            onSubmit(values);
+        };
+
+        setTimeout(() => overlay.querySelector("input").focus(), 100);
+    }
+
+    function addShortcut() {
+        showPopup("Add Shortcut", [{
+                label: "Shortcut name:",
+                id: "shortcut-name",
+                required: true
+            },
+            {
+                label: "Site URL (with https://):",
+                id: "shortcut-url",
+                placeholder: "https://example.com"
+            }
+        ], (values) => {
+            const name = values["shortcut-name"];
+            const siteURL = values["shortcut-url"] || `https://duckduckgo.com/?q=${encodeURIComponent(name)}`;
+            const icon = getFavicon(siteURL);
+            const shortcut = {
+                name,
+                url: siteURL,
+                icon
+            };
+            customShortcuts.push(shortcut);
+            saveShortcuts();
+            render();
+        });
+    }
+
+    function removeShortcut(btn) {
+        const shortcutEl = btn.closest(".shortcut");
+        const name = shortcutEl.dataset.name;
+        customShortcuts = customShortcuts.filter(s => s.name !== name);
+        saveShortcuts();
+        render();
+    }
+
+    function editShortcut(btn) {
+        const shortcutEl = btn.closest(".shortcut");
+        const name = shortcutEl.dataset.name;
+        const shortcut = customShortcuts.find(s => s.name === name);
+
+        showPopup("Edit Shortcut", [{
+                label: "Shortcut name:",
+                id: "edit-name",
+                value: shortcut.name,
+                required: true
+            },
+            {
+                label: "Site URL (with https://):",
+                id: "edit-url",
+                value: shortcut.url,
+                required: true
+            }
+        ], (values) => {
+            const newName = values["edit-name"];
+            const newUrl = values["edit-url"] || `https://duckduckgo.com/?q=${encodeURIComponent(newName)}`;
+            shortcut.name = newName;
+            shortcut.url = newUrl;
+            shortcut.icon = getFavicon(newUrl);
+            saveShortcuts();
+            render();
+        });
+    }
+
+    let presets = [],
+        customShortcuts = [];
+    loadShortcuts();
+    render()
+</script>
+<script type="module">
+    import { makeURL, getProxied } from "/cat.mjs"
+
+    const searchEngine =
+        localStorage.getItem("search-engine") ||
+        "https://duckduckgo.com/?q=%s"
+
+    async function autofill(url) {
+        const urlToLoad = makeURL(url, searchEngine)
+        const proxiedUrl = await getProxied(urlToLoad)
+        location.href = proxiedUrl
+    }
+
+
+    window.autofill = autofill
+
+    const params = new URLSearchParams(window.location.search)
+    const autofillUrl = params.get('autofill')
+    if (autofillUrl) {
+        autofill(autofillUrl)
+    }
+</script>
+<script>
+    function copy() {
+        const url = window.location.origin;
+        const text = "chrome://settings/content/all?searchSubpage=" + url;
+        navigator.clipboard.writeText(text).then(() => {
+            alert(text + " is now in your clipboard. Please paste the URL in the search bar in a new tab.");
+        });
+    }
+</script>
+<script>
+    const paramss = new URLSearchParams(window.location.search);
+    if (paramss.has("goback")) {
+        setTimeout(() => {
+            window.location.replace("/");
+        }, 3000);
+    }
+</script>
+<script>
+    if (paramss.has("goback")) {
+        const overlay = document.createElement("div");
+        Object.assign(overlay.style, {
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            background: "rgba(0,0,0,0.7)",
+            color: "#fff",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            fontSize: "24px",
+            zIndex: "99999999999999999"
+        });
+        overlay.textContent = "Loading... please wait";
+        document.body.appendChild(overlay);
+    }
+</script>
+
+</html>
