@@ -339,7 +339,7 @@
             currentFrame,
             setProxy,
             getProxied,
-        } from "public/javascript/cat.mjs"
+        } from "./public/javascript/cat.mjs"
 
 
         /*      let wisp = (location.protocol === "https:" ? "wss://" : "ws://") + location.host + "/wisp/";
@@ -694,7 +694,7 @@ ${isCustom ? `
     render()
 </script>
 <script type="module">
-    import { makeURL, getProxied } from "public/javascript/cat.mjs"
+    import { makeURL, getProxied } from "./public/javascript/cat.mjs"
 
     const searchEngine =
         localStorage.getItem("search-engine") ||
