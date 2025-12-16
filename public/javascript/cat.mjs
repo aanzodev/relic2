@@ -1,12 +1,12 @@
 //////////////////////////////
 ///          Init          ///
 //////////////////////////////
-import { BareMuxConnection } from "/mux/index.mjs";
+import { BareMuxConnection } from "mux/index.mjs";
 
 //////////////////////////////
 ///         Options        ///
 //////////////////////////////
-const connection = new BareMuxConnection("/mux/worker.js");
+const connection = new BareMuxConnection("mux/worker.js");
 
 let wispURL;
 let transportURL = "/epoxy/index.mjs";
