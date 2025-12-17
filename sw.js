@@ -1,5 +1,5 @@
 importScripts(
-  "/vu/vu.bundle.js",
+  "/public/vu/vu.bundle.js",
 )
 importScripts("/public/vu/vu.config.js")
 importScripts("/public/vu/vu.sw.js")
