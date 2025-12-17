@@ -1,15 +1,15 @@
 //////////////////////////////
 ///          Init          ///
 //////////////////////////////
-import { BareMuxConnection } from "/mux/index.mjs";
+import { BareMuxConnection } from "./mux/index.mjs";
 
 //////////////////////////////
 ///         Options        ///
 //////////////////////////////
-const connection = new BareMuxConnection("/mux/worker.js");
+const connection = new BareMuxConnection("./mux/worker.js");
 
 let wispURL;
-let transportURL = "/epoxy/index.mjs";
+let transportURL = "./epoxy/index.mjs";
 let proxyOption;
 
 export let tabCounter = 0;
@@ -46,7 +46,7 @@ scramjet.init();
 //////////////////////////////
 ///           SW           ///
 //////////////////////////////
-const stockSW = "/sw.js";
+const stockSW = "./sw.js";
 const swAllowedHostnames = ["localhost", "127.0.0.1"];
 
 /**
