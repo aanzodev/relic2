@@ -1,7 +1,4 @@
-// GalaxyVerse Console System
-// Path: others/assets/scripts/console.js
-
-// Prevent multiple declarations
+/*
 if (window.GVerseConsole) {
   console.warn('GVerseConsole already initialized');
 } else {
