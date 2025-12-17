@@ -1,9 +1,9 @@
 importScripts(
   "/vu/vu.bundle.js",
 )
-importScripts("/vu/vu.config.js")
-importScripts("/vu/vu.sw.js")
-importScripts("/scram/scramjet.all.js");
+importScripts("/public/vu/vu.config.js")
+importScripts("/public/vu/vu.sw.js")
+importScripts("/public/scram/scramjet.all.js");
 
 
 
