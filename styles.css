@@ -15,6 +15,7 @@ body {
   min-height: 100vh;
 }
 
+/* fancy background gradient overlay */
 body::before {
   content: '';
   position: fixed;
@@ -145,6 +146,7 @@ body::before {
   }
 }
 
+/* snow effect container */
 #snow-container {
   pointer-events: none;
   position: fixed;
@@ -191,6 +193,7 @@ body::before {
   text-decoration: none;
 }
 
+/* filter buttons for games */
 .game-filters {
   display: flex;
   gap: 10px;
@@ -226,6 +229,7 @@ body::before {
   color: white;
 }
 
+/* favorite star button */
 .favorite-btn {
   position: absolute;
   top: 10px;
@@ -263,6 +267,7 @@ body::before {
   border-color: #ffd700;
 }
 
+/* settings page stuff */
 .settings-page-container {
   max-width: 850px;
   margin: 32px auto;
@@ -390,6 +395,7 @@ body::before {
   border-color: var(--accent-color);
 }
 
+/* settings tabs */
 .settings-tabs {
   display: flex;
   justify-content: center;
@@ -471,6 +477,7 @@ body::before {
   padding: 8px 0;
 }
 
+/* contributors section */
 .contributors-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -501,6 +508,7 @@ body::before {
   animation: contributorFloat 3s ease-in-out infinite;
 }
 
+/* staggered animation for each contributor */
 .contributor-card:nth-child(1) .contributor-icon {
   animation-delay: 0s;
 }
@@ -543,6 +551,7 @@ body::before {
   font-weight: 500;
 }
 
+/* info modal */
 .info-modal {
   display: none;
   position: fixed;
@@ -693,6 +702,7 @@ body::before {
   background: var(--hover-bg);
 }
 
+/* info buttons at bottom of homepage */
 .homepage-info-buttons {
   position: fixed;
   bottom: 32px;
@@ -751,6 +761,7 @@ body::before {
   }
 }
 
+/* game and app grids */
 .game-grid, .app-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -810,6 +821,7 @@ body::before {
   user-select: none;
 }
 
+/* search bar */
 .search-container {
   display: flex;
   justify-content: center;
@@ -855,6 +867,7 @@ body::before {
   transform: translateY(-2px);
 }
 
+/* back to home buttons */
 #backToHomeApps,
 #backToHomeGame,
 #backToHomeWebsites {
@@ -877,6 +890,7 @@ body::before {
   transform: translateY(-2px);
 }
 
+/* game iframe container */
 .game-play-area {
   background: #000;
   border: 2px solid var(--glass-border);
@@ -895,6 +909,7 @@ body::before {
   border-radius: 8px;
 }
 
+/* game control buttons (fullscreen, etc) */
 .game-controls {
   position: absolute;
   top: 24px;
@@ -943,6 +958,7 @@ body::before {
   display: none;
 }
 
+/* tablet and mobile responsiveness */
 @media (max-width: 768px) {
   .relic-logo-image {
     width: 80px;
@@ -1021,6 +1037,7 @@ body::before {
   }
 }
 
+/* mobile phones */
 @media (max-width: 480px) {
   .relic-logo-image {
     width: 60px;
@@ -1037,18 +1054,4 @@ body::before {
   }
 
   .game-controls {
-    top: 10px;
-    right: 10px;
-    gap: 6px;
-  }
-
-  .game-control-btn {
-    width: 36px;
-    height: 36px;
-  }
-
-  .game-control-btn svg {
-    width: 18px;
-    height: 18px;
-  }
-}
+    top:
