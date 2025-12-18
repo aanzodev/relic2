@@ -478,6 +478,79 @@ body::before {
   padding: 8px 0;
 }
 
+/* Contributors Grid Styles */
+.contributors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.contributor-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.contributor-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--accent-color);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(91, 158, 255, 0.2);
+}
+
+.contributor-icon {
+  font-size: 48px;
+  margin-bottom: 12px;
+  animation: contributorFloat 3s ease-in-out infinite;
+}
+
+.contributor-card:nth-child(1) .contributor-icon {
+  animation-delay: 0s;
+}
+
+.contributor-card:nth-child(2) .contributor-icon {
+  animation-delay: 0.3s;
+}
+
+.contributor-card:nth-child(3) .contributor-icon {
+  animation-delay: 0.6s;
+}
+
+.contributor-card:nth-child(4) .contributor-icon {
+  animation-delay: 0.9s;
+}
+
+.contributor-card:nth-child(5) .contributor-icon {
+  animation-delay: 1.2s;
+}
+
+@keyframes contributorFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.contributor-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 6px;
+}
+
+.contributor-role {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
 /* Modals - cleaner design */
 .info-modal {
   display: none;
@@ -898,6 +971,27 @@ body::before {
     width: 100%;
     justify-content: center;
   }
+
+  .contributors-grid {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 12px;
+  }
+
+  .contributor-card {
+    padding: 16px;
+  }
+
+  .contributor-icon {
+    font-size: 36px;
+  }
+
+  .contributor-name {
+    font-size: 14px;
+  }
+
+  .contributor-role {
+    font-size: 12px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -908,5 +1002,10 @@ body::before {
 
   .relic-title {
     font-size: 24px;
+  }
+
+  .contributors-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
   }
 }
