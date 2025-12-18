@@ -194,6 +194,7 @@
   white-space: pre-wrap;
 }
 
+/* regular logs */
 .console-log.log {
   color: #e0e6f1;
 }
@@ -202,6 +203,7 @@
   color: #4f90ff;
 }
 
+/* warnings look yellow-ish */
 .console-log.warn {
   color: #fbbf24;
   background: rgba(251, 191, 36, 0.05);
@@ -211,6 +213,7 @@
   color: #f59e0b;
 }
 
+/* errors are red obviously */
 .console-log.error {
   color: #ff4444;
   background: rgba(255, 68, 68, 0.05);
@@ -228,6 +231,7 @@
   color: #3b82f6;
 }
 
+/* debug messages slightly different */
 .console-log.debug {
   color: #a78bfa;
   font-style: italic;
@@ -281,6 +285,7 @@
   }
 }
 
+/* mobile stuff */
 @media (max-width: 768px) {
   #relic-console {
     height: 300px;
