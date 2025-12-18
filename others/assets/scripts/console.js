@@ -1,4 +1,3 @@
-/*
 if (window.GVerseConsole) {
   console.warn('GVerseConsole already initialized');
 } else {
