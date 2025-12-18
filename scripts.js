@@ -319,6 +319,201 @@ function applyTheme(themeName) {
   console.log('Theme applied:', themeName);
 }
 
+//  SETTINGS TABS SYSTEM =====
+function setupSettingsTabs() {
+  const tabBtns = document.querySelectorAll('.settings-tab-btn');
+  const tabContents = document.querySelectorAll('.settings-tab-content');
+  
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetTab = btn.dataset.tab;
+      
+      // Remove active class from all buttons and contents
+      tabBtns.forEach(b => b.classList.remove('active'));
+      tabContents.forEach(c => c.classList.remove('active'));
+      
+      // Add active class to clicked button and corresponding content
+      btn.classList.add('active');
+      const targetContent = document.getElementById(`tab-${targetTab}`);
+      if (targetContent) {
+        targetContent.classList.add('active');
+      }
+      
+      // Log if debug mode is enabled
+      if (localStorage.getItem('debugMode') === 'enabled') {
+        console.log('Settings tab switched to:', targetTab);
+      }
+    });
+  });
+}
+
+//  ANTI TAB CLOSE FUNCTIONALITY =====
+function setupAntiTabClose() {
+  const antiTabCloseToggle = document.getElementById('antiTabCloseToggle');
+  
+  if (antiTabCloseToggle) {
+    // Load saved setting
+    const savedAntiClose = localStorage.getItem('antiTabClose');
+    antiTabCloseToggle.checked = savedAntiClose === 'enabled';
+    
+    // Apply setting if enabled
+    if (savedAntiClose === 'enabled') {
+      enableAntiTabClose();
+    }
+    
+    // Listen for changes
+    antiTabCloseToggle.addEventListener('change', (e) => {
+      if (e.target.checked) {
+        localStorage.setItem('antiTabClose', 'enabled');
+        enableAntiTabClose();
+        if (localStorage.getItem('debugMode') === 'enabled') {
+          console.log('Anti Tab Close enabled');
+        }
+      } else {
+        localStorage.removeItem('antiTabClose');
+        disableAntiTabClose();
+        if (localStorage.getItem('debugMode') === 'enabled') {
+          console.log('Anti Tab Close disabled');
+        }
+      }
+    });
+  }
+}
+
+function enableAntiTabClose() {
+  window.addEventListener('beforeunload', confirmClose);
+}
+
+function disableAntiTabClose() {
+  window.removeEventListener('beforeunload', confirmClose);
+}
+
+function confirmClose(e) {
+  e.preventDefault();
+  e.returnValue = '';
+  return '';
+}
+
+//  DEBUG MODE FUNCTIONALITY =====
+function setupDebugMode() {
+  const debugToggle = document.getElementById('debugModeToggle');
+  
+  if (debugToggle) {
+    const savedDebug = localStorage.getItem('debugMode');
+    debugToggle.checked = savedDebug === 'enabled';
+    
+    // Log initial state if debug is enabled
+    if (savedDebug === 'enabled') {
+      console.log('=== Debug Mode Active ===');
+      console.log('Current Settings:', {
+        theme: localStorage.getItem('selectedTheme'),
+        snowEffect: localStorage.getItem('snowEffect'),
+        tabTitle: localStorage.getItem('TabCloak_Title'),
+        antiTabClose: localStorage.getItem('antiTabClose'),
+        aboutBlank: localStorage.getItem('aboutBlank'),
+        hotkey: localStorage.getItem('hotkey'),
+        redirectURL: localStorage.getItem('redirectURL')
+      });
+    }
+    
+    debugToggle.addEventListener('change', (e) => {
+      if (e.target.checked) {
+        localStorage.setItem('debugMode', 'enabled');
+        console.log('=== Debug Mode Enabled ===');
+        console.log('Current Settings:', {
+          theme: localStorage.getItem('selectedTheme'),
+          snowEffect: localStorage.getItem('snowEffect'),
+          tabTitle: localStorage.getItem('TabCloak_Title'),
+          antiTabClose: localStorage.getItem('antiTabClose'),
+          aboutBlank: localStorage.getItem('aboutBlank'),
+          hotkey: localStorage.getItem('hotkey'),
+          redirectURL: localStorage.getItem('redirectURL')
+        });
+        console.log('Browser Info:', {
+          userAgent: navigator.userAgent,
+          platform: navigator.platform,
+          language: navigator.language,
+          cookiesEnabled: navigator.cookieEnabled
+        });
+      } else {
+        console.log('Debug mode disabled');
+        localStorage.removeItem('debugMode');
+      }
+    });
+  }
+}
+
+//  CLEAR CACHE FUNCTIONALITY =====
+function setupClearCache() {
+  const clearCacheBtn = document.getElementById('clearCacheBtn');
+  
+  if (clearCacheBtn) {
+    clearCacheBtn.addEventListener('click', () => {
+      if (confirm('This will clear all your settings and reload the page. Continue?')) {
+        if (localStorage.getItem('debugMode') === 'enabled') {
+          console.log('Clearing cache...');
+          console.log('Items to be removed:', Object.keys(localStorage));
+        }
+        
+        // Clear all localStorage except essential items
+        const essentialKeys = ['games', 'apps', 'emulatedGames', 'websites'];
+        Object.keys(localStorage).forEach(key => {
+          if (!essentialKeys.includes(key)) {
+            localStorage.removeItem(key);
+          }
+        });
+        
+        console.log('Cache cleared, reloading...');
+        location.reload();
+      }
+    });
+  }
+}
+
+//  SYSTEM INFORMATION DISPLAY =====
+function displaySystemInfo() {
+  const browserInfo = document.getElementById('browserInfo');
+  const platformInfo = document.getElementById('platformInfo');
+  const screenInfo = document.getElementById('screenInfo');
+  const storageInfo = document.getElementById('storageInfo');
+  
+  if (browserInfo) {
+    const ua = navigator.userAgent;
+    let browserName = 'Unknown';
+    
+    if (ua.includes('Firefox')) browserName = 'Firefox';
+    else if (ua.includes('Chrome') && !ua.includes('Edg')) browserName = 'Chrome';
+    else if (ua.includes('Safari') && !ua.includes('Chrome')) browserName = 'Safari';
+    else if (ua.includes('Edg')) browserName = 'Edge';
+    else if (ua.includes('Opera') || ua.includes('OPR')) browserName = 'Opera';
+    
+    browserInfo.textContent = browserName;
+  }
+  
+  if (platformInfo) {
+    platformInfo.textContent = navigator.platform || 'Unknown';
+  }
+  
+  if (screenInfo) {
+    screenInfo.textContent = `${window.screen.width}x${window.screen.height}`;
+  }
+  
+  if (storageInfo) {
+    try {
+      let totalSize = 0;
+      for (let key in localStorage) {
+        if (localStorage.hasOwnProperty(key)) {
+          totalSize += localStorage[key].length + key.length;
+        }
+      }
+      const sizeInKB = (totalSize / 1024).toFixed(2);
+      storageInfo.textContent = `${sizeInKB} KB`;
+    } catch (e) {
+      storageInfo.textContent = 'Unable to calculate';
+    }
+  }
+}
+
 //  LOAD SETTINGS =====
 function loadSettings() {
   let themeToUse = 'original';
@@ -336,6 +531,7 @@ function loadSettings() {
   const savedHotkey = localStorage.getItem('hotkey') || '`';
   const savedRedirect = localStorage.getItem('redirectURL') || 'https://google.com';
   const savedAboutBlank = localStorage.getItem('aboutBlank');
+  const savedAntiClose = localStorage.getItem('antiTabClose');
 
   if (savedTitle) {
     document.title = savedTitle;
@@ -374,8 +570,22 @@ function loadSettings() {
     aboutBlankToggle.checked = savedAboutBlank === 'enabled';
   }
 
+  // Load anti-tab-close setting
+  if (savedAntiClose === 'enabled') {
+    enableAntiTabClose();
+  }
+
   // Apply theme
   applyTheme(themeToUse);
+  
+  // Log settings if debug mode is enabled
+  if (localStorage.getItem('debugMode') === 'enabled') {
+    console.log('Settings loaded:', {
+      theme: themeToUse,
+      snow: savedSnow !== 'disabled',
+      antiTabClose: savedAntiClose === 'enabled'
+    });
+  }
 }
 
 //  PANIC BUTTON =====
@@ -385,6 +595,9 @@ function setupPanicButton() {
   
   document.addEventListener('keydown', (e) => {
     if (e.key === savedHotkey) {
+      if (localStorage.getItem('debugMode') === 'enabled') {
+        console.log('Panic button triggered! Redirecting to:', savedRedirect);
+      }
       window.location.href = savedRedirect;
     }
   });
@@ -406,6 +619,9 @@ function setupPanicButton() {
         hotkeyInput.value = e.key;
         localStorage.setItem('hotkey', e.key);
         hotkeyInput.blur();
+        if (localStorage.getItem('debugMode') === 'enabled') {
+          console.log('Panic hotkey updated to:', e.key);
+        }
       }
     });
   }
@@ -419,6 +635,9 @@ function setupPanicButton() {
       if (url) {
         localStorage.setItem('redirectURL', url);
         alert('Redirect URL updated!');
+        if (localStorage.getItem('debugMode') === 'enabled') {
+          console.log('Redirect URL updated to:', url);
+        }
       }
     });
   }
@@ -452,6 +671,10 @@ function showHome() {
   if (homeLink) homeLink.classList.add('active');
   const infoButtons = document.querySelector('.homepage-info-buttons');
   if (infoButtons) infoButtons.style.display = 'flex';
+  
+  if (localStorage.getItem('debugMode') === 'enabled') {
+    console.log('Navigated to: Home');
+  }
 }
 
 function showGames() {
@@ -478,6 +701,10 @@ function showGames() {
       renderGames(games);
     }
   }
+  
+  if (localStorage.getItem('debugMode') === 'enabled') {
+    console.log('Navigated to: Games');
+  }
 }
 
 function showSearch() {
@@ -491,6 +718,10 @@ function showSearch() {
     const proxyInput = document.getElementById('proxyUrlInput');
     if (proxyInput) proxyInput.focus();
   }, 100);
+  
+  if (localStorage.getItem('debugMode') === 'enabled') {
+    console.log('Navigated to: Search');
+  }
 }
 
 function showApps() {
@@ -502,6 +733,10 @@ function showApps() {
   
   if (typeof apps !== 'undefined' && Array.isArray(apps)) {
     renderApps(apps);
+  }
+  
+  if (localStorage.getItem('debugMode') === 'enabled') {
+    console.log('Navigated to: Apps');
   }
 }
 
@@ -515,6 +750,10 @@ function showWebsites() {
   if (typeof websites !== 'undefined' && Array.isArray(websites)) {
     renderWebsites(websites);
   }
+  
+  if (localStorage.getItem('debugMode') === 'enabled') {
+    console.log('Navigated to: Websites');
+  }
 }
 
 function showAbout() {
@@ -523,6 +762,10 @@ function showAbout() {
   if (aboutContent) aboutContent.style.display = 'block';
   const aboutLink = document.getElementById('aboutLink');
   if (aboutLink) aboutLink.classList.add('active');
+  
+  if (localStorage.getItem('debugMode') === 'enabled') {
+    console.log('Navigated to: About');
+  }
 }
 
 function showSettings() {
@@ -531,6 +774,10 @@ function showSettings() {
   if (settingsContent) settingsContent.style.display = 'block';
   const settingsLink = document.getElementById('settingsLink');
   if (settingsLink) settingsLink.classList.add('active');
+  
+  if (localStorage.getItem('debugMode') === 'enabled') {
+    console.log('Navigated to: Settings');
+  }
 }
 
 function showEmulated() {
@@ -542,6 +789,10 @@ function showEmulated() {
   
   if (typeof emulatedGames !== 'undefined' && Array.isArray(emulatedGames)) {
     renderEmulatedGames(emulatedGames);
+  }
+  
+  if (localStorage.getItem('debugMode') === 'enabled') {
+    console.log('Navigated to: Emulated Games');
   }
 }
 
@@ -601,6 +852,10 @@ function loadGame(urlOrGame) {
       console.error('Failed to load game:', url);
       alert('Error loading game.');
     };
+    
+    if (localStorage.getItem('debugMode') === 'enabled') {
+      console.log('Game loaded:', url);
+    }
   } catch (error) {
     console.error('Error in loadGame:', error);
     alert('An error occurred while loading the game.');
@@ -633,6 +888,10 @@ function renderGames(gamesToRender) {
     
     gameList.appendChild(card);
   });
+  
+  if (localStorage.getItem('debugMode') === 'enabled') {
+    console.log('Rendered games:', gamesToRender.length);
+  }
 }
 
 function renderEmulatedGames(gamesToRender) {
@@ -659,6 +918,10 @@ function renderEmulatedGames(gamesToRender) {
     
     emulatedList.appendChild(card);
   });
+  
+  if (localStorage.getItem('debugMode') === 'enabled') {
+    console.log('Rendered emulated games:', gamesToRender.length);
+  }
 }
 
 function renderApps(appsToRender) {
@@ -681,6 +944,10 @@ function renderApps(appsToRender) {
     card.onclick = () => loadGame(app.url);
     appList.appendChild(card);
   });
+  
+  if (localStorage.getItem('debugMode') === 'enabled') {
+    console.log('Rendered apps:', appsToRender.length);
+  }
 }
 
 function renderWebsites(websitesToRender) {
@@ -721,6 +988,10 @@ function renderWebsites(websitesToRender) {
   });
   
   websitesList.appendChild(list);
+  
+  if (localStorage.getItem('debugMode') === 'enabled') {
+    console.log('Rendered websites:', websitesToRender.length);
+  }
 }
 
 //  SEARCH FUNCTIONS =====
@@ -742,6 +1013,10 @@ function searchGames() {
   
   const filtered = games.filter(game => game && game.name && game.name.toLowerCase().includes(query));
   renderGames(filtered);
+  
+  if (localStorage.getItem('debugMode') === 'enabled') {
+    console.log('Game search:', query, 'Results:', filtered.length);
+  }
 }
 
 function searchEmulatedGames() {
@@ -762,6 +1037,10 @@ function searchEmulatedGames() {
   
   const filtered = emulatedGames.filter(game => game && game.name && game.name.toLowerCase().includes(query));
   renderEmulatedGames(filtered);
+  
+  if (localStorage.getItem('debugMode') === 'enabled') {
+    console.log('Emulated game search:', query, 'Results:', filtered.length);
+  }
 }
 
 function searchWebsites() {
@@ -782,6 +1061,10 @@ function searchWebsites() {
   
   const filtered = websites.filter(site => site && site.name && site.name.toLowerCase().includes(query));
   renderWebsites(filtered);
+  
+  if (localStorage.getItem('debugMode') === 'enabled') {
+    console.log('Website search:', query, 'Results:', filtered.length);
+  }
 }
 
 function toggleFullscreen() {
@@ -811,9 +1094,19 @@ if (document.readyState === 'loading') {
 
 function initializeApp() {
   try {
+    if (localStorage.getItem('debugMode') === 'enabled') {
+      console.log('=== Initializing Relic Ultimate ===');
+      console.log('Document ready state:', document.readyState);
+    }
+    
     loadSettings();
     showHome();
     setupPanicButton();
+    setupSettingsTabs();
+    setupAntiTabClose();
+    setupDebugMode();
+    setupClearCache();
+    displaySystemInfo();
 
     // Theme Select Handler
     const themeSelect = document.getElementById('themeSelect');
@@ -1004,6 +1297,11 @@ function initializeApp() {
     const fullscreenBtn = document.getElementById('fullscreenBtn');
     if (fullscreenBtn) {
       fullscreenBtn.addEventListener('click', toggleFullscreen);
+    }
+    
+    if (localStorage.getItem('debugMode') === 'enabled') {
+      console.log('=== Initialization Complete ===');
+      console.log('All event listeners attached successfully');
     }
   } catch (error) {
     console.error('Critical error during initialization:', error);
