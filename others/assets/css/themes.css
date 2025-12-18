@@ -1,4 +1,4 @@
-/* Default Theme (Original) */
+/* default theme (the blue one) */
 :root {
   --bg-color: #1e3a8a;
   --bg-secondary: #1e40af;
@@ -20,7 +20,7 @@
   --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
   --shadow-glow: 0 0 20px rgba(96, 165, 250, 0.3);
   
-  /* Sidebar Colors - Lighter than background */
+  /* sidebar is slightly lighter */
   --sidebar-bg-start: rgba(30, 64, 175, 0.98);
   --sidebar-bg-mid: rgba(37, 99, 235, 0.98);
   --sidebar-bg-end: rgba(30, 64, 175, 0.98);
@@ -34,7 +34,7 @@
   --sidebar-accent-secondary: #3b82f6;
 }
 
-/* Dark Theme - Background darker, sidebar lighter */
+/* dark mode - pure black background */
 [data-theme="dark"] {
   --bg-color: #000000;
   --bg-secondary: #0d0d0d;
@@ -52,7 +52,6 @@
   --glass-border: rgba(255, 255, 255, 0.15);
   --shadow-glow: 0 0 20px rgba(92, 92, 92, 0.3);
   
-  /* Sidebar - Much lighter than background */
   --sidebar-bg-start: rgba(79, 79, 79, 0.98);
   --sidebar-bg-mid: rgba(95, 95, 95, 0.98);
   --sidebar-bg-end: rgba(79, 79, 79, 0.98);
@@ -66,7 +65,7 @@
   --sidebar-accent-secondary: #8f8f8f;
 }
 
-/* Light Theme - Background lighter, sidebar slightly darker */
+/* light theme for daytime users */
 [data-theme="light"] {
   --bg-color: #f8fafc;
   --bg-secondary: #ffffff;
@@ -84,7 +83,6 @@
   --glass-border: rgba(203, 213, 225, 0.5);
   --shadow-glow: 0 0 15px rgba(59, 130, 246, 0.2);
   
-  /* Sidebar - Slightly darker than background */
   --sidebar-bg-start: rgba(226, 232, 240, 0.98);
   --sidebar-bg-mid: rgba(241, 245, 249, 0.98);
   --sidebar-bg-end: rgba(226, 232, 240, 0.98);
@@ -98,7 +96,7 @@
   --sidebar-accent-secondary: #2563eb;
 }
 
-/* Midnight Theme */
+/* midnight - really dark purple vibes */
 [data-theme="midnight"] {
   --bg-color: #0c0a1f;
   --bg-secondary: #1a1535;
@@ -116,7 +114,6 @@
   --glass-border: rgba(167, 139, 250, 0.3);
   --shadow-glow: 0 0 25px rgba(167, 139, 250, 0.4);
   
-  /* Sidebar - Lighter than background */
   --sidebar-bg-start: rgba(26, 21, 53, 0.98);
   --sidebar-bg-mid: rgba(42, 16, 80, 0.98);
   --sidebar-bg-end: rgba(26, 21, 53, 0.98);
@@ -130,7 +127,7 @@
   --sidebar-accent-secondary: #8b5cf6;
 }
 
-/* Ocean Theme */
+/* ocean theme - cyan and blue */
 [data-theme="ocean"] {
   --bg-color: #0c4a6e;
   --bg-secondary: #075985;
@@ -148,7 +145,6 @@
   --glass-border: rgba(34, 211, 238, 0.3);
   --shadow-glow: 0 0 25px rgba(34, 211, 238, 0.4);
   
-  /* Sidebar - Lighter than background */
   --sidebar-bg-start: rgba(7, 89, 133, 0.98);
   --sidebar-bg-mid: rgba(14, 116, 144, 0.98);
   --sidebar-bg-end: rgba(7, 89, 133, 0.98);
@@ -162,7 +158,7 @@
   --sidebar-accent-secondary: #06b6d4;
 }
 
-/* Sunset Theme */
+/* sunset - warm orange tones */
 [data-theme="sunset"] {
   --bg-color: #7c2d12;
   --bg-secondary: #9a3412;
@@ -180,7 +176,6 @@
   --glass-border: rgba(251, 146, 60, 0.3);
   --shadow-glow: 0 0 25px rgba(251, 146, 60, 0.4);
   
-  /* Sidebar - Lighter than background */
   --sidebar-bg-start: rgba(154, 52, 18, 0.98);
   --sidebar-bg-mid: rgba(194, 65, 12, 0.98);
   --sidebar-bg-end: rgba(154, 52, 18, 0.98);
@@ -194,7 +189,7 @@
   --sidebar-accent-secondary: #f97316;
 }
 
-/* Forest Theme */
+/* forest green theme */
 [data-theme="forest"] {
   --bg-color: #14532d;
   --bg-secondary: #166534;
@@ -212,7 +207,6 @@
   --glass-border: rgba(74, 222, 128, 0.3);
   --shadow-glow: 0 0 25px rgba(74, 222, 128, 0.4);
   
-  /* Sidebar - Lighter than background */
   --sidebar-bg-start: rgba(22, 101, 52, 0.98);
   --sidebar-bg-mid: rgba(21, 128, 61, 0.98);
   --sidebar-bg-end: rgba(22, 101, 52, 0.98);
@@ -226,7 +220,7 @@
   --sidebar-accent-secondary: #22c55e;
 }
 
-/* Purple Dream Theme */
+/* purple dream */
 [data-theme="purple"] {
   --bg-color: #581c87;
   --bg-secondary: #6b21a8;
@@ -244,7 +238,6 @@
   --glass-border: rgba(192, 132, 252, 0.3);
   --shadow-glow: 0 0 25px rgba(192, 132, 252, 0.4);
   
-  /* Sidebar - Lighter than background */
   --sidebar-bg-start: rgba(107, 33, 168, 0.98);
   --sidebar-bg-mid: rgba(126, 34, 206, 0.98);
   --sidebar-bg-end: rgba(107, 33, 168, 0.98);
@@ -258,7 +251,7 @@
   --sidebar-accent-secondary: #a855f7;
 }
 
-/* Cyberpunk Theme */
+/* cyberpunk pink/purple */
 [data-theme="cyberpunk"] {
   --bg-color: #1a0b2e;
   --bg-secondary: #2d1b4e;
@@ -276,7 +269,6 @@
   --glass-border: rgba(255, 0, 110, 0.3);
   --shadow-glow: 0 0 30px rgba(255, 0, 110, 0.5);
   
-  /* Sidebar - Lighter than background */
   --sidebar-bg-start: rgba(45, 27, 78, 0.98);
   --sidebar-bg-mid: rgba(123, 44, 191, 0.98);
   --sidebar-bg-end: rgba(45, 27, 78, 0.98);
@@ -290,7 +282,7 @@
   --sidebar-accent-secondary: #fb5607;
 }
 
-/* Matrix Theme */
+/* matrix green on black */
 [data-theme="matrix"] {
   --bg-color: #0d0d0d;
   --bg-secondary: #000000;
@@ -308,7 +300,6 @@
   --glass-border: rgba(0, 255, 65, 0.3);
   --shadow-glow: 0 0 30px rgba(0, 255, 65, 0.5);
   
-  /* Sidebar - Lighter than background */
   --sidebar-bg-start: rgba(13, 21, 13, 0.98);
   --sidebar-bg-mid: rgba(26, 47, 26, 0.98);
   --sidebar-bg-end: rgba(13, 21, 13, 0.98);
@@ -322,7 +313,7 @@
   --sidebar-accent-secondary: #39ff14;
 }
 
-/* Neon Lights */
+/* neon lights - hot pink and cyan */
 [data-theme="neon"] {
   --bg-color: #120458;
   --bg-secondary: #2d1b69;
@@ -340,7 +331,6 @@
   --glass-border: rgba(255, 16, 240, 0.3);
   --shadow-glow: 0 0 30px rgba(255, 16, 240, 0.5);
   
-  /* Sidebar - Lighter than background */
   --sidebar-bg-start: rgba(45, 27, 105, 0.98);
   --sidebar-bg-mid: rgba(123, 44, 191, 0.98);
   --sidebar-bg-end: rgba(45, 27, 105, 0.98);
@@ -354,7 +344,7 @@
   --sidebar-accent-secondary: #00ffff;
 }
 
-/* Fire */
+/* fire theme - reds and yellows */
 [data-theme="fire"] {
   --bg-color: #7f1d1d;
   --bg-secondary: #991b1b;
@@ -372,7 +362,6 @@
   --glass-border: rgba(251, 191, 36, 0.3);
   --shadow-glow: 0 0 30px rgba(251, 191, 36, 0.5);
   
-  /* Sidebar - Lighter than background */
   --sidebar-bg-start: rgba(153, 27, 27, 0.98);
   --sidebar-bg-mid: rgba(185, 28, 28, 0.98);
   --sidebar-bg-end: rgba(153, 27, 27, 0.98);
@@ -386,7 +375,7 @@
   --sidebar-accent-secondary: #f59e0b;
 }
 
-/* Ice */
+/* ice theme - cool blues */
 [data-theme="ice"] {
   --bg-color: #0c4a6e;
   --bg-secondary: #075985;
@@ -404,7 +393,6 @@
   --glass-border: rgba(125, 211, 252, 0.3);
   --shadow-glow: 0 0 25px rgba(125, 211, 252, 0.4);
   
-  /* Sidebar - Lighter than background */
   --sidebar-bg-start: rgba(7, 89, 133, 0.98);
   --sidebar-bg-mid: rgba(3, 105, 161, 0.98);
   --sidebar-bg-end: rgba(7, 89, 133, 0.98);
@@ -418,7 +406,7 @@
   --sidebar-accent-secondary: #0ea5e9;
 }
 
-/* Retro */
+/* retro warm browns */
 [data-theme="retro"] {
   --bg-color: #422006;
   --bg-secondary: #713f12;
@@ -436,7 +424,6 @@
   --glass-border: rgba(251, 191, 36, 0.3);
   --shadow-glow: 0 0 20px rgba(251, 191, 36, 0.3);
   
-  /* Sidebar - Lighter than background */
   --sidebar-bg-start: rgba(113, 63, 18, 0.98);
   --sidebar-bg-mid: rgba(133, 77, 14, 0.98);
   --sidebar-bg-end: rgba(113, 63, 18, 0.98);
