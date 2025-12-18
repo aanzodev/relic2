@@ -29,7 +29,6 @@ body::before {
   pointer-events: none;
 }
 
-/* Relic Logo Container - New Styles */
 .relic-logo-container {
   display: flex;
   flex-direction: column;
@@ -67,7 +66,6 @@ body::before {
   letter-spacing: -0.5px;
 }
 
-/* User Counter Styles */
 .user-counter-container {
   margin-top: 30px;
   display: flex;
@@ -176,7 +174,6 @@ body::before {
   }
 }
 
-/* Navbar - kept but hidden */
 .navbar {
   display: none !important;
 }
@@ -194,7 +191,6 @@ body::before {
   text-decoration: none;
 }
 
-/* Game Filters - more casual spacing */
 .game-filters {
   display: flex;
   gap: 10px;
@@ -230,7 +226,6 @@ body::before {
   color: white;
 }
 
-/* Favorite Button - simpler */
 .favorite-btn {
   position: absolute;
   top: 10px;
@@ -268,7 +263,6 @@ body::before {
   border-color: #ffd700;
 }
 
-/* Settings Page - less uniform */
 .settings-page-container {
   max-width: 850px;
   margin: 32px auto;
@@ -396,7 +390,6 @@ body::before {
   border-color: var(--accent-color);
 }
 
-/* Settings Tabs Navigation */
 .settings-tabs {
   display: flex;
   justify-content: center;
@@ -478,7 +471,6 @@ body::before {
   padding: 8px 0;
 }
 
-/* Contributors Grid Styles */
 .contributors-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -551,7 +543,6 @@ body::before {
   font-weight: 500;
 }
 
-/* Modals - cleaner design */
 .info-modal {
   display: none;
   position: fixed;
@@ -702,7 +693,6 @@ body::before {
   background: var(--hover-bg);
 }
 
-/* Homepage Info Buttons - asymmetric positioning */
 .homepage-info-buttons {
   position: fixed;
   bottom: 32px;
@@ -739,7 +729,6 @@ body::before {
   transform: translateY(-1px);
 }
 
-/* Container and Content */
 .container {
   max-width: 1400px;
   margin: 20px auto;
@@ -762,7 +751,6 @@ body::before {
   }
 }
 
-/* Game and App Grids - less uniform */
 .game-grid, .app-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -822,7 +810,6 @@ body::before {
   user-select: none;
 }
 
-/* Search Container */
 .search-container {
   display: flex;
   justify-content: center;
@@ -868,7 +855,6 @@ body::before {
   transform: translateY(-2px);
 }
 
-/* Back Buttons */
 #backToHomeApps,
 #backToHomeGame,
 #backToHomeWebsites {
@@ -891,7 +877,6 @@ body::before {
   transform: translateY(-2px);
 }
 
-/* Game Play Area */
 .game-play-area {
   background: #000;
   border: 2px solid var(--glass-border);
@@ -910,28 +895,54 @@ body::before {
   border-radius: 8px;
 }
 
-.fullscreen-btn {
+.game-controls {
   position: absolute;
   top: 24px;
   right: 24px;
-  background: var(--accent-color);
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  padding: 10px 20px;
-  cursor: pointer;
+  display: flex;
+  gap: 12px;
   z-index: 10000;
-  font-weight: 600;
-  font-size: 14px;
+}
+
+.game-control-btn {
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.95);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
-.fullscreen-btn:hover {
-  background: var(--btn-hover-bg);
+.game-control-btn svg {
+  width: 22px;
+  height: 22px;
+  color: #5a5a5a;
+}
+
+.game-control-btn:hover {
+  background: rgba(255, 255, 255, 1);
   transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Responsive Design */
+.game-control-btn:hover svg {
+  color: #2a2a2a;
+}
+
+.game-control-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.fullscreen-btn {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .relic-logo-image {
     width: 80px;
@@ -992,6 +1003,22 @@ body::before {
   .contributor-role {
     font-size: 12px;
   }
+
+  .game-controls {
+    top: 14px;
+    right: 14px;
+    gap: 8px;
+  }
+
+  .game-control-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .game-control-btn svg {
+    width: 20px;
+    height: 20px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1007,5 +1034,21 @@ body::before {
   .contributors-grid {
     grid-template-columns: 1fr;
     gap: 10px;
+  }
+
+  .game-controls {
+    top: 10px;
+    right: 10px;
+    gap: 6px;
+  }
+
+  .game-control-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  .game-control-btn svg {
+    width: 18px;
+    height: 18px;
   }
 }
