@@ -80,7 +80,7 @@ console.log('Hopefully this fixses it again');
         const userData = childSnapshot.val();
         if (userData.timestamp < fiveMinutesAgo) {
           childSnapshot.ref.remove();
-          console.log('Removed stale user:', childSnapshot.key);
+          console.log('Removed idled user:', childSnapshot.key);
         }
       });
     });
@@ -126,7 +126,7 @@ console.log('Hopefully this fixses it again');
         });
         console.log('Heartbeat sent');
       }
-    }, 30000); // Every 30 seconds
+    }, 300000); // Every 30 seconds
   }
 
   // Cleanup stale users every 2 minutes
