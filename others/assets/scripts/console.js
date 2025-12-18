@@ -9,7 +9,9 @@ if (window.RelicConsole) {
     historyIndex: -1,
     originalConsole: {},
     initialized: false,
-
+    autoOpenOnError: false, // Set
+    manuallyOpened: false, // Track
+// Skidded btw
     init() {
       // Prevent double initialization
       if (this.initialized) {
@@ -33,6 +35,7 @@ if (window.RelicConsole) {
         // Ctrl + Shift + K to toggle
         if (e.ctrlKey && e.shiftKey && e.key === 'K') {
           e.preventDefault();
+          this.manuallyOpened = true; // Mark as manually opened
           this.toggle();
         }
       });
@@ -131,6 +134,11 @@ if (window.RelicConsole) {
       console.error = (...args) => {
         this.originalConsole.error(...args);
         this.addLog(args.map(arg => this.formatArg(arg)).join(' '), 'error');
+        
+        // Only auto-open on error if enabled
+        if (this.autoOpenOnError && !this.isOpen) {
+          this.open();
+        }
       };
 
       // Override console.info
@@ -151,6 +159,11 @@ if (window.RelicConsole) {
         if (e.target === window) {
           const message = `${e.message} at ${e.filename}:${e.lineno}:${e.colno}`;
           this.addLog(message, 'error');
+          
+          // Only auto-open on error if enabled
+          if (this.autoOpenOnError && !this.isOpen) {
+            this.open();
+          }
         } else if (e.target.tagName === 'IMG' || e.target.tagName === 'SCRIPT' || e.target.tagName === 'LINK') {
           // Resource loading errors
           const message = `Failed to load resource: ${e.target.src || e.target.href}`;
@@ -162,6 +175,11 @@ if (window.RelicConsole) {
       window.addEventListener('unhandledrejection', (e) => {
         const message = `Unhandled Promise Rejection: ${e.reason}`;
         this.addLog(message, 'error');
+        
+        // Only auto-open on error if enabled
+        if (this.autoOpenOnError && !this.isOpen) {
+          this.open();
+        }
       });
     },
 
@@ -289,6 +307,7 @@ if (window.RelicConsole) {
       if (this.isOpen) {
         this.close();
       } else {
+        this.manuallyOpened = true;
         this.open();
       }
     },
