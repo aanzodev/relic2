@@ -1085,6 +1085,24 @@ function toggleFullscreen() {
   }
 }
 
+function refreshGame() {
+  const gameIframe = document.getElementById('game-iframe');
+  if (!gameIframe) return;
+  
+  try {
+    const currentSrc = gameIframe.src;
+    gameIframe.src = '';
+    setTimeout(() => {
+      gameIframe.src = currentSrc;
+      
+      if (localStorage.getItem('debugMode') === 'enabled') {
+        console.log('Game refreshed:', currentSrc);
+      }
+    }, 100);
+  } catch (error) {
+    console.error('Refresh error:', error);
+  }
+}
 //  INITIALIZATION =====
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initializeApp);
