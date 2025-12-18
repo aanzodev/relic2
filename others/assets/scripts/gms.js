@@ -13,6 +13,7 @@ const games = [
   { name: "8 Ball Pool", image: "others/assets/games/images/8-ball-pool-2021-08-05.webp", url: "others/assets/games/8 Ball Pool.html" },
   { name: "99 Nights In The Forest", image: "others/assets/games/images/99nights.webp", url: "others/assets/games/99nightsitf.html" },
   // A
+  { name: "A Dark Room", image: "others/assets/games/images/A dark room.png", url: "others/assets/games/A Dark Room.html" }, /* done*/
   { name: "Adventure Capatalist", image: "others/assets/games/images/7866638-adventure-capitalist-android-front-cover.jpg", url: "others/assets/games/Adventure Capatalist.html" },
   { name: "Agar.io Lite", image: "others/assets/games/images/agario-lite.jpg", url: "others/assets/games/agar.io lite.html" },
   { name: "Amazing Strange Police", image: "others/assets/games/images/amazing strange police.jpg", url: "others/assets/games/amazing strange police.html" },
@@ -22,15 +23,19 @@ const games = [
   { name: "A Small World Cup", image: "others/assets/games/images/asmallworldcup.png", url: "others/assets/games/A Small World Cup.html" },
   { name: "Awesome Tanks", image: "others/assets/games/images/awesome tanks.jpg", url: "others/assets/games/awesome tanks.html" },
   // B
+  { name: "Baby Sniper In Vietnam", image: "others/assets/games/images/babysniperinvietnam.jpg", url: "others/assets/games/babysniperinvietnam.html" },
   { name: "Backrooms", image: "others/assets/games/images/backrooms.png", url: "others/assets/games/backrooms.html" },
-  { name: "Bacon May Die", image: "others/assets/games/images/bacon-may-die.png", url: "others/assets/games/Bacon May Die.html" },
+  { name: "Backrooms 2D", image: "others/assets/games/images/backrooms 2D.png", url: "others/assets/games/backrooms 2D.html" },
+  { name: "Bacon May Die", image: "others/assets/games/images/bacon-may-die.png", url: "others/assets/games/baconmaydie.html" },
   { name: "Bad Ice Cream", image: "others/assets/games/images/badicecream.png", url: "others/assets/games/clbadicecream.html" },
   { name: "Bad Parenting 1", image: "others/assets/games/images/badparent.jpeg", url: "others/assets/games/Bad Parenting 1.html" },
   { name: "Bad Time Simulator", image: "others/assets/games/images/badtimesim.png", url: "others/assets/games/Bad Time Simulator.html" },
   { name: "Baldi's Basics Plus", image: "others/assets/games/images/baldis.png", url: "others/assets/games/Baldi's Basics Plus.html" },
+  { name: "Bank Robbery 2", image: "others/assets/games/images/bankrobbery2.jpeg", url: "others/assets/games/bankrobbery2.html" },
   { name: "Baseball Bros", image: "others/assets/games/images/baseballbros.jpeg", url: "others/assets/games/Baseball Bros.html" },
   { name: "Basketbros.IO", image: "others/assets/games/images/basketbros-io.jpg", url: "others/assets/games/Basket Bros.html" },
   { name: "Basket Random", image: "others/assets/games/images/basketrandom.png", url: "others/assets/games/Basket Random.html" },
+  { name: "Battle Karts", image: "others/assets/games/images/image.png", url: "others/assets/games/battlekarts.html" },
   { name: "BitLife", image: "others/assets/games/images/bitlife.jpeg", url: "others/assets/games/BitLife.html" },
   { name: "Blackjack", image: "others/assets/games/images/blackjack.png", url: "others/assets/games/BlackJack.html" },
   { name: "Blade Ball", image: "others/assets/games/images/bladeball.png", url: "others/assets/games/Blade Ball.html" },
