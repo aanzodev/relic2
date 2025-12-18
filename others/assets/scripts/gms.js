@@ -1,8 +1,3 @@
-// ===== GAMES, APPS, AND WEBSITES DATA =====
-// File: others/assets/scripts/gms.js
-// This file contains all game, app, and website definitions for GalaxyVerse
-
-// ===== GAME DATA =====
 const games = [
   { name: "Feedback", image: "https://iili.io/3OM27wv.th.jpg", url: "https://forms.gle/GhMEg7s8H9aRSy4d9" },
   // Numerals
