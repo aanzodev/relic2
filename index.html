@@ -259,97 +259,197 @@
         <button id="backToHomeApps">Back to Home</button>
       </div>
 
-      <div id="content-settings" class="content" style="display:none;">
-        <h1>Settings</h1>
+<div id="content-settings" class="content" style="display:none;">
+  <h1>Settings</h1>
 
-        <div class="settings-page-container">
-          <div class="settings-section">
-            <h3>Tab Cloaking</h3>
-            <div class="setting-item">
-              <label for="customTitle">Custom Title:</label>
-              <input type="text" id="customTitle" placeholder="e.g., Google" />
-            </div>
-            <div class="setting-item">
-              <label for="customFavicon">Custom Favicon URL:</label>
-              <input type="text" id="customFavicon" placeholder="e.g., https://google.com/favicon.ico" />
-            </div>
-            <div class="setting-item">
-              <label for="presetSelect">Presets:</label>
-              <select id="presetSelect">
-                <option value="">-- Select Preset --</option>
-                <option value="google">Google</option>
-                <option value="classroom">Google Classroom</option>
-                <option value="bing">Bing</option>
-                <option value="nearpod">Nearpod</option>
-                <option value="powerschool">PowerSchool</option>
-                <option value="chrome">Chrome New Tab</option>
-                <option value="edge">Edge New Tab</option>
-              </select>
-            </div>
-            <div class="setting-buttons">
-              <button id="applyBtn" class="btn-primary">Apply</button>
-              <button id="resetBtn" class="btn-secondary">Reset</button>
-            </div>
-          </div>
+  <!-- Settings Tabs Navigation -->
+  <div class="settings-tabs">
+    <button class="settings-tab-btn active" data-tab="cloaking">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+      </svg>
+      Cloaking
+    </button>
+    <button class="settings-tab-btn" data-tab="customization">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+      </svg>
+      Customization
+    </button>
+    <button class="settings-tab-btn" data-tab="misc">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="3"></circle>
+        <path d="M12 1v6m0 6v6M4.22 4.22l4.24 4.24m5.08 5.08l4.24 4.24M1 12h6m6 0h6M4.22 19.78l4.24-4.24m5.08-5.08l4.24-4.24"></path>
+      </svg>
+      Misc
+    </button>
+  </div>
 
-          <div class="settings-section">
-            <h3>Theme 🎨</h3>
-            <div class="setting-item">
-              <label for="themeSelect">Select Theme:</label>
-              <select id="themeSelect">
-                <option value="original">Original (Dark Blue)</option>
-                <option value="dark">Dark Theme</option>
-                <option value="light">Light Theme</option>
-                <option value="midnight">Midnight</option>
-                <option value="ocean">Ocean</option>
-                <option value="sunset">Sunset</option>
-                <option value="forest">Forest</option>
-                <option value="purple">Purple Dream</option>
-                <option value="cyberpunk">Cyberpunk</option>
-                <option value="matrix">Matrix</option>
-                <option value="neon">Neon Lights</option>
-                <option value="fire">Fire</option>
-                <option value="ice">Ice</option>
-                <option value="retro">Retro</option>
-              </select>
-            </div>
-            <p style="font-size: 12px; color: var(--text-color); opacity: 0.8; margin-top: 8px;">
-              ✨ Sidebar colors automatically match your selected theme!
-            </p>
-            <div class="setting-item">
-              <label>
-                <input type="checkbox" id="snowToggle" checked /> Enable Snow Effect
-              </label>
-            </div>
-          </div>
-
-          <div class="settings-section">
-            <h3>Panic Button</h3>
-            <div class="setting-item">
-              <label for="hotkey-input">Panic Hotkey:</label>
-              <input type="text" id="hotkey-input" placeholder="Press a key" readonly />
-              <button id="change-hotkey-btn" class="btn-small">Change</button>
-            </div>
-            <div class="setting-item">
-              <label for="redirect-url-input">Redirect URL:</label>
-              <input type="text" id="redirect-url-input" placeholder="https://google.com" />
-              <button id="change-URL-btn" class="btn-small">Change</button>
-            </div>
-          </div>
-
-          <div class="settings-section">
-            <h3>About Blank</h3>
-            <div class="setting-item">
-              <label>
-                <input type="checkbox" id="aboutBlankToggle" /> Enable About:Blank Cloaking
-              </label>
-              <p style="font-size: 12px; color: var(--text-color); margin-top: 8px; opacity: 0.8;">
-                When enabled, the site will open in an about:blank window to hide from browser history.
-              </p>
-            </div>
-          </div>
+  <div class="settings-page-container">
+    <!-- CLOAKING TAB -->
+    <div class="settings-tab-content active" id="tab-cloaking">
+      <div class="settings-section">
+        <h3>Tab Cloaking</h3>
+        <div class="setting-item">
+          <label for="customTitle">Custom Title:</label>
+          <input type="text" id="customTitle" placeholder="e.g., Google" />
+        </div>
+        <div class="setting-item">
+          <label for="customFavicon">Custom Favicon URL:</label>
+          <input type="text" id="customFavicon" placeholder="e.g., https://google.com/favicon.ico" />
+        </div>
+        <div class="setting-item">
+          <label for="presetSelect">Presets:</label>
+          <select id="presetSelect">
+            <option value="">-- Select Preset --</option>
+            <option value="google">Google</option>
+            <option value="classroom">Google Classroom</option>
+            <option value="bing">Bing</option>
+            <option value="nearpod">Nearpod</option>
+            <option value="powerschool">PowerSchool</option>
+            <option value="chrome">Chrome New Tab</option>
+            <option value="edge">Edge New Tab</option>
+          </select>
+        </div>
+        <div class="setting-buttons">
+          <button id="applyBtn" class="btn-primary">Apply</button>
+          <button id="resetBtn" class="btn-secondary">Reset</button>
         </div>
       </div>
+
+      <div class="settings-section">
+        <h3>Panic Button</h3>
+        <div class="setting-item">
+          <label for="hotkey-input">Panic Hotkey:</label>
+          <input type="text" id="hotkey-input" placeholder="Press a key" readonly />
+          <button id="change-hotkey-btn" class="btn-small">Change</button>
+        </div>
+        <div class="setting-item">
+          <label for="redirect-url-input">Redirect URL:</label>
+          <input type="text" id="redirect-url-input" placeholder="https://google.com" />
+          <button id="change-URL-btn" class="btn-small">Change</button>
+        </div>
+      </div>
+
+      <div class="settings-section">
+        <h3>About Blank</h3>
+        <div class="setting-item">
+          <label>
+            <input type="checkbox" id="aboutBlankToggle" /> Enable About:Blank Cloaking
+          </label>
+          <p style="font-size: 12px; color: var(--text-color); margin-top: 8px; opacity: 0.8;">
+            When enabled, the site will open in an about:blank window to hide from browser history.
+          </p>
+        </div>
+      </div>
+
+      <div class="settings-section">
+        <h3>Anti Tab Close</h3>
+        <div class="setting-item">
+          <label>
+            <input type="checkbox" id="antiTabCloseToggle" /> Prevent Accidental Tab Close
+          </label>
+          <p style="font-size: 12px; color: var(--text-color); margin-top: 8px; opacity: 0.8;">
+            Shows a confirmation dialog when trying to close the tab.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CUSTOMIZATION TAB -->
+    <div class="settings-tab-content" id="tab-customization">
+      <div class="settings-section">
+        <h3>Theme 🎨</h3>
+        <div class="setting-item">
+          <label for="themeSelect">Select Theme:</label>
+          <select id="themeSelect">
+            <option value="original">Original (Dark Blue)</option>
+            <option value="dark">Dark Theme</option>
+            <option value="light">Light Theme</option>
+            <option value="midnight">Midnight</option>
+            <option value="ocean">Ocean</option>
+            <option value="sunset">Sunset</option>
+            <option value="forest">Forest</option>
+            <option value="purple">Purple Dream</option>
+            <option value="cyberpunk">Cyberpunk</option>
+            <option value="matrix">Matrix</option>
+            <option value="neon">Neon Lights</option>
+            <option value="fire">Fire</option>
+            <option value="ice">Ice</option>
+            <option value="retro">Retro</option>
+          </select>
+        </div>
+        <p style="font-size: 12px; color: var(--text-color); opacity: 0.8; margin-top: 8px;">
+          ✨ Sidebar colors automatically match your selected theme!
+        </p>
+      </div>
+
+      <div class="settings-section">
+        <h3>Visual Effects</h3>
+        <div class="setting-item">
+          <label>
+            <input type="checkbox" id="snowToggle" checked /> Enable Snow Effect
+          </label>
+          <p style="font-size: 12px; color: var(--text-color); margin-top: 8px; opacity: 0.8;">
+            Adds falling snow animation to the page.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- MISC TAB -->
+    <div class="settings-tab-content" id="tab-misc">
+      <div class="settings-section">
+        <h3>Debug Options</h3>
+        <div class="setting-item">
+          <label>
+            <input type="checkbox" id="debugModeToggle" /> Enable Debug Mode
+          </label>
+          <p style="font-size: 12px; color: var(--text-color); margin-top: 8px; opacity: 0.8;">
+            Shows console logs and debug information in the browser console.
+          </p>
+        </div>
+        <div class="setting-item">
+          <button id="clearCacheBtn" class="btn-secondary">Clear Cache & Reload</button>
+          <p style="font-size: 12px; color: var(--text-color); margin-top: 8px; opacity: 0.8;">
+            Clears all stored settings and reloads the page.
+          </p>
+        </div>
+      </div>
+
+      <div class="settings-section">
+        <h3>About</h3>
+        <div class="about-info">
+          <p><strong>Relic Ultimate</strong></p>
+          <p>Version: 1.2.5</p>
+          <p>Latest Update: December 2024</p>
+          <br>
+          <p><strong>Latest Features:</strong></p>
+          <ul style="text-align: left; padding-left: 20px;">
+            <li>🔐 New Fingerprint ID authentication system</li>
+            <li>🔑 Key generator with special characters</li>
+            <li>🛡️ Manual key entry for enhanced security</li>
+            <li>🎮 21+ New games added</li>
+          </ul>
+          <br>
+          <p style="font-size: 12px; opacity: 0.7;">
+            Created by: Aye-zee, Jordan, Devin, Aydenou, Coding4Hours
+          </p>
+        </div>
+      </div>
+
+      <div class="settings-section">
+        <h3>System Information</h3>
+        <div class="system-info">
+          <p><strong>Browser:</strong> <span id="browserInfo">Loading...</span></p>
+          <p><strong>Platform:</strong> <span id="platformInfo">Loading...</span></p>
+          <p><strong>Screen:</strong> <span id="screenInfo">Loading...</span></p>
+          <p><strong>Storage Used:</strong> <span id="storageInfo">Loading...</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
       <div id="game-display" class="content" style="display:none;">
         <div class="game-play-area" id="game-play-area">
