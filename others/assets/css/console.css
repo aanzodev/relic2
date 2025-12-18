@@ -1,7 +1,6 @@
-/* GalaxyVerse Console Styles */
-/* loads separate */
+/* GalaxyVerse Console */
 
-#gverse-console {
+#relic-console {
   position: fixed;
   bottom: -400px;
   left: 0;
@@ -18,7 +17,7 @@
   transition: bottom 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-#gverse-console.open {
+#relic-console.open {
   bottom: 0;
 }
 
@@ -58,7 +57,7 @@
   border-radius: 4px;
   cursor: pointer;
   font-size: 12px;
-  transition: all 0.2s ease;
+  transition: all 0.2s;
 }
 
 .console-btn:hover {
@@ -76,7 +75,7 @@
   cursor: pointer;
   font-size: 20px;
   line-height: 1;
-  transition: all 0.2s ease;
+  transition: all 0.2s;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -105,7 +104,7 @@
   cursor: pointer;
   font-size: 12px;
   font-weight: 500;
-  transition: all 0.2s ease;
+  transition: all 0.2s;
   display: flex;
   align-items: center;
   gap: 6px;
@@ -118,7 +117,7 @@
 
 .console-tab.active {
   background: #4f90ff;
-  color: #ffffff;
+  color: #fff;
 }
 
 .tab-count {
@@ -156,18 +155,14 @@
   border-radius: 4px;
 }
 
-.console-output::-webkit-scrollbar-thumb:hover {
-  background: #6fa8ff;
-}
-
 .console-log {
   display: flex;
   gap: 8px;
   padding: 6px 8px;
   margin-bottom: 4px;
   border-radius: 4px;
-  transition: background 0.15s ease;
   align-items: flex-start;
+  animation: slideIn 0.2s;
 }
 
 .console-log:hover {
@@ -267,7 +262,7 @@
   font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
   font-size: 13px;
   outline: none;
-  transition: all 0.2s ease;
+  transition: border-color 0.2s;
 }
 
 .console-input:focus {
@@ -279,25 +274,15 @@
   color: #6b7280;
 }
 
-/* Animation for new logs */
 @keyframes slideIn {
   from {
     opacity: 0;
     transform: translateX(-10px);
   }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
 }
 
-.console-log {
-  animation: slideIn 0.2s ease;
-}
-
-/* Responsive adjustments */
 @media (max-width: 768px) {
-  #gverse-console {
+  #relic-console {
     height: 300px;
     bottom: -300px;
   }
@@ -315,9 +300,8 @@
   }
 }
 
-/* Print styles - hide console when printing */
 @media print {
-  #gverse-console {
+  #relic-console {
     display: none !important;
   }
 }
