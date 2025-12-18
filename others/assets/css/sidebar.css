@@ -1,4 +1,4 @@
-/* Main Sidebar Holder */
+/* sidebar stuff */
 .sidebar {
   position: fixed;
   left: 0;
@@ -21,7 +21,7 @@
   border-right: 1px solid var(--sidebar-border);
 }
 
-/* Expanded Sidebar sEction */
+/* expands on hover */
 .sidebar:hover {
   width: 250px;
   box-shadow: 4px 0 40px rgba(0, 0, 0, 0.8),
@@ -29,7 +29,6 @@
   border-right-color: var(--sidebar-border-hover);
 }
 
-/* Scroll */
 .sidebar::-webkit-scrollbar {
   width: 6px;
 }
@@ -47,7 +46,6 @@
   background: var(--sidebar-accent-secondary);
 }
 
-/* Sidebar Header with Logo */
 .sidebar-header {
   padding: 12px 0;
   text-align: center;
@@ -75,7 +73,6 @@
   filter: drop-shadow(0 0 25px var(--sidebar-accent));
 }
 
-/* Float Animation */
 @keyframes float {
   0%, 100% {
     transform: translateY(0px);
@@ -85,7 +82,6 @@
   }
 }
 
-/* Sidebar Navigation Container */
 .sidebar-nav {
   display: flex;
   flex-direction: column;
@@ -94,7 +90,6 @@
   flex: 1;
 }
 
-/* Sidebar Links */
 .sidebar-link {
   display: flex;
   align-items: center;
@@ -115,7 +110,7 @@
   border: 1px solid transparent;
 }
 
-/* Text with Smooth Transition */
+/* text fades in when sidebar expands */
 .sidebar-link span {
   opacity: 0;
   width: 0;
@@ -129,7 +124,6 @@
   width: auto;
 }
 
-/* Hover State */
 .sidebar-link:hover {
   color: var(--sidebar-text-hover);
   background: var(--sidebar-hover-bg);
@@ -137,7 +131,7 @@
   border-color: var(--sidebar-border);
 }
 
-/* Active State */
+/* active link styling */
 .sidebar-link.active {
   background: var(--sidebar-active-bg);
   color: var(--sidebar-text-hover);
@@ -146,7 +140,7 @@
   border-color: var(--sidebar-border-hover);
 }
 
-/* Active Accent Border */
+/* that little accent line on active links */
 .sidebar-link.active::after {
   content: '';
   position: absolute;
@@ -160,7 +154,6 @@
   box-shadow: 0 0 12px var(--sidebar-accent);
 }
 
-/* Sidebar Icons */
 .sidebar-icon {
   width: 24px;
   height: 24px;
@@ -172,20 +165,18 @@
   flex-shrink: 0;
 }
 
-/* Icon Hover Effect */
 .sidebar-link:hover .sidebar-icon {
   transform: scale(1.1);
   filter: drop-shadow(0 0 4px var(--sidebar-accent));
 }
 
-/* Icon Active Effect */
 .sidebar-link.active .sidebar-icon {
   filter: drop-shadow(0 0 8px var(--sidebar-accent));
   stroke-width: 2.8;
   transform: scale(1.08);
 }
 
-/* Main Content Area */
+/* main content area adjusts when sidebar expands */
 .main-content {
   margin-left: 75px;
   min-height: 100vh;
@@ -198,18 +189,16 @@
   width: calc(100% - 250px);
 }
 
-/* Container Adjustment */
 .container {
   padding: 24px;
   max-width: 100%;
 }
 
-/* Hide Old Navbar */
+/* hide the old navbar since we have sidebar now */
 .navbar {
   display: none !important;
 }
 
-/* Content Fade Animation */
 .content {
   animation: fadeIn 0.3s ease;
 }
@@ -225,16 +214,11 @@
   }
 }
 
-/* Ripple Effect on Click */
 .sidebar-link:active {
   transform: scale(0.97);
 }
 
-/* ========================================
-   RESPONSIVE DESIGN
-   ======================================== */
-
-/* Tablet Landscape */
+/* tablet landscape - slightly smaller */
 @media (max-width: 1024px) {
   .sidebar {
     width: 70px;
@@ -273,7 +257,7 @@
   }
 }
 
-/* Tablet Portrait */
+/* tablet portrait */
 @media (max-width: 768px) {
   .sidebar {
     width: 65px;
@@ -321,7 +305,7 @@
   }
 }
 
-/* Mobile */
+/* mobile phones */
 @media (max-width: 480px) {
   .sidebar {
     width: 60px;
@@ -377,7 +361,7 @@
   }
 }
 
-/* Extra Small Mobile */
+/* really small phones */
 @media (max-width: 360px) {
   .sidebar {
     width: 55px;
@@ -421,7 +405,6 @@
   }
 }
 
-/* Focus States */
 .sidebar-link:focus {
   outline: 2px solid var(--sidebar-accent);
   outline-offset: 2px;
@@ -431,7 +414,7 @@
   outline: none;
 }
 
-/* Reduced Motion Support */
+/* for people who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .sidebar,
   .sidebar-link,
@@ -445,7 +428,6 @@
   }
 }
 
-/* Print Styles */
 @media print {
   .sidebar {
     display: none;
