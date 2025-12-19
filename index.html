@@ -171,17 +171,21 @@
 
     <div class="container">
       <div id="content-home" class="content">
-        <!-- Featured Section -->
+
         <div class="featured-section">
           <div class="relic-logo-container">
             <img src="others/assets/relic.webp" alt="Relic Logo" class="relic-logo-image">
             <h2 class="relic-title">Relic Ultimate</h2>
           </div>
           
-          <!-- NEW: Live User Counter (removed Daily Names) -->
+
           <div class="user-counter-container">
             <div class="user-counter-content">
-              <span class="user-counter-icon">👥</span>
+              <span class="user-counter-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 4c1.648 0 3 1.352 3 3v3H9V7c0-1.648 1.352-3 3-3zm5 6V7c0-2.752-2.248-5-5-5S7 4.248 7 7v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1zM6 12h12v8H6v-8z"></path>
+      </svg>
+              </span> <!--Place a svg here -->
               <span class="user-counter-text">
                 <span id="activeUsers"></span> users online
               </span>
@@ -190,23 +194,23 @@
           </div>
         </div>
 
-        <!-- Single Scrolling Game Carousel -->
+
         <div class="carousel-wrapper">
           <div class="games-carousel">
             <div class="carousel-track scroll-right-to-left" id="carousel-track-top">
-              <!-- Game cards will be dynamically loaded here -->
+
             </div>
           </div>
         </div>
 
-        <!-- Credits and Update Log buttons -->
+
         <div class="homepage-info-buttons">
           <button id="creditsBtn" class="info-btn">[NEW!!] Credits</button>
           <button id="updateLogBtn" class="info-btn">[NEW!!] Update Log</button>
         </div>
       </div>
 
-      <!-- SEARCH SECTION WITH IFRAME -->
+
       <div id="content-srch" class="content" style="display:none;">
         <div class="search-iframe-container">
           <iframe 
@@ -225,11 +229,11 @@
           <button id="searchBtn">Search</button>
         </div>
         <div id="game-list" class="game-grid">
-          <!-- Game cards will be dynamically loaded here -->
+          <!-- Game cards will be loaded here-->
         </div>
       </div>
 
-      <!-- NEW EMULATED GAMES SECTION 025e178 -->
+      <!-- EMULATED 025e178 -->
       <div id="content-emulated" class="content" style="display:none;">
         <h1>Emulated Gᾰmes</h1>
         <p>THIS IS BETA!!!</p>
@@ -238,7 +242,7 @@
           <button id="searchEmulatedBtn">Search</button>
         </div>
         <div id="emulated-list" class="game-grid">
-          <!-- Emulated game cards will be loaded here -->
+          <!-- Emulated cards will be loaded here-->
         </div>
       </div>
 
@@ -246,15 +250,15 @@
         <h2>About</h2>
         <h1>Latest Note: [11/17/25]</h1>
         <br>
-        <h3>🔐 New Fingerprint ID authentication system!</h3>
-        <h3>🔑 Key generator with special characters</h3>
-        <h3>🛡️ Manual key entry for enhanced security</h3>
+        <h3>This</h3>
+        <h3>Is</h3>
+        <h3>Terminated</h3>
       </div>
 
       <div id="content-aps" class="content" style="display:none;">
         <h1>Shortcuts</h1>
         <div id="app-list" class="app-grid">
-          <!-- App cards will be dynamically loaded here -->
+          <!--Apps/Shortcuts stuff loads here-->
         </div>
         <button id="backToHomeApps">Back to Home</button>
       </div>
@@ -266,20 +270,20 @@
   <div class="settings-tabs">
     <button class="settings-tab-btn active" data-tab="cloaking">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+        <path d="M12 4c1.648 0 3 1.352 3 3v3H9V7c0-1.648 1.352-3 3-3zm5 6V7c0-2.752-2.248-5-5-5S7 4.248 7 7v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1zM6 12h12v8H6v-8z"></path>
       </svg>
       Cloaking
     </button>
     <button class="settings-tab-btn" data-tab="customization">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+        <path d="M18.33 3.57s.27-.8-.31-1.36c-.53-.52-1.22-.24-1.22-.24-.61.3-5.76 3.47-7.67 5.57-.86.96-2.06 3.79-1.09 4.82.92.98 3.96-.17 4.79-1 2.06-2.06 5.21-7.17 5.5-7.79zM1.4 17.65c2.37-1.56 1.46-3.41 3.23-4.64.93-.65 2.22-.62 3.08.29.63.67.8 2.57-.16 3.46-1.57 1.45-4 1.55-6.15.89z"></path>
       </svg>
       Customization
     </button>
     <button class="settings-tab-btn" data-tab="misc">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <circle cx="12" cy="12" r="3"></circle>
-        <path d="M12 1v6m0 6v6M4.22 4.22l4.24 4.24m5.08 5.08l4.24 4.24M1 12h6m6 0h6M4.22 19.78l4.24-4.24m5.08-5.08l4.24-4.24"></path>
+        <path d="M14 3.2686C14 2.56797 13.432 2 12.7314 2H11.2686C10.568 2 10 2.56797 10 3.2686V3.2686C10 3.84745 9.60365 4.34302 9.0652 4.55546C8.97998 4.58908 8.89547 4.62413 8.81172 4.66056C8.2807 4.89156 7.64975 4.82144 7.24027 4.41197V4.41197C6.74474 3.91643 5.94132 3.91643 5.44579 4.41197L4.41187 5.44588C3.91632 5.94143 3.91632 6.74487 4.41187 7.24042V7.24042C4.82135 7.6499 4.89147 8.28086 4.66049 8.81189C4.62408 8.89559 4.58906 8.98004 4.55546 9.0652C4.34302 9.60365 3.84744 10 3.2686 10V10C2.56797 10 2 10.568 2 11.2686V12.7314C2 13.432 2.56797 14 3.2686 14V14C3.84744 14 4.34302 14.3963 4.55546 14.9348C4.58906 15.02 4.62408 15.1044 4.66049 15.1881C4.89148 15.7191 4.82135 16.3501 4.41187 16.7596V16.7596C3.91632 17.2551 3.91632 18.0586 4.41187 18.5541L5.44578 19.588C5.94132 20.0836 6.74474 20.0836 7.24028 19.588V19.588C7.64975 19.1786 8.28071 19.1084 8.81173 19.3394C8.89548 19.3759 8.97998 19.4109 9.0652 19.4445C9.60365 19.657 10 20.1526 10 20.7314V20.7314C10 21.432 10.568 22 11.2686 22H12.7314C13.432 22 14 21.432 14 20.7314V20.7314C14 20.1526 14.3963 19.657 14.9348 19.4445C15.02 19.4109 15.1045 19.3759 15.1882 19.3395C15.7192 19.1085 16.3501 19.1786 16.7595 19.5881V19.5881C17.255 20.0836 18.0584 20.0836 18.5539 19.5881L19.588 18.554C20.0835 18.0585 20.0835 17.2552 19.588 16.7597V16.7597C19.1785 16.3502 19.1084 15.7193 19.3394 15.1883C19.3759 15.1046 19.4109 15.02 19.4445 14.9348C19.657 14.3964 20.1526 14 20.7314 14V14C21.432 14 22 13.432 22 12.7314V11.2686C22 10.568 21.432 10 20.7314 10V10C20.1526 10 19.657 9.60365 19.4445 9.0652C19.4109 8.97996 19.3759 8.89544 19.3394 8.81166C19.1084 8.28068 19.1785 7.64977 19.588 7.24033V7.24033C20.0835 6.74483 20.0835 5.94147 19.588 5.44597L18.5539 4.41193C18.0584 3.91642 17.255 3.91642 16.7595 4.41193V4.41193C16.3501 4.82138 15.7192 4.8915 15.1882 4.66052C15.1045 4.6241 15.02 4.58907 14.9348 4.55546C14.3963 4.34302 14 3.84744 14 3.2686V3.2686Z"></path>
       </svg>
       Misc
     </button>
