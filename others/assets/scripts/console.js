@@ -9,9 +9,9 @@ if (window.RelicConsole) {
     historyIndex: -1,
     originalConsole: {},
     initialized: false,
-    autoOpenOnError: false, // Set
-    manuallyOpened: false, // Track
-// Skidded btw
+    autoOpenOnError: false, // Set to true if you want console to open on errors
+    manuallyOpened: false, // Track if user has manually opened console
+
     init() {
       // Prevent double initialization
       if (this.initialized) {
@@ -23,7 +23,7 @@ if (window.RelicConsole) {
       // Create console HTML structure
       this.createConsoleHTML();
       
-      this.container = document.getElementById('Relic-console');
+      this.container = document.getElementById('relic-console');
       this.output = document.getElementById('console-output');
       this.input = document.getElementById('console-input');
 
@@ -72,7 +72,7 @@ if (window.RelicConsole) {
 
     createConsoleHTML() {
       const consoleHTML = `
-        <div id="Relic-console">
+        <div id="relic-console">
           <div class="console-header">
             <div class="console-title">
               <span>⭐</span>
