@@ -1,12 +1,19 @@
 const games = [
   { name: "Feedback", image: "https://iili.io/3OM27wv.th.jpg", url: "https://forms.gle/GhMEg7s8H9aRSy4d9" },
   // Numerals
+  { name: "1", image: "others/assets/games/images/one.png", url: "others/assets/games/1 on 1soccer.html" },
   { name: "1 on 1 Soccer", image: "others/assets/games/images/1 on 1soccer.jpg", url: "others/assets/games/1 on 1soccer.html" },
   { name: "10 Bullets", image: "others/assets/games/images/10 bullets.png", url: "others/assets/games/10 bullets.html" },
+  { name: "10 minutes till dawn", image: "others/assets/games/images/10 minutes till dawn.png", url: "others/assets/games/10 minutes til dawn.html" },
   { name: "2048", image: "others/assets/games/images/2048.jpg", url: "others/assets/games/2048.html" },
+  { name: "2048 Cupcakes", image: "others/assets/games/images/2048 cupcakes.png", url: "others/assets/games/2048 cupcakes.html" },
+  { name: "2D Shooting", image: "others/assets/games/images/2d Shooting.png", url: "others/assets/games/2D shooting.html" },
+  { name: "3 Dash", image: "others/assets/games/images/3dash.jpg", url: "others/assets/games/3 dash.html" }, //done
   { name: "60 Second Burger Run", image: "others/assets/games/images/60-seconds-burger-run.png", url: "others/assets/games/60burger run.html" },
   { name: "8 Ball Pool", image: "others/assets/games/images/8-ball-pool-2021-08-05.webp", url: "others/assets/games/8 Ball Pool.html" },
+  { name: "9007199254740992", image: "others/assets/games/images/9007199254740992.png", url: "others/assets/games/9007199254740992.html" },
   { name: "99 Nights In The Forest", image: "others/assets/games/images/99nights.webp", url: "others/assets/games/99nightsitf.html" },
+  { name: "10-103 Null Kevin", image: "others/assets/games/images/10-103 Null Kevin.png", url: "others/assets/games/10-103 Null Kevin.html" },
   // A
   { name: "A Dark Room", image: "others/assets/games/images/A dark room.png", url: "others/assets/games/A Dark Room.html" }, /* done*/
   { name: "Adventure Capatalist", image: "others/assets/games/images/7866638-adventure-capitalist-android-front-cover.jpg", url: "others/assets/games/Adventure Capatalist.html" },
@@ -89,6 +96,7 @@ const games = [
   { name: "Grow a Garden", image: "others/assets/games/images/grow a garden.png", url: "others/assets/games/growagarden.html" },
   // H
   { name: "Half Life", image: "others/assets/games/images/Half Life.png", url: "others/assets/games/halflife.html" },
+  { name: "Happy Wheels", image: "others/assets/games/images/happy wheels.png", url: "others/assets/games/happy wheels.html" },
   { name: "Highway Racer 2", image: "others/assets/games/images/highwayracer.jpg", url: "others/assets/games/Highway Racer 2.html" },
   { name: "Hill Climb Racing", image: "others/assets/games/images/Hill Climb Racing.png", url: "others/assets/games/hillclimbracinglite.html" },
   { name: "Hole.io", image: "others/assets/games/images/hole-io.png", url: "others/assets/games/hole.io.html" },
@@ -177,6 +185,7 @@ const games = [
   { name: "Volley Random", image: "others/assets/games/images/volleyrandom.png", url: "others/assets/games/volleyrandom.html" },
   // W
   { name: "We Become What We Behold", image: "others/assets/games/images/webecomewhatwebehold.png", url: "others/assets/games/webecomewhatwebehold.html" },
+  { name: "Wheelie Bike", image: "others/assets/games/images/wheelie bike.jpeg", url: "others/assets/games/wheelie bike.htmll" },
   { name: "Wordle", image: "others/assets/games/images/wordle.webp", url: "others/assets/games/wordle.html" },
   { name: "Wrestle Bros", image: "others/assets/games/images/wrestlebros.png", url: "others/assets/games/wrestlebros.html" },
   // X
