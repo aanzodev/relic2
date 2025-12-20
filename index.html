@@ -172,29 +172,6 @@
     <div class="container">
       <div id="content-home" class="content">
 
-        <div class="featured-section">
-          <div class="relic-logo-container">
-            <img src="others/assets/relic.webp" alt="Relic Logo" class="relic-logo-image">
-            <h2 class="relic-title">Relic Ultimate</h2>
-          </div>
-          
-
-          <div class="user-counter-container">
-            <div class="user-counter-content">
-              <span class="user-counter-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M12 4c1.648 0 3 1.352 3 3v3H9V7c0-1.648 1.352-3 3-3zm5 6V7c0-2.752-2.248-5-5-5S7 4.248 7 7v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1zM6 12h12v8H6v-8z"></path>
-      </svg>
-              </span> <!--Place a svg here -->
-              <span class="user-counter-text">
-                <span id="activeUsers"></span> users online
-              </span>
-              <span class="user-counter-pulse"></span>
-            </div>
-          </div>
-        </div>
-
-
         <div class="carousel-wrapper">
           <div class="games-carousel">
             <div class="carousel-track scroll-right-to-left" id="carousel-track-top">
@@ -205,8 +182,18 @@
 
 
         <div class="homepage-info-buttons">
-          <button id="creditsBtn" class="info-btn">[NEW!!] Credits</button>
-          <button id="updateLogBtn" class="info-btn">[NEW!!] Update Log</button>
+          <button id="creditsBtn" class="info-btn">Credits</button>
+          
+          <div class="user-counter-container">
+            <div class="user-counter-content">
+              <span class="user-counter-text">
+                <span id="activeUsers"></span> users online
+              </span>
+              <span class="user-counter-pulse"></span>
+            </div>
+          </div>
+          
+          <button id="updateLogBtn" class="info-btn">Update Log</button>
         </div>
       </div>
 
