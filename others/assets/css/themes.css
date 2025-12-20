@@ -67,33 +67,33 @@
 
 /* light theme for daytime users */
 [data-theme="light"] {
-  --bg-color: #f8fafc;
+  --bg-color: #b0b0b0;
   --bg-secondary: #ffffff;
   --nav-color: #ffffff;
   --accent-color: #3b82f6;
-  --accent-secondary: #2563eb;
+  --accent-secondary: #515151;
   --text-color: #0f172a;
   --text-muted: #64748b;
   --border-color: #cbd5e1;
   --hover-bg: #f1f5f9;
   --btn-bg: #e2e8f0;
-  --btn-hover-bg: #3b82f6;
+  --btn-hover-bg: #000000;
   
   --glass-bg: rgba(248, 250, 252, 0.8);
   --glass-border: rgba(203, 213, 225, 0.5);
   --shadow-glow: 0 0 15px rgba(59, 130, 246, 0.2);
   
-  --sidebar-bg-start: rgba(226, 232, 240, 0.98);
+  --sidebar-bg-start: #444444ff;
   --sidebar-bg-mid: rgba(241, 245, 249, 0.98);
-  --sidebar-bg-end: rgba(226, 232, 240, 0.98);
+  --sidebar-bg-end: rgba(63, 63, 63, 0.98);
   --sidebar-text: rgba(30, 41, 59, 0.85);
   --sidebar-text-hover: #0f172a;
   --sidebar-border: rgba(203, 213, 225, 0.6);
-  --sidebar-border-hover: rgba(59, 130, 246, 0.5);
-  --sidebar-hover-bg: rgba(59, 130, 246, 0.12);
-  --sidebar-active-bg: linear-gradient(135deg, rgba(59, 130, 246, 0.25) 0%, rgba(37, 99, 235, 0.2) 100%);
-  --sidebar-accent: #3b82f6;
-  --sidebar-accent-secondary: #2563eb;
+  --sidebar-border-hover: rgba(0, 0, 0, 0.5);
+  --sidebar-hover-bg: rgba(100, 100, 100, 0.12);
+  --sidebar-active-bg: linear-gradient(135deg, rgba(145, 145, 145, 0.25) 0%, rgba(129, 129, 129, 0.2) 100%);
+  --sidebar-accent: #252525;
+  --sidebar-accent-secondary: #242424;
 }
 
 /* midnight - really dark purple vibes */
@@ -435,4 +435,34 @@
   --sidebar-active-bg: linear-gradient(135deg, rgba(251, 191, 36, 0.35) 0%, rgba(245, 158, 11, 0.3) 100%);
   --sidebar-accent: #fbbf24;
   --sidebar-accent-secondary: #f59e0b;
+}
+
+[data-theme="Anzo"] {
+  --bg-color: #240000;
+  --bg-secondary: #000000;
+  --nav-color: #000000;
+  --accent-color: #5c5c5c;
+  --accent-secondary: #8f8f8f;
+  --text-color: #ffffff;
+  --text-muted: #a0a0a0;
+  --border-color: #8f8f8f;
+  --hover-bg: #1a1a1a;
+  --btn-bg: #2a2a2a;
+  --btn-hover-bg: #5c5c5c;
+  
+  --glass-bg: rgba(26, 26, 26, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.15);
+  --shadow-glow: 0 0 20px rgba(92, 92, 92, 0.3);
+  
+  --sidebar-bg-start: rgba(0, 0, 0, 0.98);
+  --sidebar-bg-mid: rgba(71, 0, 0, 0.98);
+  --sidebar-bg-end: rgba(0, 0, 0, 0.98);
+  --sidebar-text: rgba(220, 220, 220, 0.9);
+  --sidebar-text-hover: #ffffff;
+  --sidebar-border: rgba(0, 0, 0, 0.4);
+  --sidebar-border-hover: rgba(171, 171, 171, 0.6);
+  --sidebar-hover-bg: rgba(92, 92, 92, 0.3);
+  --sidebar-active-bg: linear-gradient(135deg, rgba(92, 92, 92, 0.4) 0%, rgba(143, 143, 143, 0.35) 100%);
+  --sidebar-accent: #570000;
+  --sidebar-accent-secondary: #303030;
 }
