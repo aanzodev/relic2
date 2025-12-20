@@ -154,11 +154,11 @@ function applyTheme(themeName) {
       border: '#8f8f8f'
     },
     'light': {
-      bg: '#f8fafc',
-      sidebar: '#e2e8f0',
+      bg: '#b0b0b0',
+      sidebar: '#444444ff',
       nav: '#ffffff',
       text: '#0f172a',
-      accent: '#3b82f6',
+      accent: '#000000ff',
       border: '#cbd5e1'
     },
     'midnight': {
@@ -249,6 +249,14 @@ function applyTheme(themeName) {
       accent: '#fbbf24',
       border: '#f59e0b'
     },
+    'Anzo': {
+      bg: '#160000fa',
+      sidebar: '#ffffffff',
+      nav: '#ababab',
+      text: '#ffffff',
+      accent: '#000000',
+      border: '#ffffffff'
+    },
     'halloween': {
       bg: '#1a0b2e',
       sidebar: '#2d1b4e',
@@ -267,36 +275,36 @@ function applyTheme(themeName) {
     }
   };
 
-  // Get the theme colors, fallback to original if not found
+
   const themeColors = themes[themeName] || themes['original'];
   
-  // Set the data-theme attribute on html element
+
   document.documentElement.setAttribute('data-theme', themeName);
   
-  // CRITICAL FIX: Apply colors directly to the body and main elements
+
   document.body.style.backgroundColor = themeColors.bg;
   document.body.style.color = themeColors.text;
   
-  // Apply to sidebar
+
   const sidebar = document.querySelector('.sidebar');
   if (sidebar) {
     sidebar.style.backgroundColor = themeColors.sidebar;
   }
   
-  // Apply to all content sections
+
   const contentSections = document.querySelectorAll('.content');
   contentSections.forEach(section => {
     section.style.backgroundColor = themeColors.bg;
     section.style.color = themeColors.text;
   });
   
-  // Apply to navigation elements
+
   const navElements = document.querySelectorAll('.sidebar-link');
   navElements.forEach(nav => {
     nav.style.color = themeColors.text;
   });
   
-  // Update CSS custom properties for dynamic usage
+
   const root = document.documentElement;
   root.style.setProperty('--bg-color', themeColors.bg);
   root.style.setProperty('--sidebar-color', themeColors.sidebar);
@@ -305,7 +313,7 @@ function applyTheme(themeName) {
   root.style.setProperty('--accent-color', themeColors.accent);
   root.style.setProperty('--border-color', themeColors.border);
   
-  // Also set theme-color meta tag
+
   setTimeout(() => {
     const metaThemeColor = document.querySelector('meta[name="theme-color"]');
     if (metaThemeColor) {
