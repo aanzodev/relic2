@@ -2,8 +2,11 @@
 (function() {
   'use strict';
 
+  console.log('Daily game script loaded');
+
   // Get daily game based on date
   function getDailyGame() {
+    // Check if games array exists
     if (typeof games === 'undefined' || !games || games.length === 0) {
       console.warn('Games array not available for daily game');
       return null;
@@ -21,6 +24,7 @@
     }
     
     const index = Math.abs(hash) % games.length;
+    console.log('Daily game selected:', games[index].name);
     return games[index];
   }
 
@@ -55,10 +59,19 @@
 
   // Create and render daily game card
   function renderDailyGame() {
+    console.log('Rendering daily game card...');
+    
     const dailyGame = getDailyGame();
     
     if (!dailyGame) {
       console.warn('Could not get daily game');
+      return;
+    }
+
+    // Check if we're on the home page
+    const homeContent = document.getElementById('content-home');
+    if (!homeContent || homeContent.style.display === 'none') {
+      console.log('Not on home page, skipping daily game render');
       return;
     }
 
@@ -70,6 +83,7 @@
       card.id = 'daily-game-card';
       card.className = 'daily-game-card';
       document.body.appendChild(card);
+      console.log('Daily game card created');
     }
 
     // Build card HTML
@@ -84,7 +98,7 @@
         </div>
       </div>
       
-      <img src="${dailyGame.image}" alt="${dailyGame.name}" class="daily-game-image" />
+      <img src="${dailyGame.image}" alt="${dailyGame.name}" class="daily-game-image" onerror="this.src='others/assets/relic.webp'" />
       
       <h4 class="daily-game-name">${dailyGame.name}</h4>
       <p class="daily-game-description">${dailyGame.description || 'Play this featured game of the day!'}</p>
@@ -102,8 +116,11 @@
     // Add click handler for play button
     const playBtn = card.querySelector('.daily-game-play-btn');
     playBtn.addEventListener('click', function() {
+      console.log('Daily game play button clicked');
       if (typeof playGame === 'function') {
         playGame(dailyGame);
+      } else if (typeof window.playGame === 'function') {
+        window.playGame(dailyGame);
       } else {
         console.warn('playGame function not available');
       }
@@ -111,6 +128,8 @@
 
     // Update countdown every second
     updateCountdown();
+    
+    console.log('Daily game card rendered successfully');
   }
 
   // Update countdown timer
@@ -124,8 +143,24 @@
     setTimeout(updateCountdown, 1000);
   }
 
+  // Show/hide card based on current page
+  function handlePageChange() {
+    const card = document.getElementById('daily-game-card');
+    const homeContent = document.getElementById('content-home');
+    
+    if (card && homeContent) {
+      if (homeContent.style.display !== 'none') {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    }
+  }
+
   // Initialize when DOM is ready
   function init() {
+    console.log('Initializing daily game feature...');
+    
     // Wait a bit to ensure games array is loaded
     if (typeof games === 'undefined' || !games || games.length === 0) {
       console.log('Waiting for games to load...');
@@ -134,7 +169,15 @@
     }
     
     renderDailyGame();
-    console.log('Daily game feature initialized');
+    
+    // Listen for page changes
+    document.addEventListener('click', function(e) {
+      if (e.target.closest('.sidebar-link')) {
+        setTimeout(handlePageChange, 100);
+      }
+    });
+    
+    console.log('Daily game feature initialized successfully');
   }
 
   // Start initialization
