@@ -807,11 +807,17 @@ function showEmulated() {
 //  GAME LOADING AND RENDERING =====
 function loadGame(urlOrGame) {
   let url;
+  let gameData = null;
   
   if (typeof urlOrGame === 'string') {
     url = urlOrGame;
-  } else if (urlOrGame && typeof urlOrGame === 'object' && urlOrGame.url) {
-    url = urlOrGame.url;
+    // Try to find the game in the games array by URL
+    if (typeof games !== 'undefined') {
+      gameData = games.find(g => g.file === url || g.url === url);
+    }
+  } else if (urlOrGame && typeof urlOrGame === 'object') {
+    url = urlOrGame.url || urlOrGame.file;
+    gameData = urlOrGame;
   } else {
     console.error('Invalid argument provided to loadGame:', urlOrGame);
     alert('Error: Invalid game data.');
@@ -830,6 +836,16 @@ function loadGame(urlOrGame) {
     if (isYouTube) {
       window.open(url, '_blank');
       return;
+    }
+    
+    // Track this game as recently played
+    if (gameData && typeof RecentlyPlayed !== 'undefined') {
+      RecentlyPlayed.add({
+        id: gameData.id || url,
+        title: gameData.title || gameData.name || 'Unknown Game',
+        img: gameData.img || gameData.image || 'others/assets/relic.webp',
+        file: url
+      });
     }
     
     hideAll();
@@ -863,6 +879,9 @@ function loadGame(urlOrGame) {
     
     if (localStorage.getItem('debugMode') === 'enabled') {
       console.log('Game loaded:', url);
+      if (gameData) {
+        console.log('Game data:', gameData);
+      }
     }
   } catch (error) {
     console.error('Error in loadGame:', error);

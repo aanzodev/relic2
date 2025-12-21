@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="./others/assets/css/console.css" />
   <link rel="stylesheet" href="./others/assets/scripts/homepage/css/homepage.css" />
   <link rel="stylesheet" href="./others/assets/css/daily.css" />
+  <link rel="stylesheet" href="./others/assets/css/homepage-sections.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet" />
 
   <style>
@@ -152,12 +153,51 @@
     </div>
 
     <div class="container">
+      <!-- UPDATED HOME CONTENT -->
       <div id="content-home" class="content">
         <div class="carousel-wrapper">
           <div class="games-carousel">
             <div class="carousel-track scroll-right-to-left" id="carousel-track-top"></div>
           </div>
         </div>
+
+        <!-- NEW: Homepage sections for Recently Played and Recently Added -->
+        <div class="homepage-sections">
+          
+          <!-- Recently Played Section -->
+          <div class="homepage-section">
+            <div class="section-header">
+              <h2 class="section-title">
+                <span class="section-icon">🎮</span>
+                Recently Played
+              </h2>
+              <button class="clear-history-btn" onclick="RecentlyPlayed.clear()">
+                Clear History
+              </button>
+            </div>
+            <div class="games-grid" id="recently-played-games">
+              <!-- Games will be inserted here by JavaScript -->
+            </div>
+          </div>
+
+          <!-- Recently Added Section -->
+          <div class="homepage-section">
+            <div class="section-header">
+              <h2 class="section-title">
+                <span class="section-icon">✨</span>
+                Recently Added
+              </h2>
+              <button class="view-all-btn" onclick="navigateToGames()">
+                View All Games
+              </button>
+            </div>
+            <div class="games-grid" id="recently-added-games">
+              <!-- Games will be inserted here by JavaScript -->
+            </div>
+          </div>
+
+        </div>
+
         <div class="homepage-info-buttons">
           <button id="creditsBtn" class="info-btn">Credits</button>
           <div class="user-counter-container">
@@ -444,6 +484,7 @@
         </div>
       </div>
 
+
       <div id="game-display" class="content" style="display:none;">
         <div class="game-play-area" id="game-play-area">
           <div class="game-controls">
@@ -469,12 +510,14 @@
 
   <div id="snow-container"></div>
 
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
 
   <script src="others/assets/scripts/console.js"></script>
   <script src="others/assets/scripts/gms.js"></script>
   <script src="others/assets/scripts/stats.js"></script>
+  <script src="others/assets/scripts/recently-played.js"></script>
+  <script src="others/assets/scripts/recently-added.js"></script>
   <script src="assets/scripts/firebase-config.js"></script>
   <script src="assets/scripts/counter.js"></script>
   <script src="public/javascript/daily.js"></script>
