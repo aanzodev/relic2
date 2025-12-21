@@ -138,7 +138,7 @@ function applyTheme(themeName) {
   // Define all theme colors
   const themes = {
     'original': {
-      bg: '#1e3a8a',
+      bg: '#1d2c54',
       sidebar: '#1e40af',
       nav: '#1e3a8a',
       text: '#ffffff',
