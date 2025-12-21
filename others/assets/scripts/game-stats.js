@@ -1,11 +1,7 @@
-// ===== GALAXYVERSE GAME STATISTICS & TRACKING SYSTEM =====
-// Version: 5.0.0
-// Path: others/assets/scripts/game-stats.js
-
 (function() {
   'use strict';
 
-  console.log('📊 Loading Game Statistics System...');
+  console.log('l;oading game stats');
 
   const GameStats = {
     initialized: false,
@@ -15,10 +11,9 @@
 
     init() {
       if (this.initialized) return;
-      console.log('🔧 Initializing Game Statistics System...');
+      console.log('Injecting');
       
-      // Ensure storage structures exist
-      if (!localStorage.getItem('gameStats')) {
+      // Ensure storage structures exist      if (!localStorage.getItem('gameStats')) {
         localStorage.setItem('gameStats', JSON.stringify({}));
       }
       if (!localStorage.getItem('gameFavorites')) {
@@ -29,9 +24,9 @@
       }
       
       this.initialized = true;
-      console.log('✅ Game Statistics System initialized');
-      console.log('📈 Total games tracked:', Object.keys(this.getAllStats()).length);
-      console.log('⭐ Favorites:', this.getFavorites().length);
+      console.log('Loaded game stats');
+      console.log('Games tracked ', Object.keys(this.getAllStats()).length);
+      console.log('Favorites: ', this.getFavorites().length);
     },
 
     initializeDefaultCategories() {
@@ -48,24 +43,24 @@
         'Shooter': []
       };
       localStorage.setItem('gameCategories', JSON.stringify(defaultCategories));
-      console.log('📁 Default categories initialized');
+      console.log('Default ');
     },
 
-    // ===== GAME TRACKING =====
+
     startTracking(gameUrl) {
       if (!gameUrl) {
-        console.warn('⚠️ Cannot track game: No URL provided');
+        console.warn('Game was not succesfully tracked');
         return;
       }
       
-      this.stopTracking(); // Stop any existing tracking
+      this.stopTracking();
       
       this.currentGame = gameUrl;
       this.startTime = Date.now();
       
-      console.log('⏱️ Started tracking:', gameUrl);
+      console.log('Tracking', gameUrl);
       
-      // Update play count
+
       const stats = this.getGameStats(gameUrl);
       stats.playCount = (stats.playCount || 0) + 1;
       stats.lastPlayed = Date.now();
@@ -76,10 +71,10 @@
       
       console.log('🎮 Play count:', stats.playCount);
       
-      // Update time every second
+// every 30 seconds
       this.trackingInterval = setInterval(() => {
         this.updatePlayTime();
-      }, 1000);
+      }, 30000);
     },
 
     stopTracking() {
@@ -103,11 +98,11 @@
       if (!this.currentGame || !this.startTime) return;
       
       const stats = this.getGameStats(this.currentGame);
-      stats.totalTime = (stats.totalTime || 0) + 1; // Add 1 second
+      stats.totalTime = (stats.totalTime || 0) + 30; // Add 30 secs
       this.saveGameStats(this.currentGame, stats);
     },
 
-    // ===== GAME STATS MANAGEMENT =====
+
     getGameStats(gameUrl) {
       const allStats = JSON.parse(localStorage.getItem('gameStats') || '{}');
       return allStats[gameUrl] || {
@@ -184,10 +179,10 @@
       
       if (index > -1) {
         favorites.splice(index, 1);
-        console.log('💔 Removed from favorites:', gameUrl);
+        console.log('Ts was removed from favorites', gameUrl);
       } else {
         favorites.push(gameUrl);
-        console.log('⭐ Added to favorites:', gameUrl);
+        console.log('Check favorites', gameUrl);
       }
       
       localStorage.setItem('gameFavorites', JSON.stringify(favorites));
@@ -215,7 +210,7 @@
         categories[category] = [];
       }
       
-      // Remove from other categories
+
       for (const cat in categories) {
         const index = categories[cat].indexOf(gameUrl);
         if (index > -1) {
@@ -223,7 +218,7 @@
         }
       }
       
-      // Add to new category
+
       if (!categories[category].includes(gameUrl)) {
         categories[category].push(gameUrl);
       }
@@ -237,7 +232,7 @@
       return categories[category] || [];
     },
 
-    // ===== SORTING & FILTERING =====
+
     sortGamesByTime(games) {
       const allStats = this.getAllStats();
       return [...games].sort((a, b) => {
@@ -270,7 +265,7 @@
       return games.filter(game => favorites.includes(game.url));
     },
 
-    // ===== UI HELPERS =====
+
     createFavoriteButton(gameUrl, isFavorited) {
       return `
         <button class="favorite-btn ${isFavorited ? 'favorited' : ''}" 
@@ -294,7 +289,7 @@
         buttonElement.querySelector('svg').setAttribute('fill', 'none');
       }
       
-      // Update the game list if on favorites filter
+
       const activeFilter = document.querySelector('.filter-btn.active');
       if (activeFilter && activeFilter.dataset.filter === 'favorites') {
         if (window.filterGames) {
@@ -368,7 +363,7 @@
       `;
     },
 
-    // ===== RESET & MANAGEMENT =====
+
     resetGameStats(gameUrl) {
       const allStats = this.getAllStats();
       delete allStats[gameUrl];
@@ -401,12 +396,11 @@
     }
   };
 
-  // Initialize on load
+
   GameStats.init();
 
-  // Expose to window
+
   window.GameStats = GameStats;
 
-  console.log('✅ game-stats.js loaded successfully');
-  console.log('🎮 Game tracking system ready');
+  console.log('Stats were loaded');
 })();
