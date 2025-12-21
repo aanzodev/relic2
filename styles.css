@@ -509,7 +509,7 @@ body::before {
 }
 
 .info-modal-content {
-  background: rgba(18, 23, 31, 0.95);
+  background: rgba(0, 0, 0, 0.95);
   backdrop-filter: blur(20px);
   margin: 5% auto;
   padding: 0;
