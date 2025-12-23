@@ -697,15 +697,25 @@
     updateClock();
     setInterval(updateClock, 1000);
 
+    // Initialize BareMux and Scramjet
+    import * as BareMux from "https://cdn.jsdelivr.net/npm/@mercuryworkshop/bare-mux/dist/index.mjs";
+    const { ScramjetController } = $scramjetLoadController();
+    const scramjet = new ScramjetController({
+      files: {
+        wasm: "https://cdn.jsdelivr.net/gh/soap-phia/tinyjet@latest/tinyjet/wasm.wasm",
+        all: "https://cdn.jsdelivr.net/gh/soap-phia/tinyjet@latest/tinyjet/scramjet.all.js",
+        sync: "https://cdn.jsdelivr.net/gh/soap-phia/tinyjet@latest/tinyjet/scramjet.sync.js"
+      }
+    });
+    const connection = new BareMux.BareMuxConnection("/bareworker.js");
+
     // Weather widget
     async function updateWeather() {
       try {
-        // Get user's location
-        const geoRes = await fetch('https://ipapi.co/json/');
+        const geoRes = await fetch(scramjet.encodeUrl('https://ipapi.co/json/'));
         const geoData = await geoRes.json();
         const { city, latitude, longitude } = geoData;
         
-        // Get weather data (using Open-Meteo free API)
         const weatherRes = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch`);
         const weatherData = await weatherRes.json();
         
@@ -714,7 +724,6 @@
         const humidity = weatherData.current.relative_humidity_2m;
         const weatherCode = weatherData.current.weather_code;
         
-        // Weather code to icon/description mapping
         const weatherMap = {
           0: { icon: '☀️', desc: 'Clear sky' },
           1: { icon: '🌤️', desc: 'Mainly clear' },
@@ -746,23 +755,18 @@
       }
     }
     
-    updateWeather();
-    setInterval(updateWeather, 600000); // Update every 10 minutes
-
-    import * as BareMux from "https://cdn.jsdelivr.net/npm/@mercuryworkshop/bare-mux/dist/index.mjs";
-    const { ScramjetController } = $scramjetLoadController();
-    const scramjet = new ScramjetController({
-      files: {
-        wasm: "https://cdn.jsdelivr.net/gh/soap-phia/tinyjet@latest/tinyjet/wasm.wasm",
-        all: "https://cdn.jsdelivr.net/gh/soap-phia/tinyjet@latest/tinyjet/scramjet.all.js",
-        sync: "https://cdn.jsdelivr.net/gh/soap-phia/tinyjet@latest/tinyjet/scramjet.sync.js"
+    // Initialize scramjet and start weather updates
+    (async () => {
+      try {
+        await scramjet.init();
+        navigator.serviceWorker.register("/sw.js");
+        
+        updateWeather();
+        setInterval(updateWeather, 600000);
+      } catch (e) { 
+        console.error("scramjet failed to initialize;", e); 
       }
-    });
-    try {
-      scramjet.init();
-      navigator.serviceWorker.register("/sw.js");
-    } catch (e) { console.error("scramjet failed to initialize;", e); }
-    const connection = new BareMux.BareMuxConnection("/bareworker.js");
+    })();
     
     function getWispUrl() {
       const wisp = document.getElementById("websocket").value.trim();
