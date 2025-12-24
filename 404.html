@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 | Relic</title>
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        body {
+            margin: 0;
+            background: #0a0a0a;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .wrapper {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 500px;
+        }
+
+        .big-text {
+            font-size: 120px;
+            font-weight: 800;
+            margin: 0;
+            color: #8b5cf6;
+            line-height: 1;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin: 20px 0 10px;
+            font-weight: 600;
+        }
+
+        p {
+            color: #888;
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 30px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        a {
+            padding: 12px 28px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .primary {
+            background: #8b5cf6;
+            color: #fff;
+        }
+
+        .primary:hover {
+            background: #7c3aed;
+        }
+
+        .secondary {
+            background: #1a1a1a;
+            color: #fff;
+            border: 1px solid #333;
+        }
+
+        .secondary:hover {
+            background: #222;
+        }
+
+        .search-area {
+            margin-top: 40px;
+            padding: 20px;
+            background: #111;
+            border-radius: 12px;
+            border: 1px solid #222;
+        }
+
+        .search-area p {
+            margin: 0 0 15px;
+            font-size: 14px;
+        }
+
+        .search-form {
+            display: flex;
+            gap: 10px;
+        }
+
+        input {
+            flex: 1;
+            padding: 10px 16px;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 14px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #8b5cf6;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #8b5cf6;
+            border: none;
+            border-radius: 6px;
+            color: #fff;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background: #7c3aed;
+        }
+
+        @media (max-width: 600px) {
+            .big-text {
+                font-size: 80px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+
+            .search-form {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <div class="big-text">404</div>
+            <h1>page not found</h1>
+            <p>whatever you're looking for isn't here. maybe it moved, maybe it never existed, who knows</p>
+            
+            <div class="buttons">
+                <a href="/" class="primary">go home</a>
+                <a href="/search.html" class="secondary">find games</a>
+            </div>
+
+            <div class="search-area">
+                <p>or just search for it:</p>
+                <div class="search-form">
+                    <input type="text" placeholder="search..." id="q">
+                    <button onclick="doSearch()">search</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function doSearch() {
+            const val = document.getElementById('q').value;
+            if (val.trim()) {
+                window.location.href = '/search.html?q=' + encodeURIComponent(val);
+            }
+        }
+
+        document.getElementById('q').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') doSearch();
+        });
+    </script>
+</body>
+</html>

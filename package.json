@@ -1,0 +1,25 @@
+{
+  "name": "relic2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\"",
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@mercuryworkshop/bare-mux": "^2.1.7",
+    "@mercuryworkshop/epoxy-transport": "^2.1.28",
+    "@mercuryworkshop/wisp-js": "github:mercuryworkshop/wisp-js",
+    "@titaniumnetwork-dev/ultraviolet": "^3.2.10",
+    "dotenv": "^16.6.1",
+    "express": "^5.1.0",
+    "node-fetch": "^2.6.12",
+    "sanitize-html": "^2.17.0",
+    "wisp-server-node": "^1.1.7"
+  }
+}

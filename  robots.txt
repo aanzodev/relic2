@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /assets/
+Disallow: /tinyjet/
+Allow: /
+
+Sitemap: https://111111131111.pages.dev/sitemap.xml
