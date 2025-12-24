@@ -199,12 +199,22 @@ const games = [
 
 //EMULATED GAMES 
 const emulatedGames = [
+  { name: "Ben 10 Alien Force", image: "public/images/ben 10 alien force.jpg", url: "others/assets/Emulated/ben 10 alien force.html" },
   { name: "FIFA Soccer 95", image: "public/images/fifasoccer95.png", url: "others/assets/Emulated/FIFAsoccer95.html" },
   { name: "Grand Theft Auto V", image: "public/images/gta 5.jpg", url: "others/assets/Emulated/gta.html" },
   { name: "Grand Theft Auto V (2)", image: "public/images/gta 5 logo 2.png", url: "others/assets/Emulated/gta 2.html" },
+  { name: "Majora's Mask", image: "public/images/majorasmask.webp", url: "others/assets/Emulated/majorasmask.html" }, //image
+  { name: "Mario Kart 64", image: "public/images/mariokart 64.jpg", url: "others/assets/Emulated/mariokart 64.html" }, //image
+  { name: "Mario Party 3", image: "public/images/marioparty 3.jpg", url: "others/assets/Emulated/marioparty 3.html" }, //image
+  { name: "Mario Party", image: "public/images/marioparty.png", url: "others/assets/Emulated/marioparty.html" }, //image
   { name: "Mega Man Wily Wars", image: "public/images/Mega Man wily wars.webp", url: "others/assets/Emulated/Mega Man wily wars.html" },
-  { name: "Mortal Kombat 3", image: "mortal kombat 3.html", url: "mortal kombat 3.html" },
+  { name: "Mortal Kombat 3", image: "public/images/mortal kombat 3.jpg", url: "mortal kombat 3.html" },
+  { name: "Pac-Man", image: "public/images/pacman.webp", url: "pacman.html" },
+  { name: "Sonic 3 Complete", image: "public/images/sonic 3 complete.jpg", url: "others/assets/Emulated/sonic 3 complete.html" },
   { name: "Space Invaders", image: "public/images/space invaders.png", url: "others/assets/Emulated/space invaders.html" }
+  { name: "Super Mario 64", image: "public/images/supermario67.jpg", url: "others/assets/Emulated/supermario 64.html" }
+  { name: "Super Smash Bros", image: "public/images/supersmashbros.png", url: "others/assets/Emulated/supersmashbros.html" }
+  { name: "Zombies Ate My Neighboors", image: "public/images/zombies ate my neighboors.jpg", url: "others/assets/Emulated/zombies ate my neighboors.html" }
 ];
 
 //APP DATA
