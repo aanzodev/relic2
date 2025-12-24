@@ -211,9 +211,9 @@ const emulatedGames = [
   { name: "Mortal Kombat 3", image: "public/images/mortal kombat 3.jpg", url: "mortal kombat 3.html" },
   { name: "Pac-Man", image: "public/images/pacman.webp", url: "pacman.html" },
   { name: "Sonic 3 Complete", image: "public/images/sonic 3 complete.jpg", url: "others/assets/Emulated/sonic 3 complete.html" },
-  { name: "Space Invaders", image: "public/images/space invaders.png", url: "others/assets/Emulated/space invaders.html" }
-  { name: "Super Mario 64", image: "public/images/supermario67.jpg", url: "others/assets/Emulated/supermario 64.html" }
-  { name: "Super Smash Bros", image: "public/images/supersmashbros.png", url: "others/assets/Emulated/supersmashbros.html" }
+  { name: "Space Invaders", image: "public/images/space invaders.png", url: "others/assets/Emulated/space invaders.html" },
+  { name: "Super Mario 64", image: "public/images/supermario67.jpg", url: "others/assets/Emulated/supermario 64.html" },
+  { name: "Super Smash Bros", image: "public/images/supersmashbros.png", url: "others/assets/Emulated/supersmashbros.html" },
   { name: "Zombies Ate My Neighboors", image: "public/images/zombies ate my neighboors.jpg", url: "others/assets/Emulated/zombies ate my neighboors.html" }
 ];
 
