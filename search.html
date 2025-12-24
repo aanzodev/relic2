@@ -683,7 +683,7 @@
   <!-- Tab content containers -->
   <div id="tab-contents"></div>
 
-  <script src="https://cdn.jsdelivr.net/gh/soap-phia/tinyjet@latest/tinyjet/scramjet.all.js" defer></script>
+  <script src="/public/scram/scramjet.bundle.js" defer></script>
   <script type="module" defer>
     // Update clock
     function updateClock() {
@@ -750,14 +750,15 @@
     setInterval(updateWeather, 600000); // Update every 10 minutes
 
     import * as BareMux from "https://cdn.jsdelivr.net/npm/@mercuryworkshop/bare-mux/dist/index.mjs";
-    const { ScramjetController } = $scramjetLoadController();
-    const scramjet = new ScramjetController({
-      files: {
-        wasm: "https://cdn.jsdelivr.net/gh/soap-phia/tinyjet@latest/tinyjet/wasm.wasm",
-        all: "https://cdn.jsdelivr.net/gh/soap-phia/tinyjet@latest/tinyjet/scramjet.all.js",
-        sync: "https://cdn.jsdelivr.net/gh/soap-phia/tinyjet@latest/tinyjet/scramjet.sync.js"
-      }
-    });
+const { ScramjetController } = $scramjetLoadController();
+const scramjet = new ScramjetController({
+  files: {
+    wasm: "/public/scram/scramjet.wasm.wasm",
+    worker: "/public/scram/scramjet.all.js",
+    client: "/public/scram/scramjet.bundle.js",
+    sync: "/public/scram/scramjet.sync.js"
+  }
+});
     try {
       scramjet.init();
       navigator.serviceWorker.register("/sw.js");
