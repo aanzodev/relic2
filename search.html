@@ -248,6 +248,72 @@
       display: none;
     }
 
+    /* Weather widget */
+    #weather-widget {
+      position: fixed;
+      top: 120px;
+      right: 24px;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      padding: 16px;
+      backdrop-filter: blur(14px);
+      z-index: 1500;
+      min-width: 200px;
+      box-shadow: var(--shadow-md);
+    }
+
+    #weather-widget.hidden {
+      display: none;
+    }
+
+    .weather-location {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .weather-main {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .weather-temp {
+      font-size: 32px;
+      font-weight: 300;
+      color: var(--text-color);
+    }
+
+    .weather-icon {
+      font-size: 40px;
+    }
+
+    .weather-desc {
+      font-size: 14px;
+      color: var(--text-color);
+      text-transform: capitalize;
+    }
+
+    .weather-details {
+      display: flex;
+      gap: 16px;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 8px;
+    }
+
+    .weather-detail {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .weather-detail-label {
+      opacity: 0.7;
+    }
+
     /* Clock styling */
     #clock {
       font-size: 64px;
@@ -522,17 +588,17 @@
     }
   </style>
 
-
+  <!-- Tab bar -->
   <div id="tab-bar">
     <div class="tab active" data-tab-id="0">
-      <img class="tab-favicon" src="others/assets/relic.webp" alt="">
+      <img class="tab-favicon" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236366f1'%3E%3Cpath d='M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z'/%3E%3C/svg%3E" alt="">
       <span class="tab-title">New Tab</span>
       <span class="tab-close" onclick="closeTab(event, 0)">×</span>
     </div>
     <div class="new-tab-btn" onclick="createNewTab()">+</div>
   </div>
 
-
+  <!-- Top navigation -->
   <nav id="top-nav">
     <button class="nav-btn" onclick="goBack()" title="Back">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -550,21 +616,21 @@
       </svg>
     </button>
     <div id="url-bar-container">
-      <img id="current-favicon" src="others/assets/relic.webp" alt="">
+      <img id="current-favicon" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236366f1'%3E%3Cpath d='M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z'/%3E%3C/svg%3E" alt="">
       <form id="top-search" style="flex: 1;">
         <input id="top-url" type="text" placeholder="Search the web or enter URL">
       </form>
     </div>
   </nav>
 
-
+  <!-- Centered container -->
   <div id="centered-container">
     <div id="clock">12:00 PM</div>
     <form id="search">
       <input id="url" type="text" placeholder="Search the web or enter URL">
     </form>
     
-
+    <!-- Shortcuts section -->
     <div id="shortcuts-section">
       <div id="shortcuts-grid">
         <div class="add-shortcut" onclick="openAddShortcutModal()">
@@ -575,7 +641,27 @@
     </div>
   </div>
 
+  <!-- Weather Widget -->
+  <div id="weather-widget">
+    <div class="weather-location">Loading...</div>
+    <div class="weather-main">
+      <div class="weather-temp">--°</div>
+      <div class="weather-icon">🌤️</div>
+    </div>
+    <div class="weather-desc">--</div>
+    <div class="weather-details">
+      <div class="weather-detail">
+        <span class="weather-detail-label">Feels Like</span>
+        <span id="feels-like">--°</span>
+      </div>
+      <div class="weather-detail">
+        <span class="weather-detail-label">Humidity</span>
+        <span id="humidity">--%</span>
+      </div>
+    </div>
+  </div>
 
+  <!-- Add Shortcut Modal -->
   <div id="add-shortcut-modal" class="modal">
     <div class="modal-content">
       <div class="modal-header">Add Shortcut</div>
@@ -594,7 +680,7 @@
     </form>
   </div>
 
-
+  <!-- Tab content containers -->
   <div id="tab-contents"></div>
 
   <script src="https://cdn.jsdelivr.net/gh/soap-phia/tinyjet@latest/tinyjet/scramjet.all.js" defer></script>
@@ -611,7 +697,58 @@
     updateClock();
     setInterval(updateClock, 1000);
 
-    // Initialize BareMux and Scramjet
+    // Weather widget
+    async function updateWeather() {
+      try {
+        // Get user's location
+        const geoRes = await fetch('https://ipapi.co/json/');
+        const geoData = await geoRes.json();
+        const { city, latitude, longitude } = geoData;
+        
+        // Get weather data (using Open-Meteo free API)
+        const weatherRes = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch`);
+        const weatherData = await weatherRes.json();
+        
+        const temp = Math.round(weatherData.current.temperature_2m);
+        const feelsLike = Math.round(weatherData.current.apparent_temperature);
+        const humidity = weatherData.current.relative_humidity_2m;
+        const weatherCode = weatherData.current.weather_code;
+        
+        // Weather code to icon/description mapping
+        const weatherMap = {
+          0: { icon: '☀️', desc: 'Clear sky' },
+          1: { icon: '🌤️', desc: 'Mainly clear' },
+          2: { icon: '⛅', desc: 'Partly cloudy' },
+          3: { icon: '☁️', desc: 'Overcast' },
+          45: { icon: '🌫️', desc: 'Foggy' },
+          48: { icon: '🌫️', desc: 'Foggy' },
+          51: { icon: '🌦️', desc: 'Light drizzle' },
+          61: { icon: '🌧️', desc: 'Light rain' },
+          63: { icon: '🌧️', desc: 'Moderate rain' },
+          65: { icon: '🌧️', desc: 'Heavy rain' },
+          71: { icon: '🌨️', desc: 'Light snow' },
+          73: { icon: '❄️', desc: 'Moderate snow' },
+          75: { icon: '❄️', desc: 'Heavy snow' },
+          95: { icon: '⛈️', desc: 'Thunderstorm' }
+        };
+        
+        const weather = weatherMap[weatherCode] || { icon: '🌤️', desc: 'Unknown' };
+        
+        document.querySelector('.weather-location').textContent = city || 'Your Location';
+        document.querySelector('.weather-temp').textContent = `${temp}°`;
+        document.querySelector('.weather-icon').textContent = weather.icon;
+        document.querySelector('.weather-desc').textContent = weather.desc;
+        document.getElementById('feels-like').textContent = `${feelsLike}°`;
+        document.getElementById('humidity').textContent = `${humidity}%`;
+      } catch (error) {
+        console.error('Weather fetch error:', error);
+        document.querySelector('.weather-location').textContent = 'Weather unavailable';
+      }
+    }
+    
+    updateWeather();
+    setInterval(updateWeather, 600000); // Update every 10 minutes
+
     import * as BareMux from "https://cdn.jsdelivr.net/npm/@mercuryworkshop/bare-mux/dist/index.mjs";
     const { ScramjetController } = $scramjetLoadController();
     const scramjet = new ScramjetController({
@@ -621,17 +758,11 @@
         sync: "https://cdn.jsdelivr.net/gh/soap-phia/tinyjet@latest/tinyjet/scramjet.sync.js"
       }
     });
+    try {
+      scramjet.init();
+      navigator.serviceWorker.register("/sw.js");
+    } catch (e) { console.error("scramjet failed to initialize;", e); }
     const connection = new BareMux.BareMuxConnection("/bareworker.js");
-
-    // Initialize scramjet
-    (async () => {
-      try {
-        await scramjet.init();
-        navigator.serviceWorker.register("/sw.js");
-      } catch (e) { 
-        console.error("scramjet failed to initialize;", e); 
-      }
-    })();
     
     function getWispUrl() {
       const wisp = document.getElementById("websocket").value.trim();
@@ -833,8 +964,10 @@
         
         if (!tab.url) {
           document.getElementById('centered-container').classList.remove('hidden');
+          document.getElementById('weather-widget').classList.remove('hidden');
         } else {
           document.getElementById('centered-container').classList.add('hidden');
+          document.getElementById('weather-widget').classList.add('hidden');
         }
       }
     };
@@ -877,6 +1010,7 @@
       content.appendChild(iframe);
       
       document.getElementById('centered-container').classList.add('hidden');
+      document.getElementById('weather-widget').classList.add('hidden');
       document.getElementById('top-url').value = fixedurl;
       
       updateTabInfo(activeTabId, fixedurl, new URL(fixedurl).hostname);
@@ -884,6 +1018,7 @@
       if (addToHistory) {
         const tab = tabs.find(t => t.id === activeTabId);
         if (tab) {
+          // Remove any forward history when navigating to new page
           tab.history = tab.history.slice(0, tab.historyIndex + 1);
           tab.history.push(fixedurl);
           tab.historyIndex = tab.history.length - 1;
@@ -900,6 +1035,7 @@
         const tabEl = document.querySelector(`[data-tab-id="${tabId}"].tab .tab-title`);
         if (tabEl) tabEl.textContent = tab.title;
         
+        // Try to get favicon
         try {
           const urlObj = new URL(url);
           const faviconUrl = `${urlObj.origin}/favicon.ico`;
@@ -927,18 +1063,21 @@
       loadUrlInTab(url, true);
     }
 
+    // Main centered search
     document.getElementById("search").addEventListener("submit", async (event) => {
       event.preventDefault();
       const url = document.getElementById("url").value;
       navigateToUrl(url);
     });
 
+    // Top navigation search
     document.getElementById("top-search").addEventListener("submit", async (event) => {
       event.preventDefault();
       const url = document.getElementById("top-url").value;
       navigateToUrl(url);
     });
 
+    // Make tab clickable
     document.querySelectorAll('.tab').forEach(tab => {
       tab.onclick = (e) => {
         if (!e.target.classList.contains('tab-close')) {
