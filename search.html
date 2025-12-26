@@ -150,7 +150,7 @@
       top: 40px;
       left: 0;
       width: 100%;
-      height: 50px;
+      height: 44px;
       background: var(--nav-color);
       border-bottom: 1px solid var(--border-color);
       box-shadow: var(--shadow-md);
@@ -240,10 +240,78 @@
       flex-direction: column;
       align-items: center;
       gap: 24px;
+      width: 90%;
+      max-width: 900px;
     }
 
     #centered-container.hidden {
       display: none;
+    }
+
+    /* Weather widget */
+    #weather-widget {
+      position: fixed;
+      top: 120px;
+      right: 24px;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      padding: 16px;
+      backdrop-filter: blur(14px);
+      z-index: 1500;
+      min-width: 200px;
+      box-shadow: var(--shadow-md);
+    }
+
+    #weather-widget.hidden {
+      display: none;
+    }
+
+    .weather-location {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .weather-main {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .weather-temp {
+      font-size: 32px;
+      font-weight: 300;
+      color: var(--text-color);
+    }
+
+    .weather-icon {
+      font-size: 40px;
+    }
+
+    .weather-desc {
+      font-size: 14px;
+      color: var(--text-color);
+      text-transform: capitalize;
+    }
+
+    .weather-details {
+      display: flex;
+      gap: 16px;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 8px;
+    }
+
+    .weather-detail {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .weather-detail-label {
+      opacity: 0.7;
     }
 
     /* Clock styling */
@@ -262,6 +330,211 @@
       padding: 0;
       display: flex;
       justify-content: center;
+    }
+
+    /* Shortcuts section */
+    #shortcuts-section {
+      width: 100%;
+      max-width: 800px;
+      display: flex;
+      justify-content: center;
+    }
+
+    #shortcuts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 120px));
+      gap: 16px;
+      margin-bottom: 16px;
+      justify-content: center;
+    }
+
+    .shortcut {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      padding: 16px;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+      backdrop-filter: blur(14px);
+      position: relative;
+    }
+
+    .shortcut:hover {
+      background: var(--hover-bg);
+      border-color: var(--accent-color);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-glow);
+    }
+
+    .shortcut-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 8px;
+      background: var(--accent-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+
+    .shortcut-icon img {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+    }
+
+    .shortcut-name {
+      font-size: 13px;
+      color: var(--text-color);
+      text-align: center;
+      word-break: break-word;
+    }
+
+    .shortcut-remove {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      width: 20px;
+      height: 20px;
+      background: rgba(239, 68, 68, 0.8);
+      border-radius: 50%;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 14px;
+      color: white;
+    }
+
+    .shortcut:hover .shortcut-remove {
+      display: flex;
+    }
+
+    .add-shortcut {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      padding: 16px;
+      background: var(--glass-bg);
+      border: 2px dashed var(--glass-border);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+      backdrop-filter: blur(14px);
+    }
+
+    .add-shortcut:hover {
+      border-color: var(--accent-color);
+      background: var(--hover-bg);
+    }
+
+    .add-shortcut-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 8px;
+      background: var(--btn-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      color: var(--accent-color);
+    }
+
+    /* Modal */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 4000;
+      backdrop-filter: blur(4px);
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: var(--nav-color);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 24px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .modal-header {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: var(--text-color);
+    }
+
+    .modal-input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 12px;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 8px;
+      color: var(--text-color);
+      font-size: 14px;
+      outline: none;
+      transition: border 0.2s;
+    }
+
+    .modal-input:focus {
+      border-color: var(--accent-color);
+    }
+
+    .modal-input::placeholder {
+      color: var(--text-muted);
+    }
+
+    .modal-buttons {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .modal-btn {
+      flex: 1;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .modal-btn-primary {
+      background: var(--accent-color);
+      color: white;
+    }
+
+    .modal-btn-primary:hover {
+      background: var(--accent-secondary);
+    }
+
+    .modal-btn-secondary {
+      background: var(--btn-bg);
+      color: var(--text-color);
+    }
+
+    .modal-btn-secondary:hover {
+      background: var(--hover-bg);
     }
 
     /* Search input */
@@ -296,10 +569,10 @@
     /* Tab content area */
     .tab-content {
       position: absolute;
-      top: 90px;
+      top: 84px;
       left: 0;
       width: 100%;
-      height: calc(100% - 90px);
+      height: calc(100% - 84px);
       display: none;
     }
 
@@ -315,37 +588,90 @@
     }
   </style>
 
-  <!-- Tab bar -->
+
   <div id="tab-bar">
     <div class="tab active" data-tab-id="0">
-      <img class="tab-favicon" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236366f1'%3E%3Cpath d='M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z'/%3E%3C/svg%3E" alt="">
+      <img class="tab-favicon" src="others/assets/relic.webp" alt="">
       <span class="tab-title">New Tab</span>
       <span class="tab-close" onclick="closeTab(event, 0)">×</span>
     </div>
     <div class="new-tab-btn" onclick="createNewTab()">+</div>
   </div>
 
-  <!-- Top navigation -->
+
   <nav id="top-nav">
+    <button class="nav-btn" onclick="goBack()" title="Back">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M19 12H5M12 19l-7-7 7-7"/>
+      </svg>
+    </button>
+    <button class="nav-btn" onclick="goForward()" title="Forward">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M5 12h14M12 5l7 7-7 7"/>
+      </svg>
+    </button>
     <button class="nav-btn" onclick="refreshPage()" title="Refresh">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/>
       </svg>
     </button>
     <div id="url-bar-container">
-      <img id="current-favicon" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236366f1'%3E%3Cpath d='M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z'/%3E%3C/svg%3E" alt="">
+      <img id="current-favicon" src="others/assets/relic.webp" alt="">
       <form id="top-search" style="flex: 1;">
         <input id="top-url" type="text" placeholder="Search the web or enter URL">
       </form>
     </div>
   </nav>
 
-  <!-- Centered container -->
+
   <div id="centered-container">
     <div id="clock">12:00 PM</div>
     <form id="search">
       <input id="url" type="text" placeholder="Search the web or enter URL">
     </form>
+    
+
+    <div id="shortcuts-section">
+      <div id="shortcuts-grid">
+        <div class="add-shortcut" onclick="openAddShortcutModal()">
+          <div class="add-shortcut-icon">+</div>
+          <span class="shortcut-name">Add Shortcut</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="weather-widget">
+    <div class="weather-location">Loading...</div>
+    <div class="weather-main">
+      <div class="weather-temp">--°</div>
+      <div class="weather-icon">🌤️</div>
+    </div>
+    <div class="weather-desc">--</div>
+    <div class="weather-details">
+      <div class="weather-detail">
+        <span class="weather-detail-label">Feels Like</span>
+        <span id="feels-like">--°</span>
+      </div>
+      <div class="weather-detail">
+        <span class="weather-detail-label">Humidity</span>
+        <span id="humidity">--%</span>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="add-shortcut-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">Add Shortcut</div>
+      <input type="text" id="shortcut-name" class="modal-input" placeholder="Name (e.g., YouTube)">
+      <input type="text" id="shortcut-url" class="modal-input" placeholder="URL (e.g., https://youtube.com)">
+      <div class="modal-buttons">
+        <button class="modal-btn modal-btn-secondary" onclick="closeAddShortcutModal()">Cancel</button>
+        <button class="modal-btn modal-btn-primary" onclick="addShortcut()">Add</button>
+      </div>
+    </div>
   </div>
 
   <div style="display:none;">
@@ -354,7 +680,7 @@
     </form>
   </div>
 
-  <!-- Tab content containers -->
+
   <div id="tab-contents"></div>
 
   <script src="https://cdn.jsdelivr.net/gh/soap-phia/tinyjet@latest/tinyjet/scramjet.all.js" defer></script>
@@ -370,6 +696,58 @@
     }
     updateClock();
     setInterval(updateClock, 1000);
+
+    // Weather widget
+    async function updateWeather() {
+      try {
+        // Get user's location
+        const geoRes = await fetch('https://ipapi.co/json/');
+        const geoData = await geoRes.json();
+        const { city, latitude, longitude } = geoData;
+        
+        // Get weather data (using Open-Meteo free API)
+        const weatherRes = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch`);
+        const weatherData = await weatherRes.json();
+        
+        const temp = Math.round(weatherData.current.temperature_2m);
+        const feelsLike = Math.round(weatherData.current.apparent_temperature);
+        const humidity = weatherData.current.relative_humidity_2m;
+        const weatherCode = weatherData.current.weather_code;
+        
+        // Weather code to icon/description mapping
+        const weatherMap = {
+          0: { icon: '☀️', desc: 'Clear sky' },
+          1: { icon: '🌤️', desc: 'Mainly clear' },
+          2: { icon: '⛅', desc: 'Partly cloudy' },
+          3: { icon: '☁️', desc: 'Overcast' },
+          45: { icon: '🌫️', desc: 'Foggy' },
+          48: { icon: '🌫️', desc: 'Foggy' },
+          51: { icon: '🌦️', desc: 'Light drizzle' },
+          61: { icon: '🌧️', desc: 'Light rain' },
+          63: { icon: '🌧️', desc: 'Moderate rain' },
+          65: { icon: '🌧️', desc: 'Heavy rain' },
+          71: { icon: '🌨️', desc: 'Light snow' },
+          73: { icon: '❄️', desc: 'Moderate snow' },
+          75: { icon: '❄️', desc: 'Heavy snow' },
+          95: { icon: '⛈️', desc: 'Thunderstorm' }
+        };
+        
+        const weather = weatherMap[weatherCode] || { icon: '🌤️', desc: 'Unknown' };
+        
+        document.querySelector('.weather-location').textContent = city || 'Your Location';
+        document.querySelector('.weather-temp').textContent = `${temp}°`;
+        document.querySelector('.weather-icon').textContent = weather.icon;
+        document.querySelector('.weather-desc').textContent = weather.desc;
+        document.getElementById('feels-like').textContent = `${feelsLike}°`;
+        document.getElementById('humidity').textContent = `${humidity}%`;
+      } catch (error) {
+        console.error('Weather fetch error:', error);
+        document.querySelector('.weather-location').textContent = 'Weather unavailable';
+      }
+    }
+    
+    updateWeather();
+    setInterval(updateWeather, 600000); // Update every 10 minutes
 
     import * as BareMux from "https://cdn.jsdelivr.net/npm/@mercuryworkshop/bare-mux/dist/index.mjs";
     const { ScramjetController } = $scramjetLoadController();
@@ -426,8 +804,96 @@
 
     setTransport("epoxy");
 
+    // Shortcuts management
+    let shortcuts = JSON.parse(localStorage.getItem('shortcuts') || '[]');
+
+    function renderShortcuts() {
+      const grid = document.getElementById('shortcuts-grid');
+      grid.innerHTML = '';
+      
+      shortcuts.forEach((shortcut, index) => {
+        const div = document.createElement('div');
+        div.className = 'shortcut';
+        div.onclick = () => navigateToUrl(shortcut.url);
+        
+        let faviconUrl;
+        try {
+          const urlObj = new URL(shortcut.url);
+          faviconUrl = `${urlObj.origin}/favicon.ico`;
+        } catch (e) {
+          faviconUrl = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236366f1'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z'/%3E%3C/svg%3E";
+        }
+        
+        div.innerHTML = `
+          <div class="shortcut-icon">
+            <img src="${faviconUrl}" alt="${shortcut.name}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\\'http://www.w3.org/2000/svg\\' viewBox=\\'0 0 24 24\\' fill=\\'white\\'%3E%3Cpath d=\\'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z\\'/%3E%3C/svg%3E'">
+          </div>
+          <span class="shortcut-name">${shortcut.name}</span>
+          <div class="shortcut-remove" onclick="event.stopPropagation(); removeShortcut(${index})">×</div>
+        `;
+        
+        grid.appendChild(div);
+      });
+      
+      const addBtn = document.createElement('div');
+      addBtn.className = 'add-shortcut';
+      addBtn.onclick = openAddShortcutModal;
+      addBtn.innerHTML = `
+        <div class="add-shortcut-icon">+</div>
+        <span class="shortcut-name">Add Shortcut</span>
+      `;
+      grid.appendChild(addBtn);
+    }
+
+    window.openAddShortcutModal = function() {
+      document.getElementById('add-shortcut-modal').classList.add('active');
+      document.getElementById('shortcut-name').value = '';
+      document.getElementById('shortcut-url').value = '';
+      document.getElementById('shortcut-name').focus();
+    };
+
+    window.closeAddShortcutModal = function() {
+      document.getElementById('add-shortcut-modal').classList.remove('active');
+    };
+
+    window.addShortcut = function() {
+      const name = document.getElementById('shortcut-name').value.trim();
+      const url = document.getElementById('shortcut-url').value.trim();
+      
+      if (!name || !url) {
+        alert('Please enter both name and URL');
+        return;
+      }
+      
+      let fullUrl = url;
+      if (!url.startsWith('http://') && !url.startsWith('https://')) {
+        fullUrl = 'https://' + url;
+      }
+      
+      shortcuts.push({ name, url: fullUrl });
+      localStorage.setItem('shortcuts', JSON.stringify(shortcuts));
+      renderShortcuts();
+      closeAddShortcutModal();
+    };
+
+    window.removeShortcut = function(index) {
+      shortcuts.splice(index, 1);
+      localStorage.setItem('shortcuts', JSON.stringify(shortcuts));
+      renderShortcuts();
+    };
+
+    // Close modal on outside click
+    document.getElementById('add-shortcut-modal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeAddShortcutModal();
+      }
+    });
+
+    // Initial render
+    renderShortcuts();
+
     // Tab management
-    let tabs = [{ id: 0, title: 'New Tab', url: '', favicon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236366f1'%3E%3Cpath d='M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z'/%3E%3C/svg%3E" }];
+    let tabs = [{ id: 0, title: 'New Tab', url: '', favicon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236366f1'%3E%3Cpath d='M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z'/%3E%3C/svg%3E", history: [], historyIndex: -1 }];
     let activeTabId = 0;
     let nextTabId = 1;
 
@@ -440,7 +906,7 @@
 
     window.createNewTab = function() {
       const tabId = nextTabId++;
-      tabs.push({ id: tabId, title: 'New Tab', url: '', favicon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236366f1'%3E%3Cpath d='M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z'/%3E%3C/svg%3E" });
+      tabs.push({ id: tabId, title: 'New Tab', url: '', favicon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236366f1'%3E%3Cpath d='M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z'/%3E%3C/svg%3E", history: [], historyIndex: -1 });
       
       const tabBar = document.getElementById('tab-bar');
       const newTabBtn = tabBar.querySelector('.new-tab-btn');
@@ -498,9 +964,29 @@
         
         if (!tab.url) {
           document.getElementById('centered-container').classList.remove('hidden');
+          document.getElementById('weather-widget').classList.remove('hidden');
         } else {
           document.getElementById('centered-container').classList.add('hidden');
+          document.getElementById('weather-widget').classList.add('hidden');
         }
+      }
+    };
+
+    window.goBack = function() {
+      const tab = tabs.find(t => t.id === activeTabId);
+      if (tab && tab.historyIndex > 0) {
+        tab.historyIndex--;
+        const url = tab.history[tab.historyIndex];
+        loadUrlInTab(url, false);
+      }
+    };
+
+    window.goForward = function() {
+      const tab = tabs.find(t => t.id === activeTabId);
+      if (tab && tab.historyIndex < tab.history.length - 1) {
+        tab.historyIndex++;
+        const url = tab.history[tab.historyIndex];
+        loadUrlInTab(url, false);
       }
     };
 
@@ -511,6 +997,34 @@
         iframe.src = iframe.src;
       }
     };
+
+    function loadUrlInTab(url, addToHistory = true) {
+      const fixedurl = search(url);
+      const src = scramjet.encodeUrl(fixedurl);
+      
+      const content = document.querySelector(`[data-tab-id="${activeTabId}"].tab-content`);
+      content.innerHTML = '';
+      
+      const iframe = document.createElement('iframe');
+      iframe.src = src;
+      content.appendChild(iframe);
+      
+      document.getElementById('centered-container').classList.add('hidden');
+      document.getElementById('weather-widget').classList.add('hidden');
+      document.getElementById('top-url').value = fixedurl;
+      
+      updateTabInfo(activeTabId, fixedurl, new URL(fixedurl).hostname);
+      
+      if (addToHistory) {
+        const tab = tabs.find(t => t.id === activeTabId);
+        if (tab) {
+          // Remove any forward history when navigating to new page
+          tab.history = tab.history.slice(0, tab.historyIndex + 1);
+          tab.history.push(fixedurl);
+          tab.historyIndex = tab.history.length - 1;
+        }
+      }
+    }
 
     function updateTabInfo(tabId, url, title) {
       const tab = tabs.find(t => t.id === tabId);
@@ -546,20 +1060,7 @@
     }
 
     function navigateToUrl(url) {
-      const fixedurl = search(url);
-      const src = scramjet.encodeUrl(fixedurl);
-      
-      const content = document.querySelector(`[data-tab-id="${activeTabId}"].tab-content`);
-      content.innerHTML = '';
-      
-      const iframe = document.createElement('iframe');
-      iframe.src = src;
-      content.appendChild(iframe);
-      
-      document.getElementById('centered-container').classList.add('hidden');
-      document.getElementById('top-url').value = fixedurl;
-      
-      updateTabInfo(activeTabId, fixedurl, new URL(fixedurl).hostname);
+      loadUrlInTab(url, true);
     }
 
     // Main centered search

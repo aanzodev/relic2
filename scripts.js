@@ -29,7 +29,7 @@ function shouldAutoApplySeasonalTheme() {
   return autoApply !== 'false';
 }
 
-
+//  ABOUT:BLANK CLOAKING 
 (function() {
   const aboutBlankEnabled = localStorage.getItem('aboutBlank');
   const isInAboutBlank = window.self !== window.top;
